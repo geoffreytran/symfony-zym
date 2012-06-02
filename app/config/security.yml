@@ -5,6 +5,7 @@ jms_security_extra:
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface:        sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -37,7 +38,20 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+        
+        main:
+            pattern: ^/.*
+            form_login: ~
+            anonymous: ~
+            switch_user: ~
+            remember_me:
+                key: remember
+                lifetime: 1209600
+
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+    
+    acl:
+        connection: default

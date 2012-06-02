@@ -1,3 +1,8 @@
+# Assetic handles assets such as css, js, images
+assetic:
+    resource: .
+    type:     assetic
+
 _welcome:
     pattern:  /
     defaults: { _controller: AcmeDemoBundle:Welcome:index }

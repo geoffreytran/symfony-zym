@@ -1,4 +1,61 @@
 # Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+_internal:
+    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+    prefix:   /_internal
+
+_fields:
+    resource: "@ZymFieldBundle/Controller/FieldsController.php"
+    type:     annotation
+    prefix:   /admin/structure/fields
+    
+_menus:
+    resource: "@ZymMenuBundle/Controller/MenusController.php"
+    type:     annotation
+    prefix:   /admin/structure/menus
+    
+_security_access_rules:
+    resource: "@ZymSecurityBundle/Controller/AccessRulesController.php"
+    type:     annotation
+    prefix:   /admin/config/security/access-rules
+
+_security_acl_object_aces:
+    resource: "@ZymSecurityBundle/Controller/AclObjectAcesController.php"
+    type:     annotation
+    prefix:   /admin/config/acl/object
+
+_security_acl_entries:
+    resource: "@ZymSecurityBundle/Controller/AclEntriesController.php"
+    type:     annotation
+    prefix:   /admin/acl/entries
+    
+_security_acl_roles:
+    resource: "@ZymSecurityBundle/Controller/AclRolesController.php"
+    type:     annotation
+    prefix:   /admin/acls/roles
+    
+_node_types:
+    resource: "@ZymNodeBundle/Controller/NodeTypesController.php"
+    type:      annotation
+    prefix:   /admin/structure/content-types
+    
+_nodes:
+    resource: "@ZymNodeBundle/Controller/NodesController.php"
+    type:     annotation
+    prefix:   /admin/content
+    
+_users:
+    resource: "@ZymUserBundle/Controller/UsersController.php"
+    type:     annotation
+    prefix:   /admin/users
+    
+_groups:
+    resource: "@ZymUserBundle/Controller/GroupsController.php"
+    type:     annotation
+    prefix:      /admin/groups
+    
+_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    
+_groups:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix:   /groups

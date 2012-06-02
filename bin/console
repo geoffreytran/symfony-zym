@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+ROOT_DIR=$(dirname $0)
+$ROOT_DIR/../app/console $@

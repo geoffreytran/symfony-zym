@@ -1,0 +1,13 @@
+; Parameters for the framework
+[parameters]
+
+; framework.xml
+kernel.locale    = en
+kernel.secret    = b011a4f1b18d2c8b01dcabdfbbfc09410
+session.lifetime = 3600
+assets.base_urls =
+
+; assetic.xml
+assetic.yuicompressor.jar = %kernel.root_dir%/../bin/yuicompressor-2.4.6.jar
+assetic.less.node_bin   = /usr/local/bin/node
+assetic.less.node_paths = /usr/local/lib/node_modules

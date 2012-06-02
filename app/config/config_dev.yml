@@ -22,5 +22,10 @@ monolog:
 assetic:
     use_controller: true
 
+opensky_runtime_config:
+    logging:
+        enabled: true
+        level:   debug
+
 #swiftmailer:
 #    delivery_address: me@example.com
