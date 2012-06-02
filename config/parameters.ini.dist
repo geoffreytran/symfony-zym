@@ -8,6 +8,6 @@ session.lifetime = 3600
 assets.base_urls =
 
 ; assetic.xml
-assetic.yuicompressor.jar = %kernel.root_dir%/../bin/yuicompressor-2.4.6.jar
+assetic.yuicompressor.jar = %kernel.root_dir%/../vendor/nervo/yuicompressor/yuicompressor.jar
 assetic.less.node_bin   = /usr/local/bin/node
 assetic.less.node_paths = /usr/local/lib/node_modules

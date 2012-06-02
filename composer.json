@@ -20,6 +20,7 @@
         "jms/di-extra-bundle": "1.0.*",
         
         "geoffreytran/zym": "dev-master",
+        "nervo/yuicompressor": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
