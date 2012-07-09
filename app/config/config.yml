@@ -14,7 +14,6 @@ parameters:
 framework:
     annotations:     ~
     secret:          %kernel.secret%
-    charset:         UTF-8
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_parameters: %kernel.debug%
@@ -23,12 +22,13 @@ framework:
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig', 'php'] } #assets_version: SomeVersionScheme
     translator:
-        fallback: en
+        fallback: %kernel.locale%
     default_locale: %kernel.locale%
+    trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:
-        auto_start: true
         handler_id: zym_session.storage.handler.pdo
     esi:            true
+
 
 # Twig Configuration
 twig:
