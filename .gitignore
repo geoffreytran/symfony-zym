@@ -14,4 +14,4 @@ data/indexes/*
 nbproject/
 .DS_Store
 catalog.xml
-
+.vagrant
