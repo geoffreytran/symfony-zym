@@ -1,6 +1,5 @@
 <?php
 
-// Environment
 $environment = isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT']
 											  : 'prod';
 
