@@ -7,12 +7,17 @@ _fields:
     resource: "@ZymFieldBundle/Controller/FieldsController.php"
     type:     annotation
     prefix:   /admin/structure/fields
-    
+
 _menus:
     resource: "@ZymMenuBundle/Controller/MenusController.php"
     type:     annotation
     prefix:   /admin/structure/menus
-    
+
+_menus_categories:
+    resource: "@ZymMenuBundle/Controller/CategoriesController.php"
+    type:     annotation
+    prefix:   /menu/categories
+
 _security_access_rules:
     resource: "@ZymSecurityBundle/Controller/AccessRulesController.php"
     type:     annotation
@@ -27,35 +32,44 @@ _security_acl_entries:
     resource: "@ZymSecurityBundle/Controller/AclEntriesController.php"
     type:     annotation
     prefix:   /admin/acl/entries
-    
+
 _security_acl_roles:
     resource: "@ZymSecurityBundle/Controller/AclRolesController.php"
     type:     annotation
     prefix:   /admin/acls/roles
-    
+
 _node_types:
     resource: "@ZymNodeBundle/Controller/NodeTypesController.php"
     type:      annotation
     prefix:   /admin/structure/content-types
-    
+
 _nodes:
     resource: "@ZymNodeBundle/Controller/NodesController.php"
     type:     annotation
     prefix:   /admin/content
-    
+
 _users:
     resource: "@ZymUserBundle/Controller/UsersController.php"
     type:     annotation
     prefix:   /admin/users
-    
-_groups:
+
+_user_groups:
     resource: "@ZymUserBundle/Controller/GroupsController.php"
     type:     annotation
-    prefix:      /admin/groups
-    
-_security:
+    prefix:   /admin/groups
+
+_parameters:
+    resource: "@ZymRuntimeConfigBundle/Controller/ParametersController.php"
+    type:     annotation
+    prefix:   /admin/config/parameters
+
+_fos_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-    
-_groups:
+
+_fos_groups:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix:   /groups
+
+_fos_registration:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix:   /register

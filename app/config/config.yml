@@ -85,11 +85,6 @@ stof_doctrine_extensions:
             translatable: true
             loggable: true
             sluggable: true
-            
-liip_theme:
-    load_controllers: false
-    themes: ['web', 'tablet', 'mobile']
-    active_theme: 'web'
 
 mopa_bootstrap:
     form:

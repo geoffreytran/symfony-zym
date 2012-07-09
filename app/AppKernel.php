@@ -29,10 +29,10 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
-            new Liip\ThemeBundle\LiipThemeBundle(),
             
             // Zym
             new Zym\Bundle\FrameworkBundle\ZymFrameworkBundle(),
+            new Zym\Bundle\DoctrineBundle\ZymDoctrineBundle(),
             new Zym\Bundle\UserBundle\ZymUserBundle(),
             new Zym\Bundle\FieldBundle\ZymFieldBundle(),
             new Zym\Bundle\NodeBundle\ZymNodeBundle(),
