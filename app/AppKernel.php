@@ -42,6 +42,8 @@ class AppKernel extends Kernel
             new Zym\Bundle\SessionBundle\ZymSessionBundle(),
             new Zym\Bundle\MenuBundle\ZymMenuBundle(),
             new Zym\Bundle\RuntimeConfigBundle\ZymRuntimeConfigBundle(),
+            new Zym\Bundle\ThemeBundle\ZymThemeBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {

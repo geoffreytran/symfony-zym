@@ -121,6 +121,10 @@ fos_user:
 zym_user:
     db_driver: orm
 
+zym_theme:
+    theme_map:
+        - { path: ^/, theme: cerulean }
+
 opensky_runtime_config:
     provider: zym_runtime_config.provider
     cascade:  true
