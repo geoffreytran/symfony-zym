@@ -64,6 +64,12 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
             "source-reference": "9e58bb76e7931f2eae909021a9549601c7a7e186",
             "commit-date": "1342287539"
         },
@@ -92,6 +98,12 @@
         {
             "package": "jms/security-extra-bundle",
             "version": "1.1.0"
+        },
+        {
+            "package": "jms/serializer-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "0.9.x-dev",
+            "alias-version": "0.9.9999999.9999999-dev"
         },
         {
             "package": "jms/serializer-bundle",
@@ -154,6 +166,12 @@
         {
             "package": "mopa/bootstrap-bundle",
             "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "mopa/bootstrap-bundle",
+            "version": "dev-master",
             "source-reference": "85ff8e83ab4f2a3ef831ee8fb503368d893d6452",
             "commit-date": "1342177971"
         },
@@ -184,8 +202,20 @@
         {
             "package": "sensio/framework-extra-bundle",
             "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "sensio/framework-extra-bundle",
+            "version": "dev-master",
             "source-reference": "e9ac8f1a911ed29e30296c7f1549f53d4c94eddf",
             "commit-date": "1342084432"
+        },
+        {
+            "package": "sensio/generator-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "sensio/generator-bundle",
@@ -214,14 +244,32 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/assetic-bundle",
+            "version": "dev-master",
             "source-reference": "ed933dcfa45f00b6bc6d7727007403f3ff429e5a",
             "commit-date": "1342126277"
         },
         {
             "package": "symfony/monolog-bundle",
             "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/monolog-bundle",
+            "version": "dev-master",
             "source-reference": "v2.1.0-BETA3",
             "commit-date": "1341078487"
+        },
+        {
+            "package": "symfony/swiftmailer-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/swiftmailer-bundle",

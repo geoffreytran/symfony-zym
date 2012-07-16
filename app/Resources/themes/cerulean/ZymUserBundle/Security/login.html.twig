@@ -47,3 +47,19 @@
         </fieldset>
     </form>
 {% endblock %}
+
+{% block inlineScripts %}
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var username = $('#username');
+            
+            if (!username.val().length) {
+                username.focus();
+            } else {
+                $('#password').focus();
+            }
+        });
+    </script>
+{% endblock %}

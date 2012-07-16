@@ -63,6 +63,11 @@ _parameters:
     type:     annotation
     prefix:   /admin/config/parameters
 
+ZymThemeBundle:
+    resource: "@ZymThemeBundle/Controller/ThemeRulesController.php"
+    type:     annotation
+    prefix:   /admin/structure/themes
+    
 _fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
