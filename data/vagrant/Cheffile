@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+# cookbook 'chef-client'
+
+cookbook 'application'
+cookbook 'application_php'
+
+cookbook 'apache2'
+cookbook 'java'
+cookbook 'php'
+
+cookbook 'mysql'
+cookbook 'sqlite'
+
+# Node.js
+cookbook 'nodejs'
+cookbook 'npm'
+
+cookbook 'lesscss'
+
+# Search
+cookbook 'elasticsearch'
+
+# Caching
+cookbook 'memcached'
+
+# Media
+cookbook 'x264'
+cookbook 'ffmpeg'
+cookbook 'imagemagick'
+
+# Version Control
+cookbook 'git'
+cookbook 'subversion'
+
+# Utilities
+cookbook 'apt'
+cookbook 'yum'
+cookbook 'screen'
+cookbook 'htop'
+cookbook 'rsync'
+
+
+# cookbook 'rvm',
+#   :git => 'https://github.com/fnichol/chef-rvm'
+
+# cookbook 'postgresql',
+#   :git => 'https://github.com/findsyou/cookbooks',
+#   :ref => 'postgresql-improvements'

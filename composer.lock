@@ -76,8 +76,8 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "59220fc32c32b29e766b6f55ab788ddb036aa9b0",
-            "commit-date": "1341756982"
+            "source-reference": "46735a4b0d7d490dded7ca24c83ccad41910b1fa",
+            "commit-date": "1341863191"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -88,8 +88,8 @@
         {
             "package": "geoffreytran/zym",
             "version": "dev-master",
-            "source-reference": "f434f99a732250b69eb13ad17aeb52fce8b61c5f",
-            "commit-date": "1340293654"
+            "source-reference": "5e7c9725611fc8c4ba0ea8bd3fc6c153d5e6d06f",
+            "commit-date": "1341866040"
         },
         {
             "package": "jms/aop-bundle",
@@ -256,8 +256,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "377b8502728b86b0730abce7d404266a24215c77",
-            "commit-date": "1341849620"
+            "source-reference": "5f6a17b8ccbad04366d0381f8478161b9544b05e",
+            "commit-date": "1341854939"
         },
         {
             "package": "twig/extensions",

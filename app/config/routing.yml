@@ -63,13 +63,17 @@ _parameters:
     type:     annotation
     prefix:   /admin/config/parameters
 
-_fos_security:
+_fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-_fos_groups:
+_fos_user_groups:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix:   /groups
 
-_fos_registration:
+_fos_user_registration:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix:   /register
+
+_fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix:   /account/reset

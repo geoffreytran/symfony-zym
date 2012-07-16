@@ -1,13 +1,200 @@
+{%- set appName = (runtime_config('app.name') is empty ?  'Untitled App' : runtime_config('app.name')) |trans -%}
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
     <head>
+    {% block head %}
+        <!-- Start: Meta -->
+        {% block headMeta -%}
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% endblock -%}
+        <!-- End: Meta -->
+
+        <title>
+            {%- block headTitle -%}
+                {%- block title -%}
+                {%- endblock -%}
+
+                {%- if block('title') |trim |length %} | {% endif -%}
+                {{- appName -}}
+            {% endblock -%}
+        </title>
+
+        <!-- Start: Links -->
+        {% block headLinks -%}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <!-- For iPhone 4 with high-resolution Retina display: -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('apple-touch-icon-114x114-precomposed.png') }}" />
+
+        <!-- For first-generation iPad: -->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="{{ asset('apple-touch-icon-72x72-precomposed.png') }}"   />
+
+        <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+        <link rel="apple-touch-icon-precomposed"                 href="{{ asset('apple-touch-icon-precomposed.png') }}"         />
+
+        <!-- About humans.txt http://humanstxt.org/ -->
+        <link rel="author" href="{{ asset('humans.txt') }}" />
+
+        {% stylesheets filter="cssrewrite, less, ?yui_css" output="styles/layouts/base.min.css"
+            "styles/layouts/base.less"
+        -%}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets -%}
+        {% endblock -%}
+        <!-- End: Links -->
+
+        <!-- Start: Styles -->
+        {% block headStyles -%}
+        {% endblock -%}
+        <!-- End: Styles -->
+
+        <!-- Start: Scripts -->
+        {% block headScripts -%}
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+            <script src="{{ asset('scripts/html5.js') }}"></script>
+            <script src="{{ asset('scripts/excanvas.js') }}"></script>
+        <![endif]-->
+        {% endblock -%}
+        <!-- End: Scripts -->
+    {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+        <!-- Start: Header -->
+        <header>
+            <div class="navbar navbar-fixed-top" data-dropdown="dropdown">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+
+                        <a class="brand" href="#">
+                            <img src="{{ asset('images/logo.png') }}" alt="{{ "%app_name%\'s Logo" | trans({ '%app_name%': appName }) }}" />
+                            {{ appName |e }}
+                        </a>
+
+                        <!-- Everything you want hidden at 940px or less, place within here -->
+                        <div class="nav-collapse">
+                            {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig' }) }}
+
+                            <ul class="nav secondary-nav pull-right">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img align="left" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
+                                        {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
+                                            {{ app.user.fullName |e }} ({{ app.user.username | e }})
+                                        {% else %}
+                                            {{ app.user.username |e }} ({{ app.user.email |e }})
+                                        {% endif %}
+
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}"><i class="icon-cog"></i> {{ 'Profile & Settings' | trans }}</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> {{ 'Log out' | trans }}</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
+                                <li><a class="login" href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End: Header -->
+
+        <!-- Start: Document -->
+        <div class="container">
+            <div>
+                <!-- Start: Flash Messages -->
+                {% if is_granted("ROLE_PREVIOUS_ADMIN") %}
+                <div class="alert alert-block alert-info fade in">
+                    <a class="close" data-dismiss="alert">&times;</a>
+                    {{ 'You are currently logged in as' | trans }} <strong>{{ app.user.username |e }}</strong>.
+                    <a class="" href="?_switch_user=_exit">{{ 'Log out as user' |trans }}</a>.
+                </div>
+                {% endif %}
+
+                {% for message, flash in app.session.getFlashes() %}
+                <div class="alert fade in alert-{{ flash }}">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                <!-- End: Flash Messages -->
+
+                {{ knp_menu_render('management', { 'template': '::knp_menu_breadcrumbs.html.twig' }) }}
+
+                <form class="pull-right form-search">
+                  <input type="text" class="input-medium search-query" placeholder="Search..."/>
+                </form>
+
+                <!--
+                <nav class="pull-right">
+                    <ul class="pills">
+                        <li class="active"><a href="#">Content</a></li>
+                        <li><a href="#">Content Types</a></li>
+                        <li><a href="#">Permissions</a></li>
+                    </ul>
+                </nav>
+                -->
+
+                <div style="clear:both"></div>
+            </div>
+
+            <!-- Start: Content -->
+            <section class="content">
+                {% block content "" %}
+            </section>
+            <!-- End: Content -->
+
+            <!-- Start: Footer -->
+            <footer class="footer">
+                <div class="copyright pull-left">
+                    &copy; {{ 'now' |date('Y') }} {{ appName |e }}
+                </div>
+                <!--
+                <nav class="pull-right">
+                    {{ knp_menu_render('management', {'depth': 1}) }}
+                </nav>
+                -->
+            </footer>
+            <!-- End: Footer -->
+        </div>
+        <!-- End: Document -->
+
+        {% endblock body %}
+
+        <!-- Start: Inline Scripts -->
+        {% block inlineScripts -%}
+        <script type="text/javascript" src="{{ asset('scripts/jquery-1.7.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-transition.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-alert.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-button.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-modal.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-dropdown.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/bootstrap-collapse.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('scripts/zym.ajax-modal.js') }}"></script>
+        {% endblock -%}
+        <!-- End: Inline Scripts -->
     </body>
 </html>

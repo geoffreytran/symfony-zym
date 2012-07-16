@@ -1,5 +1,5 @@
-README
-======
+DATA DIRECTORY README
+=====================
 
 Purpose of the Data Directory
 -----------------------------
@@ -22,10 +22,19 @@ Contents can be deleted: YES
 
 This directory contains the search indexes for the application.
 
-Contens can be deleted: NOT SUGGESTED
+Contents can be deleted: NOT SUGGESTED
 
 ### logs/
 
 This directory contains application log files.
 
 Contents can be deleted: YES
+
+### vagrant/
+
+This directory contains the vagrant files for generating a VM suitable
+for running the application.
+
+See http://vagrantup.com/ for more information.
+
+Contents can be deleted: NOT SUGGESTED
