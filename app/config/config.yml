@@ -26,9 +26,9 @@ framework:
     default_locale: %kernel.locale%
     trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:
+        name: "session"
         handler_id: zym_session.storage.handler.pdo
     esi:            true
-
 
 # Twig Configuration
 twig:
@@ -100,7 +100,6 @@ swiftmailer:
     password:  %mail.password%
     spool:     { type: memory }
     
-
 knp_menu:
     templating: true
     twig: true
