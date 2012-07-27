@@ -44,6 +44,7 @@ security:
         main:
             pattern: ^/.*
             form_login: ~
+            logout: ~
             anonymous: ~
             switch_user: ~
             remember_me:
