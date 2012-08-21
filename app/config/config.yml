@@ -24,7 +24,7 @@ framework:
     translator:
         fallback: %kernel.locale%
     default_locale: %kernel.locale%
-    trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:
         name: "session"
         handler_id: zym_session.storage.handler.pdo
@@ -69,12 +69,7 @@ doctrine:
             default:
                 auto_mapping: true
                 connection: default
-                mappings:
-                    StofDoctrineExtensionsBundle:
-                        type:      xml
-                        dir:       ./
-                        prefix:    /
-                        is_bundle: false
+
 
 stof_doctrine_extensions:
     default_locale: en_US
