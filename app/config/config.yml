@@ -5,12 +5,12 @@ imports:
     - { resource: ../../config/parameters.ini, ignore_errors: true }
     - { resource: ../../config/db.xml, ignore_errors: false }
     - { resource: ../../config/mail.xml, ignore_errors: true }
-    
+
     - { resource: security.yml }
 
 parameters:
     knp_paginator.template.pagination: 'MopaBootstrapBundle:Pagination:sliding.html.twig'
-            
+
 framework:
     annotations:     ~
     secret:          %kernel.secret%
@@ -37,7 +37,7 @@ twig:
     form:
         resources:
             - 'MopaBootstrapBundle:Form:fields.html.twig'
-            
+
 # Assetic Configuration
 assetic:
     debug: %kernel.debug%
@@ -70,7 +70,6 @@ doctrine:
                 auto_mapping: true
                 connection: default
 
-
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
@@ -86,7 +85,7 @@ mopa_bootstrap:
         show_legend: true # default is true
 
 sensio_framework_extra: ~
-            
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mail.transport%
@@ -94,7 +93,7 @@ swiftmailer:
     username:  %mail.username%
     password:  %mail.password%
     spool:     { type: memory }
-    
+
 knp_menu:
     templating: true
     twig: true
@@ -117,7 +116,7 @@ zym_user:
 
 zym_theme:
     theme_map:
-        - { path: ^/, theme: cerulean }
+        - { path: ^/, theme: zym }
 
 opensky_runtime_config:
     provider: zym_runtime_config.provider

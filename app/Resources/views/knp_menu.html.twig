@@ -21,9 +21,9 @@
 {% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
 	{# Classes for twitter bootstrap menus #}
 	{% if options.depth > 1 %}
-		{% set listAttributes = listAttributes | merge({ 'class': 'nav' }) %}
+		{% set listAttributes = listAttributes | merge({ 'class': 'nav', 'role': 'navigation' }) %}
 	{% else %}
-		{% set listAttributes = listAttributes | merge({ 'class': 'dropdown-menu' }) %}
+		{% set listAttributes = listAttributes | merge({ 'class': 'dropdown-menu', 'role': 'menu' }) %}
 	{% endif %}
 
 	<ul{{ _self.attributes(listAttributes) }}>
@@ -98,13 +98,13 @@
 
 {% block linkElement %}
 	{# Classes for twitter bootstrap menus #}
-	{% if options.depth == 1 and item.hasChildren and item.displayChildren %}
-		{% set linkAttributes = item.linkAttributes | merge({ 'class': 'dropdown-toggle' }) %}
+	{% if options.depth > 0 and item.hasChildren and item.displayChildren %}
+		{% set linkAttributes = item.linkAttributes | merge({ 'class': 'dropdown-toggle', 'role': 'button', 'data-toggle': 'dropdown' }) %}
 	{% else %}
 		{% set linkAttributes = item.linkAttributes %}
 	{% endif %}
 
-	<a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>
+	<a href="{{ item.uri }}"{{ _self.attributes(linkAttributes) }}>
 		{{ block('label') }}
 
 		{% if options.depth == 1 and item.hasChildren and item.displayChildren %}

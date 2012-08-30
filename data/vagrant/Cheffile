@@ -11,6 +11,7 @@ cookbook 'application_php'
 cookbook 'apache2'
 cookbook 'java'
 cookbook 'php'
+  :git => 'https://github.com/opscode-cookbooks/php'
 
 cookbook 'mysql'
 cookbook 'sqlite'

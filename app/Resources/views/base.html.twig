@@ -72,7 +72,7 @@
         {% block body %}
         <!-- Start: Header -->
         <header>
-            <div class="navbar navbar-fixed-top" data-dropdown="dropdown">
+            <div class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container">
                         <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -89,13 +89,14 @@
 
                         <!-- Everything you want hidden at 940px or less, place within here -->
                         <div class="nav-collapse">
-                            {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig' }) }}
+                            {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active' }) }}
 
                             <ul class="nav secondary-nav pull-right">
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img align="left" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
+
                                         {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
                                             {{ app.user.fullName |e }} ({{ app.user.username | e }})
                                         {% else %}
@@ -104,15 +105,25 @@
 
                                         <b class="caret"></b>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}"><i class="icon-cog"></i> {{ 'Profile & Settings' | trans }}</a></li>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}">
+                                                <i class="icon-cog"></i>
+                                                {{ 'Profile & Settings' | trans }}
+                                            </a>
+                                        </li>
                                         <li class="divider"></li>
-                                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> {{ 'Log out' | trans }}</a></li>
+                                        <li>
+                                            <a href="{{ path('fos_user_security_logout') }}">
+                                                <i class="icon-off"></i>
+                                                {{ 'Log out' | trans }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 {% else %}
                                 <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
-                                <li><a class="login" href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
+                                <li><a class="login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
                                 {% endif %}
                             </ul>
                         </div>

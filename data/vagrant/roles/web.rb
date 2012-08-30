@@ -10,7 +10,7 @@ run_list(
   "recipe[nodejs::npm]",
   "recipe[lesscss]",
 
-  "recipe[apache2]", 
+  "recipe[apache2]",
   "recipe[apache2::mod_php5]",
   "recipe[apache2::mod_alias]",
   "recipe[apache2::mod_auth_basic]",
@@ -22,8 +22,10 @@ run_list(
   "recipe[apache2::mod_rewrite]",
   "recipe[apache2::mod_setenvif]",
   "recipe[apache2::mod_xsendfile]",
-  "recipe[apache2::mod_ssl]"
+  "recipe[apache2::mod_ssl]",
 
+  "recipe[zym_app::apache]",
+  "recipe[zym_app::php]"
 )
 
 # Attributes applied if the node doesn't have it set already.

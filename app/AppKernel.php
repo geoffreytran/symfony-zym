@@ -43,7 +43,8 @@ class AppKernel extends Kernel
             new Zym\Bundle\MenuBundle\ZymMenuBundle(),
             new Zym\Bundle\RuntimeConfigBundle\ZymRuntimeConfigBundle(),
             new Zym\Bundle\ThemeBundle\ZymThemeBundle(),
-
+,
+            new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle(),
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
