@@ -19,7 +19,7 @@ execute "disable-default-site" do
 end
 
 web_app "#{node.fqdn}" do
-  template "#{node[:fqdn]}.conf.erb"
+  template "apache-site.conf.erb"
   docroot "#{node[:zym_app][:dir]}/web"
   server_name node[:fqdn]
   server_aliases node[:fqdn]
