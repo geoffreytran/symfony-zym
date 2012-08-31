@@ -4,7 +4,8 @@ description "Configures the node as a database server."
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 run_list(
   "recipe[mysql]",
-  "recipe[mysql::server]"
+  "recipe[mysql::server]",
+  "recipe[zym_app::mysql]"
 )
 
 # Attributes applied if the node doesn't have it set already.

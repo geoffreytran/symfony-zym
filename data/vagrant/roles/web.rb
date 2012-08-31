@@ -25,7 +25,8 @@ run_list(
   "recipe[apache2::mod_ssl]",
 
   "recipe[zym_app::apache]",
-  "recipe[zym_app::php]"
+  "recipe[zym_app::php]",
+  "recipe[zym_app::composer]"
 )
 
 # Attributes applied if the node doesn't have it set already.

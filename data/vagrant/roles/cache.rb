@@ -1,5 +1,5 @@
-name "nodejs"
-description "Installs node.js and NPM."
+name "cache"
+description "Configures this node as a cache server"
 
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 run_list "recipe[nodejs]", "recipe[nodejs::npm]"

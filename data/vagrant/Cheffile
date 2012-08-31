@@ -10,11 +10,14 @@ cookbook 'application_php'
 
 cookbook 'apache2'
 cookbook 'java'
-cookbook 'php'
+cookbook 'php',
   :git => 'https://github.com/opscode-cookbooks/php'
 
 cookbook 'mysql'
 cookbook 'sqlite'
+
+cookbook 'composer',
+  :git => 'https://github.com/geoffreytran/chef-composer'
 
 # Node.js
 cookbook 'nodejs'
@@ -23,7 +26,8 @@ cookbook 'npm'
 cookbook 'lesscss'
 
 # Search
-cookbook 'elasticsearch'
+cookbook 'elasticsearch',
+  :git => 'https://github.com/karmi/cookbook-elasticsearch'
 
 # Caching
 cookbook 'memcached'
@@ -43,6 +47,7 @@ cookbook 'yum'
 cookbook 'screen'
 cookbook 'htop'
 cookbook 'rsync'
+cookbook 'ark'
 
 
 # cookbook 'rvm',

@@ -6,8 +6,11 @@ Vagrant::Config.run do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.host_name = "zym.dev"
-  config.hosts.aliases = %w(www.zym.dev)
-
+  
+  if config.respond_to?("hosts") 
+    config.hosts.aliases = %w(www.zym.dev)
+  end
+  
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box       = "precise32"
 
@@ -79,6 +82,7 @@ Vagrant::Config.run do |config|
 
     chef.add_role "default"
     chef.add_role "database"
+    chef.add_role "search"
     chef.add_role "web"
 
       # You may also specify custom JSON attributes:

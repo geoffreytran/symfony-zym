@@ -4,3 +4,7 @@ license          "All rights reserved"
 description      "Installs/Configures zym_app"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
+depends          "application"
+depends          "mysql"
+depends          "php"
+depends          "composer"
