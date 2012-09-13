@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+                        http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+    <% @db.each_pair do |name, connection| %>
+        <parameter key="db.<%= "#{name}" %>.driver"><%= "#{connection[:driver]}" %></parameter>
+        <parameter key="db.<%= "#{name}" %>.dbname"><%= "#{connection[:name]}" %></parameter>
+        <parameter key="db.<%= "#{name}" %>.host"><%= "#{connection[:host]}" %></parameter>
+        <parameter key="db.<%= "#{name}" %>.user"><%= "#{connection[:user]}" %></parameter>
+        <parameter key="db.<%= "#{name}" %>.password"><%= "#{connection[:password]}" %></parameter>
+    <% end %>
+    </parameters>
+</container>

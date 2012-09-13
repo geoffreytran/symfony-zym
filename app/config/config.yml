@@ -122,6 +122,13 @@ opensky_runtime_config:
     provider: zym_runtime_config.provider
     cascade:  true
 
+zym_search_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        test:
+            client: default
+
 services:
     twig.extension.text:
         class: Twig_Extensions_Extension_Text

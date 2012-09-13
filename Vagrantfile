@@ -6,11 +6,11 @@ Vagrant::Config.run do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.host_name = "zym.dev"
-  
-  if config.respond_to?("hosts") 
+
+  if config.respond_to?("hosts")
     config.hosts.aliases = %w(www.zym.dev)
   end
-  
+
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box       = "precise32"
 
@@ -42,7 +42,7 @@ Vagrant::Config.run do |config|
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
 
-  # Virtualbox is not great with symlinks, so if there are symlinks in your 
+  # Virtualbox is not great with symlinks, so if there are symlinks in your
   # share, you'll want to add this
   config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/graph", "1"]
 
@@ -78,21 +78,26 @@ Vagrant::Config.run do |config|
     chef.roles_path     = ["data/vagrant/roles"]
     chef.data_bags_path = ["data/vagrant/data_bags"]
 
-    #chef.add_recipe "mysql"
-
     chef.add_role "default"
     chef.add_role "database"
+    chef.add_role "queue"
     chef.add_role "search"
     chef.add_role "web"
 
-      # You may also specify custom JSON attributes:
+    # You may also specify custom JSON attributes:
     chef.json = {
       :zym_app => {
         :dir => "/vagrant"
       },
+
       :mysql => {
         :server_root_password => "",
         :bind_address         => "127.0.0.1"
+      },
+
+      :elasticsearch => {
+        :min_mem => "16m",
+        :max_mem => "32m"
       }
     }
   end

@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# install the curl pecl
-php_pear "curl" do
+# install curl
+package "php5-curl" do
   action :install
 end
 

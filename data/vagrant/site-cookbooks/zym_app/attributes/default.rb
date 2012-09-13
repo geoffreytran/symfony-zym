@@ -1,2 +1,3 @@
-default[:zym_app][:mysql][:encoding] = "utf8"
-default[:zym_app][:mysql][:collation] = "utf8_unicode_ci"
+default[:zym_app][:domain]      = node[:fqdn]
+default[:zym_app][:environment] = "dev"
+default[:zym_app][:debug]       = true

@@ -5,7 +5,7 @@ description "Configures the node as a database server."
 run_list(
   "recipe[mysql]",
   "recipe[mysql::server]",
-  "recipe[zym_app::mysql]"
+  "recipe[mysql_charset]"
 )
 
 # Attributes applied if the node doesn't have it set already.

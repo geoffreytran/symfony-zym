@@ -18,9 +18,9 @@ execute "disable-default-site" do
   notifies :reload, resources(:service => "apache2"), :delayed
 end
 
-web_app "#{node.fqdn}" do
+web_app "#{node[:zym_app][:domain]}" do
   template "apache-site.conf.erb"
   docroot "#{node[:zym_app][:dir]}/web"
-  server_name node[:fqdn]
-  server_aliases node[:fqdn]
+  server_name node[:zym_app][:domain]
+  server_aliases ["www.#{node[:zym_app][:domain]}", node[:fqdn], node[:hostname]]
 end

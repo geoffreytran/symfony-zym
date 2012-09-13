@@ -19,17 +19,17 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            
+
             // Symfony Extra
             new JMS\SerializerBundle\JMSSerializerBundle($this),
-            
+
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
-            
+
             // Zym
             new Zym\Bundle\FrameworkBundle\ZymFrameworkBundle(),
             new Zym\Bundle\DoctrineBundle\ZymDoctrineBundle(),
@@ -43,8 +43,8 @@ class AppKernel extends Kernel
             new Zym\Bundle\MenuBundle\ZymMenuBundle(),
             new Zym\Bundle\RuntimeConfigBundle\ZymRuntimeConfigBundle(),
             new Zym\Bundle\ThemeBundle\ZymThemeBundle(),
-,
-            new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle(),
+            new Zym\Bundle\SearchBundle\ZymSearchBundle(),
+            new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle()
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
@@ -52,7 +52,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            
+
             $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }

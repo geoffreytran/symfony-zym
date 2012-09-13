@@ -9,7 +9,9 @@ run_list(
   "recipe[htop]",
   "recipe[rsync]",
   "recipe[git]",
-  "recipe[subversion]"
+  "recipe[subversion]",
+  "recipe[chef-client]",
+  "recipe[users::sysadmins]"
 )
 
 # Attributes applied if the node doesn't have it set already.
