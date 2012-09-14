@@ -30,7 +30,8 @@ cookbook 'mysql_charset',
 cookbook 'nodejs'
 cookbook 'npm'
 
-cookbook 'lesscss'
+cookbook 'lesscss',
+  :git => 'https://github.com/geoffreytran/chef-lesscss'
 
 # Search
 cookbook 'elasticsearch',
@@ -58,6 +59,7 @@ cookbook 'screen'
 cookbook 'htop'
 cookbook 'rsync'
 cookbook 'ark'
+cookbook 'sudo'
 
 cookbook 'users',
   :git => 'https://github.com/opscode-cookbooks/users'

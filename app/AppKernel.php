@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
 
             // Zym
             new Zym\Bundle\FrameworkBundle\ZymFrameworkBundle(),

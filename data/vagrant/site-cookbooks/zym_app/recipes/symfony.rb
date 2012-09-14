@@ -27,7 +27,7 @@ composer "#{node[:zym_app][:dir]}" do
   action [:deploy, :install]
 end
   
-if node.attribute?("vagrant") 
+if Chef::Config[:solo]
   symfony2_console "Drop database" do
     action :cmd
   

@@ -2,6 +2,10 @@
 _internal:
     resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
     prefix:   /_internal
+    
+PrestaSitemapBundle:
+    resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
+    prefix:   /
 
 _fields:
     resource: "@ZymFieldBundle/Controller/FieldsController.php"

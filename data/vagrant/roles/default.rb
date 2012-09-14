@@ -11,11 +11,18 @@ run_list(
   "recipe[git]",
   "recipe[subversion]",
   "recipe[chef-client]",
+  "recipe[sudo]",
   "recipe[users::sysadmins]"
 )
 
 # Attributes applied if the node doesn't have it set already.
-#default_attributes()
+default_attributes({
+  "authorization" => {
+    "sudo" => {
+      "groups" => ["sysadmin", "sudo"],
+    }
+  }
+})
 
 # Attributes applied no matter what the node has set already.
 #override_attributes()

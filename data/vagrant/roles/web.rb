@@ -26,6 +26,7 @@ run_list(
 
   "recipe[zym_app::apache]",
   "recipe[zym_app::php]",
+  "recipe[zym_app]",
   "recipe[zym_app::symfony]"
 )
 
