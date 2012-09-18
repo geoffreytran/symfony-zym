@@ -1,10 +1,10 @@
-if !node.attribute?("vagrant") 
+if !node.attribute?("vagrant")
   db_server = search(:node, 'role:database')
 end
 
 template "#{node[:zym_app][:dir]}/config/db.xml" do
   source "db.xml.erb"
-  mode 0755
+  mode 0775
   owner node[:apache][:user]
   group node[:apache][:group]
   variables({
@@ -26,16 +26,16 @@ include_recipe "composer"
 composer "#{node[:zym_app][:dir]}" do
   action [:deploy, :install]
 end
-  
+
 if Chef::Config[:solo]
   symfony2_console "Drop database" do
     action :cmd
-  
+
     command "doctrine:database:drop --force"
-  
+
     path node[:zym_app][:dir]
   end
-  
+
   symfony2_console "Create database" do
     action :cmd
 
@@ -65,22 +65,22 @@ if Chef::Config[:solo]
     env node[:zym_app][:environment]
     debug node[:zym_app][:debug]
   end
-  
+
   symfony2_console "Clear Cache" do
     action :cmd
-  
+
     command "cache:clear"
-  
+
     path node[:zym_app][:dir]
     env node[:zym_app][:environment]
     debug node[:zym_app][:debug]
   end
-  
+
   symfony2_console "Clear Cache" do
     action :cmd
-  
+
     command "cache:clear"
-  
+
     path node[:zym_app][:dir]
     env "prod"
     debug false

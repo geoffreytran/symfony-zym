@@ -2,7 +2,7 @@
 _internal:
     resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
     prefix:   /_internal
-    
+
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
@@ -71,7 +71,7 @@ ZymThemeBundle:
     resource: "@ZymThemeBundle/Controller/ThemeRulesController.php"
     type:     annotation
     prefix:   /admin/structure/themes
-    
+
 _fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

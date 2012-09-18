@@ -59,10 +59,10 @@
         <!-- Start: Scripts -->
         {% block headScripts -%}
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-modernizer.min.js"
-            'themes/zym/scripts/modernizer.js'
+            'themes/zym/scripts/modernizr.js'
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts -%}  
+        {% endjavascripts -%}
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
@@ -199,13 +199,18 @@
         {% block inlineScripts -%}
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
         <script>window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.8.1.min.js') }}">\x3C/script>')</script>
-        
+        <script type="text/javascript" src="{{ asset('themes/zym/scripts/backbone-min.js') }}"></script>
+
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
             'themes/zym/scripts/bootstrap-*.js'
             'themes/zym/scripts/zym.ajax-modal.js'
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts -%}        
+        {% endjavascripts -%}
+
+        <script type="text/javascript">
+            $('[rel="tooltip"]').tooltip();
+        </script>
         {% endblock -%}
         <!-- End: Inline Scripts -->
     </body>

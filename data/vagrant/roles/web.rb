@@ -7,7 +7,7 @@ run_list(
   "recipe[php]",
   "recipe[sqlite]",
   "recipe[nodejs]",
-  "recipe[nodejs::npm]",
+  "recipe[npm]",
   "recipe[lesscss]",
 
   "recipe[apache2]",
@@ -26,12 +26,15 @@ run_list(
 
   "recipe[zym_app::apache]",
   "recipe[zym_app::php]",
-  "recipe[zym_app]",
   "recipe[zym_app::symfony]"
 )
 
 # Attributes applied if the node doesn't have it set already.
-#default_attributes()
+default_attributes({
+  :nodejs => {
+    :install_method => 'package'
+  }
+})
 
 # Attributes applied no matter what the node has set already.
 #override_attributes()

@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Knp\Bundle\TimeBundle\KnpTimeBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
@@ -45,7 +46,7 @@ class AppKernel extends Kernel
             new Zym\Bundle\RuntimeConfigBundle\ZymRuntimeConfigBundle(),
             new Zym\Bundle\ThemeBundle\ZymThemeBundle(),
             new Zym\Bundle\SearchBundle\ZymSearchBundle(),
-            new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle()
+            new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle(),
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
