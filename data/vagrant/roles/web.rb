@@ -7,7 +7,7 @@ run_list(
   "recipe[php]",
   "recipe[sqlite]",
   "recipe[nodejs]",
-  "recipe[npm]",
+  "recipe[nodejs::npm]",
   "recipe[lesscss]",
 
   "recipe[apache2]",
