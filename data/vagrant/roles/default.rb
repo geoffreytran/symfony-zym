@@ -12,6 +12,7 @@ run_list(
   "recipe[subversion]",
   "recipe[chef-client]",
   "recipe[sudo]",
+  "recipe[build-essential]",
   "recipe[users::sysadmins]"
 )
 

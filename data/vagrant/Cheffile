@@ -59,6 +59,7 @@ cookbook 'screen'
 cookbook 'htop'
 cookbook 'rsync'
 cookbook 'ark'
+cookbook 'build-essential'
 cookbook 'sudo'
 
 cookbook 'users',
