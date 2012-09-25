@@ -10,11 +10,14 @@ run_list(
   "recipe[rsync]",
   "recipe[git]",
   "recipe[subversion]",
-  "recipe[chef-client]",
   "recipe[sudo]",
   "recipe[build-essential]",
   "recipe[users::sysadmins]"
 )
+
+if !Chef::Config[:solo]
+  run_list.push("recipe[chef-client]")
+end
 
 # Attributes applied if the node doesn't have it set already.
 default_attributes({
