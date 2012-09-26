@@ -28,13 +28,13 @@ composer "#{node[:zym_app][:dir]}" do
 end
 
 if Chef::Config[:solo]
-  symfony2_console "Drop database" do
-    action :cmd
-
-    command "doctrine:database:drop --force"
-
-    path node[:zym_app][:dir]
-  end
+#  symfony2_console "Drop database" do
+#    action :cmd
+#
+#    command "doctrine:database:drop --force"
+#
+#    path node[:zym_app][:dir]
+#  end
 
   symfony2_console "Create database" do
     action :cmd
