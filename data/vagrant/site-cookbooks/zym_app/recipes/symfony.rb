@@ -5,8 +5,8 @@ end
 template "#{node[:zym_app][:dir]}/config/db.xml" do
   source "db.xml.erb"
   mode 0775
-  owner node[:apache][:user]
-  group node[:apache][:group]
+  owner node[:apache][:user] if not Chef::Config[:solo]
+  group node[:apache][:group] if not Chef::Config[:solo]
   variables({
     :db => {
       :default => {
