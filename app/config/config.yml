@@ -20,11 +20,14 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig', 'php'] } #assets_version: SomeVersionScheme
+    templating:
+        engines: ['twig', 'php']
+        assets_version: %assets.version%
+        assets_base_urls: %assets.base_urls%
     translator:
         fallback: %kernel.locale%
     default_locale: %kernel.locale%
-    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    trust_proxy_headers: %kernel.trusted_proxy_headers% # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:
         name: "session"
         handler_id: zym_session.storage.handler.pdo

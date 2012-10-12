@@ -11,7 +11,10 @@ assetic.less.node_bin   = /usr/local/bin/node
 assetic.less.node_paths = /usr/local/lib/node_modules
 
 ; framework.xml
-kernel.locale    = en
-kernel.secret    = b011a4f1b18d2c8b01dcabdfbbfc09410
-session.lifetime = 3600
-assets.base_urls =
+kernel.locale                = en
+kernel.secret                = b011a4f1b18d2c8b01dcabdfbbfc09410
+kernel.trusted_proxy_headers = true
+session.lifetime             = 86400
+assets.base_urls             = 
+assets.version               =
+
