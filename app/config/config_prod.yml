@@ -1,11 +1,11 @@
 imports:
     - { resource: config.yml }
 
-#doctrine:
-#    orm:
-#        metadata_cache_driver: apc
-#        result_cache_driver: apc
-#        query_cache_driver: apc
+doctrine:
+    orm:
+        metadata_cache_driver: %cache.metadata_driver%
+        result_cache_driver: %cache.result_drivere%
+        query_cache_driver: %cache.query_driver%
 
 monolog:
     handlers:
