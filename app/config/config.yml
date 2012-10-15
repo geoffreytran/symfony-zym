@@ -4,6 +4,7 @@ imports:
     - { resource: defaults.ini }
     - { resource: ../../config/parameters.ini, ignore_errors: true }
     - { resource: ../../config/db.xml, ignore_errors: false }
+    - { resource: ../../config/cache.xml, ignore_errors: true }
     - { resource: ../../config/mail.xml, ignore_errors: true }
 
     - { resource: security.yml }
