@@ -4,7 +4,7 @@ imports:
 doctrine:
     orm:
         metadata_cache_driver: %cache.metadata_driver%
-        result_cache_driver: %cache.result_drivere%
+        result_cache_driver: %cache.result_driver%
         query_cache_driver: %cache.query_driver%
 
 monolog:
