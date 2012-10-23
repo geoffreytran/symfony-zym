@@ -47,7 +47,7 @@
             "themes/zym/styles/layouts/base.less"
         -%}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets -%}
+        {% endstylesheets %}
         {% endblock -%}
         <!-- End: Links -->
 
@@ -58,11 +58,7 @@
 
         <!-- Start: Scripts -->
         {% block headScripts -%}
-        {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-modernizer.min.js"
-            'themes/zym/scripts/modernizr.js'
-         -%}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts -%}
+        <script type="text/javascript" src="themes/zym/scripts/modernizr.js"></script>
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
@@ -83,7 +79,7 @@
                         </a>
 
                         <a class="brand" href="#">
-                            <img src="{{ asset('themes/zym/images/logo.png') }}" alt="{{ "%app_name%\'s Logo" | trans({ '%app_name%': appName }) }}" />
+                            <img src="{{ asset('themes/zym/images/logo.png') }}" alt="{{ "%app_name%" | trans({ '%app_name%': appName }) }}" />
                             {{ appName |e }}
                         </a>
 
@@ -209,18 +205,21 @@
         {% block inlineScripts -%}
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
         <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.8.1.min.js') }}">\x3C/script>')</script>
-        <script type="text/javascript" src="{{ asset('themes/zym/scripts/backbone-min.js') }}"></script>
 
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
             'themes/zym/scripts/bootstrap-*.js'
             'themes/zym/scripts/zym.ajax-modal.js'
+            'themes/zym/scripts/underscore-min.js'
+            'themes/zym/scripts/backbone-min.js'
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
 
         <script type="text/javascript">
             // Bootstrap tooltips
-            $('[rel="tooltip"]').tooltip();
+            $('[rel="tooltip"]').each(function(index){
+                $(this).tooltip();
+            });
         </script>
         {% endblock -%}
         <!-- End: Inline Scripts -->

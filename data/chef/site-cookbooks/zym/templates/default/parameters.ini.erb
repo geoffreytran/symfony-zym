@@ -1,0 +1,19 @@
+; Parameters for the framework
+[parameters]
+
+; App Name
+app.name           = Untitled Symfony App
+app.normalizedName = <%= @app[:normalizedName] %>
+
+; assetic.xml
+assetic.yuicompressor.jar = %kernel.root_dir%/../vendor/nervo/yuicompressor/yuicompressor.jar
+assetic.less.node_bin   = /usr/local/bin/node
+assetic.less.node_paths = /usr/local/lib/node_modules
+
+; framework.xml
+kernel.locale                = en
+kernel.secret                = b011a4f1b18d2c8b01dcabdfbbfc09410
+kernel.trusted_proxy_headers = true
+session.lifetime             = 86400
+assets.base_urls             = 
+assets.version               = <%= @assets[:version] %>

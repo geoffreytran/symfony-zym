@@ -3,9 +3,13 @@
 
 site 'http://community.opscode.com/api/v1'
 
-cookbook 'chef-client'
+cookbook 'chef-client',
+  :git => 'https://github.com/geoffreytran/chef-client.git'
 
-cookbook 'application'
+cookbook 'application',
+  :git => 'https://github.com/hron/application.git',
+  :ref => 'fix-callbacks'
+
 cookbook 'application_php'
 cookbook 'database'
 

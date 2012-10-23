@@ -74,19 +74,24 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["data/vagrant/cookbooks", "data/vagrant/site-cookbooks"]
-    chef.roles_path     = ["data/vagrant/roles"]
-    chef.data_bags_path = ["data/vagrant/data_bags"]
+    chef.cookbooks_path = ["data/chef/cookbooks", "data/chef/site-cookbooks"]
+    chef.roles_path     = ["data/chef/roles"]
+    chef.data_bags_path = ["data/chef/data_bags"]
 
     chef.add_role "default"
+    chef.add_role "cache"
     chef.add_role "database"
     chef.add_role "queue"
     chef.add_role "search"
     chef.add_role "web"
+    
+    chef.add_role "zym_database"
+    chef.add_role "zym_cache"
+    chef.add_role "zym_vagrant"
 
     # You may also specify custom JSON attributes:
     chef.json = {
-      :zym_app => {
+      :zym => {
         :dir => "/vagrant"
       },
 
@@ -96,8 +101,8 @@ Vagrant::Config.run do |config|
       },
 
       :elasticsearch => {
-        :min_mem => "16m",
-        :max_mem => "32m"
+        :min_mem => "8m",
+        :max_mem => "16m"
       }
     }
   end
