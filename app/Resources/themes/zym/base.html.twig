@@ -58,7 +58,7 @@
 
         <!-- Start: Scripts -->
         {% block headScripts -%}
-        <script type="text/javascript" src="themes/zym/scripts/modernizr.js"></script>
+        <script type="text/javascript" src="{{ asset('themes/zym/scripts/modernizr.js') }}"></script>
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
@@ -168,7 +168,7 @@
                 <div style="clear:both"></div>
             </div>
         </div>
-        
+
         <!-- Start: Fold -->
         {% if block('fold') |trim |length %}
         <section class="fold">
@@ -176,7 +176,7 @@
         </section>
         {% endif %}
         <!-- End: Fold -->
-        
+
         <div class="container">
             <!-- Start: Content -->
             <section class="content">
@@ -207,7 +207,7 @@
         <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.8.1.min.js') }}">\x3C/script>')</script>
 
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
-            'themes/zym/scripts/bootstrap-*.js'
+            'themes/zym/scripts/bootstrap.min.js'
             'themes/zym/scripts/zym.ajax-modal.js'
             'themes/zym/scripts/underscore-min.js'
             'themes/zym/scripts/backbone-min.js'
