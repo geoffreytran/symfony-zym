@@ -72,7 +72,7 @@
 
 	{# Classes for twitter bootstrap menus #}
 	{% if options.depth == 1 and item.hasChildren and item.displayChildren %}
-		{% set classes = classes | merge({ 'class': 'dropdown' }) %}
+		{% set classes = classes | merge({ 'class': 'dropdown disabled' }) %}
 	{% endif %}
 
 	{%- set attributes = item.attributes %}
