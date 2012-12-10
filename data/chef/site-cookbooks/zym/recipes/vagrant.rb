@@ -28,6 +28,36 @@ composer "#{node[:zym][:dir]}" do
 end
 
 if Chef::Config[:solo]
+  symfony2_console "Clear Cache" do
+    action :cmd
+  
+    command "cache:clear"
+  
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+  end
+  
+  symfony2_console "Install assets" do
+    action :cmd
+  
+    command "assets:install"
+  
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+  end
+  
+  symfony2_console "Assetic dump" do
+    action :cmd
+  
+    command "assetic:dump"
+  
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+  end
+  
 #  symfony2_console "Drop database" do
 #    action :cmd
 #
@@ -63,36 +93,6 @@ if Chef::Config[:solo]
 
     path  node[:zym][:dir]
     #env   node[:zym][:environment]
-    debug node[:zym][:debug]
-  end
-  
-  symfony2_console "Clear Cache" do
-    action :cmd
-  
-    command "cache:clear"
-  
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
-    debug node[:zym][:debug]
-  end
-  
-  symfony2_console "Install assets" do
-    action :cmd
-  
-    command "assets:install"
-  
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
-    debug node[:zym][:debug]
-  end
-  
-  symfony2_console "Assetic dump" do
-    action :cmd
-  
-    command "assetic:dump"
-  
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
     debug node[:zym][:debug]
   end
 end
