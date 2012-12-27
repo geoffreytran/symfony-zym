@@ -40,11 +40,14 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
-        
+
         main:
             pattern: ^/.*
-            form_login: ~
-            logout: ~
+            form_login:
+                check_path: fos_user_security_check
+                login_path: fos_user_security_login
+            logout:
+                path: fos_user_security_logout
             anonymous: ~
             switch_user: ~
             remember_me:

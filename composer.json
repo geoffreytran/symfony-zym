@@ -29,7 +29,7 @@
         "knplabs/knp-time-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "dev-master",
         "jms/metadata": "1.1.1",
-        "jms/serializer-bundle": "dev-master",
+        "jms/serializer-bundle": "0.9.*",
         "mopa/bootstrap-bundle": "dev-master",
         "opensky/runtime-config-bundle": "dev-master",
         "presta/sitemap-bundle": "dev-master",
