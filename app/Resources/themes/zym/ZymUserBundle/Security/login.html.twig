@@ -6,7 +6,7 @@
     <div class="page-header">
         <h1>
             {{ 'Login' | trans({}, 'FOSUserBundle') }}
-            <small>{{ 'Who are you?' | trans({}, 'ZymUserBundle') }}</small>
+            <small>{{ 'Provide your credentials to sign in.' | trans({}, 'ZymUserBundle') }}</small>
         </h1>
     </div>
 
@@ -20,20 +20,20 @@
     <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-            
+
             <div class="controls">
                 <input type="text" id="username" name="_username" value="{{ last_username }}" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-            
+
             <div class="controls">
                 <input type="password" id="password" name="_password" />
             </div>
         </div>
-        
+
         <div class="control-group">
             <label class="control-label" for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
 
@@ -44,17 +44,19 @@
 
         <fieldset class="form-actions">
             <input class="btn btn-primary btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+
+            <a href="{{ path('fos_user_resetting_request') }}">Forgot your username or password?</a>
         </fieldset>
     </form>
 {% endblock %}
 
 {% block inlineScripts %}
     {{ parent() }}
-    
+
     <script type="text/javascript">
         $(document).ready(function(){
             var username = $('#username');
-            
+
             if (!username.val().length) {
                 username.focus();
             } else {

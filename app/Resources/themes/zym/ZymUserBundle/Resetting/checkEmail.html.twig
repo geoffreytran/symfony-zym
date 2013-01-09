@@ -1,0 +1,14 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Recover Account' | trans({}, 'FOSUserBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>
+            {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
+            <small>{{ 'Forgot your account information?' | trans({}, 'ZymUserBundle') }}</small>
+        </h1>
+    </div>
+
+    <p>{{ 'resetting.check_email' |trans({ '%email%': email }, 'FOSUserBundle') }}</p>
+{% endblock %}

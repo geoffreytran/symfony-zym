@@ -19,4 +19,12 @@ define :zym_database do
     database_name params[:name]
     action [:create, :grant]
   end
+  
+  mysql_database_user "#{params[:username]}" do
+    connection mysql_connection_info
+    password params[:password]
+    host '127.0.0.1'
+    database_name params[:name]
+    action [:create, :grant]
+  end
 end

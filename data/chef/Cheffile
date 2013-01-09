@@ -7,11 +7,11 @@ cookbook 'chef-client',
   :git => 'https://github.com/geoffreytran/chef-client.git'
 
 cookbook 'application',
-  :git => 'https://github.com/hron/application.git',
-  :ref => 'fix-callbacks'
+  :git => 'https://github.com/opscode-cookbooks/application.git',
+  :ref => 'da3eb5ac8fc20e9db7213c3b22f0a7856a73778c'
 
 cookbook 'application_php'
-cookbook 'database'
+cookbook 'database', "1.3.6"
 
 cookbook 'apache2'
 cookbook 'java'

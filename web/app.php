@@ -1,18 +1,27 @@
 <?php
 
+use Symfony\Component\ClassLoader\ApcClassLoader;
+use Symfony\Component\HttpFoundation\Request;
+
 $environment = isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT']
                                               : 'prod';
-
+                                              
 if ($environment == 'debug') {
     require_once __DIR__ . '/../vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
     require_once __DIR__ . '/../app/autoload.php';
 } else {
-    require_once __DIR__ . '/../app/bootstrap.php.cache';
+    $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+    
+    if (extension_loaded('apc') && ini_get('apc.enabled')) {
+        // Use APC for autoloading to improve performance.
+        // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
+        // with other applications also using APC.
+        $loader = new ApcClassLoader(md5(__FILE__), $loader);
+        $loader->register(true);
+    }
 }
 
 require_once __DIR__ . '/../app/AppKernel.php';
-
-use Symfony\Component\HttpFoundation\Request;
 
 // Whether to force debugging
 $debug       = isset($_SERVER['DEBUG'])       ? (bool) $_SERVER['DEBUG']      : null;

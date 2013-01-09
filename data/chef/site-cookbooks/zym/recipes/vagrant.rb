@@ -12,9 +12,9 @@ template "#{node[:zym][:dir]}/config/db.xml" do
       :default => {
         :driver   => "pdo_mysql",
         :host     => mysql_host,
-        :name     => node[:zym][:domain],
-        :user     => mysql_user,
-        :password => mysql_pass
+        :name     => node[:zym][:db][:name],
+        :user     => node[:zym][:db][:user],
+        :password => node[:zym][:db][:password]
       }
     }
 
@@ -30,34 +30,34 @@ end
 if Chef::Config[:solo]
   symfony2_console "Clear Cache" do
     action :cmd
-  
+
     command "cache:clear"
-  
+
     path  node[:zym][:dir]
     env   node[:zym][:environment]
     debug node[:zym][:debug]
   end
-  
+
   symfony2_console "Install assets" do
     action :cmd
-  
+
     command "assets:install"
-  
+
     path  node[:zym][:dir]
     env   node[:zym][:environment]
     debug node[:zym][:debug]
   end
-  
+
   symfony2_console "Assetic dump" do
     action :cmd
-  
+
     command "assetic:dump"
-  
+
     path  node[:zym][:dir]
-    env   node[:zym][:environment]
+    #env   node[:zym][:environment]
     debug node[:zym][:debug]
   end
-  
+
 #  symfony2_console "Drop database" do
 #    action :cmd
 #
@@ -66,15 +66,15 @@ if Chef::Config[:solo]
 #    path node[:zym][:dir]
 #  end
 
-  symfony2_console "Create database" do
-    action :cmd
-
-    command "doctrine:database:create"
-
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
-    debug node[:zym][:debug]
-  end
+#  symfony2_console "Create database" do
+#    action :cmd
+#
+#    command "doctrine:database:create"
+#
+#    path  node[:zym][:dir]
+#    env   node[:zym][:environment]
+#    debug node[:zym][:debug]
+#  end
 
   symfony2_console "Create schema" do
     action :cmd
@@ -92,7 +92,7 @@ if Chef::Config[:solo]
     command "doctrine:fixtures:load"
 
     path  node[:zym][:dir]
-    #env   node[:zym][:environment]
+    env   node[:zym][:environment]
     debug node[:zym][:debug]
   end
 end

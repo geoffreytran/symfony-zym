@@ -99,7 +99,7 @@
 {% block linkElement %}
     {# Classes for twitter bootstrap menus #}
     {% if options.depth > 0 and item.hasChildren and item.displayChildren %}
-        {% set linkAttributes = item.linkAttributes | merge({ 'class': 'dropdown-toggle', 'role': 'button', 'data-toggle': 'dropdown' }) %}
+        {% set linkAttributes = item.linkAttributes | merge({ 'class': 'dropdown-toggle disabled', 'role': 'button', 'data-toggle': 'dropdown' }) %}
     {% else %}
         {% set linkAttributes = item.linkAttributes %}
     {% endif %}

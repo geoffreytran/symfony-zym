@@ -7,82 +7,85 @@ PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
 
-_fields:
-    resource: "@ZymFieldBundle/Controller/FieldsController.php"
-    type:     annotation
+ZymMediaBundle:
+    resource: "@ZymMediaBundle/Resources/config/routing/media.xml"
+    prefix: /admin/media
+
+ZymMediaBundleCDN:
+    resource: "@ZymMediaBundle/Resources/config/routing/media_cdn.xml"
+    prefix: /media
+
+ZymFieldBundleFields:
+    resource: "@ZymFieldBundle/Resources/config/routing/fields.xml"
     prefix:   /admin/structure/fields
 
-_menus:
-    resource: "@ZymMenuBundle/Controller/MenusController.php"
-    type:     annotation
+ZymMailBundleConfig:
+    resource: "@ZymMailBundle/Resources/config/routing/config.xml"
+    prefix:   /admin/config/mail
+
+ZymMenuBundleMenus:
+    resource: "@ZymMenuBundle/Resources/config/routing/menus.xml"
     prefix:   /admin/structure/menus
 
-_menus_categories:
-    resource: "@ZymMenuBundle/Controller/CategoriesController.php"
-    type:     annotation
+ZymMenuBundleCategories:
+    resource: "@ZymMenuBundle/Resources/config/routing/categories.xml"
     prefix:   /menu/categories
 
-_security_access_rules:
-    resource: "@ZymSecurityBundle/Controller/AccessRulesController.php"
-    type:     annotation
+ZymSecurityBundleAccessRules:
+    resource: "@ZymSecurityBundle/Resources/config/routing/access_rules.xml"
     prefix:   /admin/config/security/access-rules
 
-_security_acl_object_aces:
-    resource: "@ZymSecurityBundle/Controller/AclObjectAcesController.php"
-    type:     annotation
-    prefix:   /admin/config/acl/object
+ZymSecurityBundleAclRoles:
+    resource: "@ZymSecurityBundle/Resources/config/routing/acl_roles.xml"
+    prefix:   /admin/config/security/roles
 
-_security_acl_entries:
-    resource: "@ZymSecurityBundle/Controller/AclEntriesController.php"
-    type:     annotation
-    prefix:   /admin/acl/entries
+ZymSecurityBundleAclObjectAces:
+    resource: "@ZymSecurityBundle/Resources/config/routing/acl_object_aces.xml"
+    prefix:   /admin/config/security/objects
 
-_security_acl_roles:
-    resource: "@ZymSecurityBundle/Controller/AclRolesController.php"
-    type:     annotation
-    prefix:   /admin/acls/roles
+ZymSecurityBundleAclEntries:
+    resource: "@ZymSecurityBundle/Resources/config/routing/acl_entries.xml"
+    prefix:   /admin/config/security/entries
 
-_node_types:
-    resource: "@ZymNodeBundle/Controller/NodeTypesController.php"
-    type:      annotation
+ZymNodeBundleNodeTypes:
+    resource: "@ZymNodeBundle/Resources/config/routing/node_types.xml"
     prefix:   /admin/structure/content-types
 
-_nodes:
-    resource: "@ZymNodeBundle/Controller/NodesController.php"
-    type:     annotation
+ZymNodeBundleNodes:
+    resource: "@ZymNodeBundle/Resources/config/routing/nodes.xml"
     prefix:   /admin/content
 
-_users:
-    resource: "@ZymUserBundle/Controller/UsersController.php"
-    type:     annotation
+ZymUserBundleUsers:
+    resource: "@ZymUserBundle/Resources/config/routing/users.xml"
     prefix:   /admin/users
 
-_user_groups:
-    resource: "@ZymUserBundle/Controller/GroupsController.php"
-    type:     annotation
+ZymUserBundleGroups:
+    resource: "@ZymUserBundle/Resources/config/routing/groups.xml"
     prefix:   /admin/groups
 
-_parameters:
-    resource: "@ZymRuntimeConfigBundle/Controller/ParametersController.php"
-    type:     annotation
+ZymRuntimeConfigBundleParameters:
+    resource: "@ZymRuntimeConfigBundle/Resources/config/routing/parameters.xml"
     prefix:   /admin/config/parameters
 
-ZymThemeBundle:
-    resource: "@ZymThemeBundle/Controller/ThemeRulesController.php"
-    type:     annotation
+ZymThemeBundleThemeRules:
+    resource: "@ZymThemeBundle/Resources/config/routing/theme_rules.xml"
     prefix:   /admin/structure/themes
 
-_fos_user_security:
+FOSUserBundleSecurity:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-_fos_user_groups:
-    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
-    prefix:   /groups
+#FOSUserBundleGroups:
+#    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+#    prefix:   /groups
 
-_fos_user_registration:
+FOSUserBundleRegistration:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix:   /register
 
-_fos_user_resetting:
+FOSUserBundleResetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix:   /account/reset
+    prefix:   /account/forgot
+
+FOSUserBundleChangePassword:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix:   /account/password

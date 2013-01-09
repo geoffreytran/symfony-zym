@@ -9,7 +9,7 @@
         "symfony/symfony": "2.1.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
-        "twig/extensions": "1.0.*",
+        "twig/extensions": "1.0.*@dev",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
@@ -33,7 +33,10 @@
         "mopa/bootstrap-bundle": "dev-master",
         "opensky/runtime-config-bundle": "dev-master",
         "presta/sitemap-bundle": "dev-master",
-
+        "knplabs/gaufrette": "dev-master",
+        "knplabs/knp-gaufrette-bundle": "dev-master",
+        "imagine/Imagine": "v0.3.0",
+        "omissis/php-cloudfiles": "dev-master",
         "exercise/elastica-bundle": "dev-master"
     },
     "scripts": {
@@ -49,6 +52,9 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "minimum-stability": "dev",
     "extra": {

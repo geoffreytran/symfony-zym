@@ -84,7 +84,7 @@ Vagrant::Config.run do |config|
     chef.add_role "queue"
     chef.add_role "search"
     chef.add_role "web"
-    
+
     chef.add_role "zym_database"
     chef.add_role "zym_cache"
     chef.add_role "zym_vagrant"
@@ -96,8 +96,10 @@ Vagrant::Config.run do |config|
       },
 
       :mysql => {
-        :server_root_password => "",
-        :bind_address         => "127.0.0.1"
+        :server_root_password   => "",
+        :server_repl_password   => "",
+        :server_debian_password => "",
+        :bind_address           => "127.0.0.1"
       },
 
       :elasticsearch => {
