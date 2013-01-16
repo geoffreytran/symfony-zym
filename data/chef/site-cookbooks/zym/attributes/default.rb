@@ -7,6 +7,14 @@ default[:zym][:db][:name]     = "zym"
 default[:zym][:db][:user]     = node[:zym][:db][:name]
 default[:zym][:db][:password] = "s23nSoq19hm26"
 
+default[:zym][:mail][:transport]  = "mail"
+default[:zym][:mail][:encryption] = ""
+default[:zym][:mail][:auth_mode]  = "login"
+default[:zym][:mail][:host]       = "127.0.0.1"
+default[:zym][:mail][:port]       = "25"
+default[:zym][:mail][:username]   = ""
+default[:zym][:mail][:password]   = ""
+
 default[:zym][:domain]         = node[:fqdn]
 default[:zym][:domain_aliases] = []
 
@@ -21,4 +29,5 @@ default[:zym][:revision]     = "master"
 default[:zym][:deploy_key]   = ""
 default[:zym][:force_deploy] = true
 
+default[:zym][:parameters][:app][:name]           = "Untitled Symfony App"
 default[:zym][:parameters][:app][:normalizedName] = "symfony-zym"

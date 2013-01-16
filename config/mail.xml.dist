@@ -5,7 +5,10 @@
                         http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="mail.transport">gmail</parameter>
+        <parameter key="mail.encryption"></parameter>
+        <parameter key="mail.auth_mode"></parameter>
         <parameter key="mail.host">smtp.gmail.com</parameter>
+        <parameter key="mail.port">false</parameter>
         <parameter key="mail.username"></parameter>
         <parameter key="mail.password"></parameter>
     </parameters>

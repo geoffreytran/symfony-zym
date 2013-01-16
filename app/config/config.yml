@@ -96,10 +96,13 @@ sensio_framework_extra: ~
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mail.transport%
-    host:      %mail.host%
-    username:  %mail.username%
-    password:  %mail.password%
+    transport:  %mail.transport%
+#    encryption: %mail.encryption%
+    auth_mode:  %mail.auth_mode%
+    port:       %mail.port%
+    host:       %mail.host%
+    username:   %mail.username%
+    password:   %mail.password%
     spool:     { type: memory }
 
 knp_menu:

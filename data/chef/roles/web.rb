@@ -4,7 +4,7 @@ description "Configures the node as a webserver."
 # List of recipes and roles to apply. Requires Chef 0.8, earlier versions use 'recipes()'.
 run_list(
   "role[default]",
-  
+
   "recipe[java]",
   "recipe[php]",
   "recipe[sqlite]",
@@ -30,7 +30,8 @@ run_list(
 # Attributes applied if the node doesn't have it set already.
 default_attributes({
   :nodejs => {
-    :install_method => 'package'
+    :install_method => 'package',
+    :dir => '/usr'
   },
 })
 

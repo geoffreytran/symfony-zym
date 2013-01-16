@@ -7,13 +7,27 @@ run_list()
 # Attributes applied if the node doesn't have it set already.
 default_attributes({
   :zym => {
-    :repository => 'git@github.com:geoffreytran/symfony-zym.git',
-    :domain      => 'zym.dev',
-    :environment => 'prod',
-    :debug       => false,
-    :dir         => '/var/www/symfony-zym/current',
-    :release_dir => '/var/www/symfony-zym',
-    :deploy_key  => '',
+    :domain       => 'zym.dev',
+    :environment  => 'prod',
+    :debug        => false,
+    :dir          => '/var/www/symfony-zym/current',
+    :release_dir  => '/var/www/symfony-zym',
+    :revision     => 'master',
+    :force_deploy => false,
+
+#    :mail => {
+#      :transport  => 'mail',
+#      :encryption => '',
+#      :auth_mode  => 'login',
+#      :host       => '127.0.0.1',
+#      :port       => '25',
+#      :username   => '',
+#      :password   => ''
+#    },
+
+    :parameters => {
+
+    }
   }
 })
 

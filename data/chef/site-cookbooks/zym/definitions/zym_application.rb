@@ -1,4 +1,4 @@
-define :zym_application, :parameters => {}, :cookbook => "zym" do
+define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
   include_recipe "zym::php"
   include_recipe "composer"
   
@@ -63,16 +63,48 @@ define :zym_application, :parameters => {}, :cookbook => "zym" do
           cookbook cookbook
         end
       end
+
+      mail = {
+        :transport  => 'mail',
+        :encryption => '',
+        :auth_mode  => '',
+        :host       => '127.0.0.1',
+        :port       => 'false',
+        :username   => '',
+        :password   => ''
+      }
+      mail = Chef::Mixin::DeepMerge.merge(mail, @new_resource.params[:mail])
+      template "#{release_path}/config/mail.xml" do
+        source "mail.xml.erb"
+        mode 0775
+        owner node[:apache][:user]  if not Chef::Config[:solo]
+        group node[:apache][:group] if not Chef::Config[:solo]
+        variables(mail)
+        
+        if cookbook
+          cookbook cookbook
+        end
+      end
       
       parameters = {
         :app => {
+          :name           => 'Untitled Symfony App',
           :normalizedName => 'symfony-zym'
+        },
+        :assetic => {
+          :less => {
+            :node_bin   => "#{node[:nodejs][:dir]}/bin/node",
+            :node_paths => "#{node[:nodejs][:dir]}/lib/node_modules"
+          }
         },
         :assets => {
           :version => @new_resource.params[:revision][0..4]
+        },
+        :other => {
+          
         }
       }
-      parameters = parameters.merge(@new_resource.params[:parameters])
+      parameters = Chef::Mixin::DeepMerge.merge(parameters, @new_resource.params[:parameters])
       
       
       template "#{release_path}/config/parameters.ini" do
