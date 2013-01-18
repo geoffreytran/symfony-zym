@@ -48,9 +48,10 @@ class AppKernel extends Kernel
             new Zym\Bundle\MailBundle\ZymMailBundle(),
             new Zym\Bundle\SearchBundle\ZymSearchBundle(),
             new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle(),
+            new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
             new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
-                        new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
 
         );
 
