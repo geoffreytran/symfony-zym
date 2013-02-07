@@ -5,6 +5,7 @@ imports:
     - { resource: ../../config/parameters.ini, ignore_errors: true }
     - { resource: ../../config/db.xml, ignore_errors: false }
     - { resource: ../../config/cache.xml, ignore_errors: true }
+    - { resource: ../../config/cdn.xml, ignore_errors: true }
     - { resource: ../../config/mail.xml, ignore_errors: true }
 
     - { resource: security.yml }
@@ -139,6 +140,9 @@ knp_gaufrette:
         default:
             adapter:    default
 
+knp_paginator:
+    default_options:
+        distinct: false
 
 zym_media:
     db_driver: orm

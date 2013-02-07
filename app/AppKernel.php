@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
@@ -51,8 +52,7 @@ class AppKernel extends Kernel
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
             new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
-            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-
+            new BCC\ResqueBundle\BCCResqueBundle(),
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
@@ -63,6 +63,8 @@ class AppKernel extends Kernel
 
             $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+
+            $bundles[] = new Buzz\Bundle\ProfilerBundle\BuzzProfilerBundle();
         }
 
         return $bundles;

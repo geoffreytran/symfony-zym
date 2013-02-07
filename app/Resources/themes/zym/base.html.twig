@@ -85,10 +85,12 @@
 
                         <!-- Everything you want hidden at 940px or less, place within here -->
                         <div class="nav-collapse">
+                            {% if app.security.token is not null %}
                             {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active' }) }}
+                            {% endif %}
 
                             <ul class="nav secondary-nav pull-right">
-                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and app.user %}
+                                {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img align="left" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
@@ -133,7 +135,7 @@
         <div class="container">
             <div>
                 <!-- Start: Flash Messages -->
-                {% if is_granted("ROLE_PREVIOUS_ADMIN") %}
+                {% if app.security.token is not null and is_granted("ROLE_PREVIOUS_ADMIN") %}
                 <div class="alert alert-block alert-info fade in">
                     <a class="close" data-dismiss="alert">&times;</a>
                     {{ 'You are currently logged in as' | trans }} <strong>{{ app.user.username |e }}</strong>.
@@ -149,7 +151,9 @@
                 {% endfor %}
                 <!-- End: Flash Messages -->
 
+                {% if app.security.token is not null %}
                 {{ knp_menu_render('management', { 'template': '::knp_menu_breadcrumbs.html.twig' }) }}
+                {% endif %}
 
                 <form class="pull-right form-search">
                   <input type="text" class="input-medium search-query" placeholder="Search..."/>
@@ -204,13 +208,15 @@
         <!-- Start: Inline Scripts -->
         {% block inlineScripts -%}
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.js"></script>
-        <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.8.1.min.js') }}">\x3C/script>')</script>
+        <script type="text/javascript">
+            window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.8.1.min.js') }}">\x3C/script>')
+        </script>
 
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
-            'themes/zym/scripts/bootstrap.min.js'
-            'themes/zym/scripts/zym.ajax-modal.js'
-            'themes/zym/scripts/underscore-min.js'
-            'themes/zym/scripts/backbone-min.js'
+            "themes/zym/scripts/bootstrap.min.js"
+            "themes/zym/scripts/zym.ajax-modal.js"
+            "themes/zym/scripts/underscore-min.js"
+            "themes/zym/scripts/backbone-min.js"
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}

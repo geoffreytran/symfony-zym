@@ -44,7 +44,9 @@
 {% set options = currentOptions|merge({'depth': currentOptions.depth - 1}) %}
 {% endif %}
 {% for item in currentItem.children %}
+    {% if is_granted('VIEW', item) %}
     {{ block('item') }}
+    {% endif %}
 {% endfor %}
 {# restore current variables #}
 {% set item = currentItem %}

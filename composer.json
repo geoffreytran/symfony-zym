@@ -37,7 +37,10 @@
         "knplabs/knp-gaufrette-bundle": "dev-master",
         "imagine/Imagine": "v0.3.0",
         "omissis/php-cloudfiles": "dev-master",
-        "exercise/elastica-bundle": "dev-master"
+        "exercise/elastica-bundle": "dev-master",
+        "sensio/buzz-bundle": "dev-master",
+        "juliendidier/buzz-profiler-bundle": "dev-master",
+        "bcc/resque-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
