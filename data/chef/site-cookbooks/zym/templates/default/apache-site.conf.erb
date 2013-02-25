@@ -20,4 +20,19 @@
     CustomLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log proxy env=forwarded
 
     SetEnv ENVIRONMENT <%= @params[:environment] %>
+    SetEnv HTTP_CACHE <%= @params[:http_cache]? '1' : '0' %>
+    
+    <IfModule mod_headers.c>
+        <FilesMatch ".(png|gif|jpg|jpeg|ico|wav|mp3|flv|mpeg|js|css|mp4|swf)$">
+            Header set Cache-Control "s-maxage=3600, max-age=3600, must-revalidate"
+        </FilesMatch>
+    </IfModule>
+    
+    <IfModule php5_module>
+        <% if @params[:environment] == "dev" %>
+        php_flag display_errors on
+        php_flag html_errors on
+        <% end %>
+        php_value newrelic.appname "<%= @params[:server_name] %>"
+    </IfModule>
 </VirtualHost>

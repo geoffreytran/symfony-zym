@@ -7,6 +7,7 @@ imports:
     - { resource: ../../config/cache.xml, ignore_errors: true }
     - { resource: ../../config/cdn.xml, ignore_errors: true }
     - { resource: ../../config/mail.xml, ignore_errors: true }
+    - { resource: ../../config/queue.xml, ignore_errors: true }
 
     - { resource: security.yml }
 
@@ -33,6 +34,7 @@ framework:
     session:
         name: "session"
         handler_id: zym_session.storage.handler.pdo
+    fragments:   { path: /_fragment }
     esi:            true
 
 # Twig Configuration
@@ -78,7 +80,6 @@ doctrine:
                 auto_mapping: true
                 connection: default
 
-
 stof_doctrine_extensions:
     default_locale: en_US
     orm:
@@ -113,6 +114,16 @@ knp_menu:
 jms_security_extra:
     expressions: true
 
+liip_monitor:
+    checks:
+        disc_usage: ~
+        php_extensions: [apc, curl, memcached, gd, imagick]
+        writable_directory:
+          - %kernel.root_dir%/../data/cache
+          - %kernel.root_dir%/../data/indexes
+          - %kernel.root_dir%/../data/logs
+          - %kernel.root_dir%/../data/uploads
+
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -140,10 +151,6 @@ knp_gaufrette:
         default:
             adapter:    default
 
-knp_paginator:
-    default_options:
-        distinct: false
-
 zym_media:
     db_driver: orm
     contexts:
@@ -167,6 +174,12 @@ zym_user:
 zym_theme:
     theme_map:
         - { path: ^/, theme: zym }
+
+zym_resque:
+    redis:
+        host: %queue.redis.host%                      # the redis host
+        port: %queue.redis.port%                      # the redis port
+        #database: %queue.redis.database%              # the redis database
 
 zym_search_elastica:
     clients:

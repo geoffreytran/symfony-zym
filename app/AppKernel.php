@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
+            new Liip\MonitorBundle\LiipMonitorBundle(),
 
             // Zym
             new Zym\Bundle\FrameworkBundle\ZymFrameworkBundle(),
@@ -49,10 +50,10 @@ class AppKernel extends Kernel
             new Zym\Bundle\MailBundle\ZymMailBundle(),
             new Zym\Bundle\SearchBundle\ZymSearchBundle(),
             new Zym\Bundle\SearchElasticaBundle\ZymSearchElasticaBundle(),
+            new Zym\Bundle\ResqueBundle\ZymResqueBundle(),
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
             new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
-            new BCC\ResqueBundle\BCCResqueBundle(),
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {

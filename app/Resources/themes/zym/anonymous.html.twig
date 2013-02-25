@@ -44,8 +44,8 @@
         <!-- About humans.txt http://humanstxt.org/ -->
         <link rel="author" href="{{ asset('humans.txt') }}" />
 
-        {% stylesheets filter="cssrewrite, less, ?yui_css" output="themes/zym/styles/layouts/assetic-base.min.css"
-            "themes/zym/styles/layouts/base.less"
+        {% stylesheets filter="cssrewrite, less, ?yui_css" output="themes/zym/styles/layouts/assetic-anonymous.min.css"
+            "themes/zym/styles/layouts/anonymous.less"
         -%}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -67,65 +67,72 @@
 
     <body itemscope itemtype="http://schema.org/WebPage">
         {% block body %}
+
         <div id="wrap">
             <!-- Start: Header -->
             <header id="header">
-                <div class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="navbar-inner">
-                        <div class="container">
-                            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </a>
+                <div class="navbar-wrapper">
+                    <div class="container">
+                        <div class="navbar navbar-inverse">
+                            <div class="navbar-inner">
+                                <div class="container">
+                                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                                    <button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
 
-                            <a class="brand" href="#">
-                                <img src="{{ asset('themes/zym/images/logo-inverse.png') }}" alt="{{ "%app_name%" | trans({ '%app_name%': appName }) }}" />
-                                {{ appName |e }}
-                            </a>
+                                    <a class="brand" href="#">
+                                        <img src="{{ asset('themes/zym/images/logo-inverse.png') }}" alt="{{ "%app_name%" | trans({ '%app_name%': appName }) }}" />
+                                        {{ appName |e }}
+                                    </a>
 
-                            <!-- Everything you want hidden at 940px or less, place within here -->
-                            <div class="nav-collapse">
-                                {% if app.security.token is not null %}
-                                {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active' }) }}
-                                {% endif %}
+                                    <!-- Everything you want hidden at 940px or less, place within here -->
+                                    <div class="nav-collapse collapse">
+                                        <!--
+                                        {% if app.security.token is not null %}
+                                        {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active' }) }}
+                                        {% endif %}
+                                        -->
 
-                                <ul class="nav secondary-nav pull-right">
-                                    {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <img align="left" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
+                                        <ul class="nav secondary-nav pull-right">
+                                            {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                    <img align="left" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
 
-                                            {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
-                                                {{ app.user.fullName |e }} ({{ app.user.username | e }})
+                                                    {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
+                                                        {{ app.user.fullName |e }} ({{ app.user.username | e }})
+                                                    {% else %}
+                                                        {{ app.user.username |e }} ({{ app.user.email |e }})
+                                                    {% endif %}
+
+                                                    <b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}">
+                                                            <i class="icon-cog"></i>
+                                                            {{ 'Profile & Settings' | trans }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="{{ path('fos_user_security_logout') }}">
+                                                            <i class="icon-off"></i>
+                                                            {{ 'Log out' | trans }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                             {% else %}
-                                                {{ app.user.username |e }} ({{ app.user.email |e }})
+                                            <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
+                                            <li><a class="login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
                                             {% endif %}
-
-                                            <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}">
-                                                    <i class="icon-cog"></i>
-                                                    {{ 'Profile & Settings' | trans }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{{ path('fos_user_security_logout') }}">
-                                                    <i class="icon-off"></i>
-                                                    {{ 'Log out' | trans }}
-                                                </a>
-                                            </li>
                                         </ul>
-                                    </li>
-                                    {% else %}
-                                    <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
-                                    <li><a class="login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
-                                    {% endif %}
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,20 +163,6 @@
                     {% if app.security.token is not null %}
                     {{ knp_menu_render('management', { 'template': '::knp_menu_breadcrumbs.html.twig' }) }}
                     {% endif %}
-
-                    <form class="pull-right form-search">
-                      <input type="text" class="input-medium search-query" placeholder="Search..."/>
-                    </form>
-
-                    <!--
-                    <nav class="pull-right">
-                        <ul class="pills">
-                            <li class="active"><a href="#">Content</a></li>
-                            <li><a href="#">Content Types</a></li>
-                            <li><a href="#">Permissions</a></li>
-                        </ul>
-                    </nav>
-                    -->
 
                     <div style="clear:both"></div>
                 </div>

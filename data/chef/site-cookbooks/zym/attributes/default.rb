@@ -7,6 +7,9 @@ default[:zym][:db][:name]     = "zym"
 default[:zym][:db][:user]     = node[:zym][:db][:name]
 default[:zym][:db][:password] = "s23nSoq19hm26"
 
+default[:zym][:queue][:port]     = "6379"
+default[:zym][:queue][:database] = "0"
+
 default[:zym][:mail][:transport]  = "mail"
 default[:zym][:mail][:encryption] = ""
 default[:zym][:mail][:auth_mode]  = "login"
@@ -20,6 +23,8 @@ default[:zym][:domain_aliases] = []
 
 default[:zym][:environment] = "prod"
 default[:zym][:debug]       = false
+
+default[:zym][:http_cache]  = true
 
 default[:zym][:dir]         = "/var/www/#{node[:zym][:domain]}/current"
 default[:zym][:release_dir] = "/var/www/#{node[:zym][:domain]}"

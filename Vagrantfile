@@ -87,6 +87,8 @@ Vagrant::Config.run do |config|
 
     chef.add_role "zym_database"
     chef.add_role "zym_cache"
+    chef.add_role "zym_queue"
+    chef.add_role "zym_queue_worker"
     chef.add_role "zym_vagrant"
 
     # You may also specify custom JSON attributes:

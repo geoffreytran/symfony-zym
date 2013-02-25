@@ -61,6 +61,17 @@ package "php-apc" do
   action :install
 end
 
+template "/etc/php5/conf.d/apc.ini" do
+  source "apc.ini"
+  mode 0644
+  owner "root"
+  group "root"
+  
+  if cookbook
+    cookbook cookbook
+  end
+end
+
 if node[:zym][:environment] == 'dev'
   # install xdebug
   package "php5-xdebug" do

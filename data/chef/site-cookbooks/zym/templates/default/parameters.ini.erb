@@ -12,8 +12,9 @@ assetic.less.node_paths   = <%= @assetic[:less][:node_paths] %>
 
 ; framework.xml
 kernel.locale                = en
-kernel.secret                = b011a4f1b18d2c8b01dcabdfbbfc09410
-kernel.trusted_proxies       =
+<% @kernel[:trusted_proxies].each do |proxy| %>
+kernel.trusted_proxies[]     = <%= proxy %>
+<% end %>
 session.lifetime             = 86400
 assets.base_urls             = 
 assets.version               = <%= @assets[:version] %>
@@ -21,5 +22,5 @@ assets.version               = <%= @assets[:version] %>
 <% if @other.count %>
 <% @other.each_pair do |name, value| %>
 <%= name %> = <%= value %>
-<% end%>
+<% end %>
 <% end %>

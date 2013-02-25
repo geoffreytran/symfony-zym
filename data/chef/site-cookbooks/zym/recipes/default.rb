@@ -21,6 +21,9 @@ zym_application "#{node[:zym][:domain]}" do
 
   cache_server_query "chef_environment:#{node.chef_environment} AND recipes:zym\\:\\:cache"
 
+  queue_server_query "chef_environment:#{node.chef_environment} AND recipes:zym\\:\\:queue"
+  queue node[:zym][:queue]
+
   mail node[:zym][:mail]
 
   repository node[:zym][:repository]

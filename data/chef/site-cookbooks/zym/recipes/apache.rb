@@ -15,4 +15,5 @@ zym_apache "#{node[:zym][:domain]}" do
   dir            node[:zym][:dir]
   domain_aliases node[:zym][:domain_aliases]
   environment    node[:zym][:environment]
+  http_cache     node[:zym][:http_cache]
 end

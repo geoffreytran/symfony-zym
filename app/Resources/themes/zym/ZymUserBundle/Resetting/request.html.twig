@@ -1,35 +1,42 @@
-{% extends "ZymUserBundle::layout.html.twig" %}
+{% extends "::anonymous.html.twig" %}
 
 {% block title %}{{ 'Recover Account' | trans({}, 'FOSUserBundle') }}{% endblock %}
 
 {% block content %}
-    <div class="page-header">
-        <h1>
-            {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
-            <small>{{ 'Forgot your account information?' | trans({}, 'ZymUserBundle') }}</small>
-        </h1>
-    </div>
-
     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-
-        {% if invalid_username is defined  %}
-            <div class="alert fade in alert-error">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+        <div class="modal" style="position: static; margin: 20px auto;">
+            <div class="modal-header">
+                <h2>
+                    {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
+                    <small>{{ 'Forgot your account information?' | trans({}, 'ZymUserBundle') }}</small>
+                </h2>
             </div>
-        {% endif %}
 
-        <div class="control-group">
-            <label class="control-label" for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+            <div class="modal-body">
+                {% if invalid_username is defined  %}
+                    <div class="alert fade in alert-error">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+                    </div>
+                {% endif %}
 
-            <div class="controls">
-                <input type="text" id="username" name="username" required="required" {% if invalid_username is defined %}value="{{ invalid_username |e }}"{% endif %} />
+                <div class="control-group">
+                    <label class="control-label" for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+
+                    <div class="controls">
+                        <input class="input-block-level" type="text" id="username" name="username" required="required" {% if invalid_username is defined %}value="{{ invalid_username |e }}"{% endif %} />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn" href="{{ path('fos_user_security_login') }}">
+                    {{ 'Cancel' | trans({}, 'ZymUserBundle') }}
+                </a>
+
+                <input type="submit" class="btn btn-primary" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" style="padding-left: 30px; padding-right: 30px" />
             </div>
         </div>
-
-        <fieldset class="form-actions">
-            <input type="submit" class="btn btn-primary" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
-        </fieldset>
     </form>
 {% endblock %}
 

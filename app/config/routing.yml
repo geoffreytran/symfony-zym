@@ -1,11 +1,14 @@
-# Internal routing configuration to handle ESI
-_internal:
-    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-    prefix:   /_internal
-
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
+
+LiipMonitorBundle:
+    resource: "@LiipMonitorBundle/Resources/config/routing.yml"
+    prefix: /monitor/health
+
+ZymResqueBundle:
+    resource: "@ZymResqueBundle/Resources/config/routing.xml"
+    prefix: /admin/queue
 
 ZymMediaBundle:
     resource: "@ZymMediaBundle/Resources/config/routing/media.xml"
@@ -30,6 +33,10 @@ ZymMenuBundleMenus:
 ZymMenuBundleCategories:
     resource: "@ZymMenuBundle/Resources/config/routing/categories.xml"
     prefix:   /menu/categories
+
+ZymRouterBundle:
+    resource: "@ZymRouterBundle/Resources/config/routing.xml"
+    prefix:   /admin/config/routes
 
 ZymSecurityBundleAccessRules:
     resource: "@ZymSecurityBundle/Resources/config/routing/access_rules.xml"

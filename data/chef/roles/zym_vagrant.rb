@@ -16,6 +16,12 @@ default_attributes({
   :zym => {
     :environment => 'dev',
     :debug       => true,
+  },
+
+  :php => {
+    :directives => {
+      "xdebug.max_nesting_level" => 200
+    }
   }
 })
 

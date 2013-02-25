@@ -39,13 +39,13 @@ cookbook 'lesscss',
 
 # Search
 cookbook 'elasticsearch',
-  :git => 'https://github.com/karmi/cookbook-elasticsearch'
+  :git => 'https://github.com/elasticsearch/cookbook-elasticsearch'
 
 # Caching
 cookbook 'memcached'
 
 # Queue
-cookbook 'beanstalkd'
+cookbook 'redisio'
 
 # Media
 cookbook 'x264'
@@ -55,6 +55,9 @@ cookbook 'imagemagick'
 # Version Control
 cookbook 'git'
 cookbook 'subversion'
+
+# Process Management
+cookbook 'supervisor'
 
 # Utilities
 cookbook 'apt'
@@ -75,3 +78,7 @@ cookbook 'users',
 # cookbook 'postgresql',
 #   :git => 'https://github.com/findsyou/cookbooks',
 #   :ref => 'postgresql-improvements'
+
+#cookbook 'zym'
+#  :git  => 'https://github.com/geoffreytran/symfony-zym',
+#  :path => 'data/chef/site-cookbooks/zym'
