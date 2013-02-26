@@ -3,15 +3,15 @@ SITE
   specs:
     apache (0.0.5)
       apache2 (>= 0.0.0)
-    apache2 (1.4.0)
+    apache2 (1.6.0)
     application_php (1.0.4)
       apache2 (>= 0.0.0)
       php (>= 0.0.0)
-    apt (1.7.0)
-    ark (0.0.17)
-    aws (0.100.4)
-    build-essential (1.3.2)
-    chef_handler (1.1.2)
+    apt (1.9.0)
+    ark (0.1.0)
+    aws (0.100.6)
+    build-essential (1.3.4)
+    chef_handler (1.1.4)
     database (1.3.6)
       aws (>= 0.0.0)
       mysql (>= 1.3.0)
@@ -23,36 +23,40 @@ SITE
       git (>= 0.0.0)
       libvpx (~> 0.2.0)
       x264 (~> 0.3.0)
-    git (2.1.2)
+    git (2.3.0)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
-      runit (>= 0.0.0)
+      runit (~> 1.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
-    htop (0.1.0)
+    htop (1.0.0)
     imagemagick (0.2.2)
-    java (1.7.0)
+    java (1.9.6)
+      windows (>= 0.0.0)
     libvpx (0.2.0)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
-    memcached (1.1.2)
-      runit (>= 0.0.0)
-    mysql (2.1.0)
+    memcached (1.3.0)
+      runit (~> 1.0)
+      yum (>= 0.0.0)
+    mysql (2.1.2)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    nodejs (1.0.1)
+    nodejs (1.0.2)
+      apt (>= 0.0.0)
       build-essential (>= 0.0.0)
-    npm (0.1.0)
+    npm (0.1.1)
       nodejs (>= 0.0.0)
     openssl (1.0.0)
-    postgresql (2.1.0)
+    postgresql (2.2.2)
       openssl (>= 0.0.0)
     python (1.2.2)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
-    redisio (1.2.0)
+    redisio (1.3.0)
     rsync (0.8.0)
-    runit (0.16.2)
+    runit (1.0.6)
+      build-essential (>= 0.0.0)
     screen (0.8.0)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
@@ -60,10 +64,10 @@ SITE
     subversion (1.0.2)
       apache2 (>= 0.0.0)
       windows (>= 0.0.0)
-    sudo (2.0.2)
+    sudo (2.0.4)
     supervisor (0.4.0)
       python (>= 0.0.0)
-    windows (1.7.0)
+    windows (1.8.4)
       chef_handler (>= 0.0.0)
     x264 (0.3.0)
       build-essential (>= 0.0.0)
@@ -71,12 +75,12 @@ SITE
     xfs (1.1.0)
     xml (1.1.2)
       build-essential (>= 0.0.0)
-    yum (2.0.6)
+    yum (2.1.0)
 
 GIT
   remote: https://github.com/elasticsearch/cookbook-elasticsearch
   ref: master
-  sha: 2c46bcc3901b3ed88babf9bade1783c2691ea9e1
+  sha: b0616bec1a9167eaeaefc1aef1fa38ac2b0c3621
   specs:
     elasticsearch (0.2.0)
       ark (>= 0.0.0)
@@ -91,10 +95,10 @@ GIT
 GIT
   remote: https://github.com/geoffreytran/chef-composer
   ref: master
-  sha: 64b458086f6763aea08a63358d85e21047d43f3a
+  sha: d3b50a63197672247297efc9cd2e1723a58900ce
   specs:
-    composer (0.0.4)
-      apache (>= 0.0.0)
+    composer (0.0.5)
+      apache2 (>= 0.0.0)
 
 GIT
   remote: https://github.com/geoffreytran/chef-lesscss
@@ -130,9 +134,9 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/php
   ref: master
-  sha: f3f5db8d823db821ac696f7b52b2a613c1e2f167
+  sha: fcdc242f7bab0fc74c3b08f6500f9794a0f387df
   specs:
-    php (1.1.4)
+    php (1.1.8)
       build-essential (>= 0.0.0)
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
