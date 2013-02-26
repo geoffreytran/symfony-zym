@@ -3,6 +3,8 @@
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
+ini_set('xdebug.max_nesting_level', 200);
+
 $environment = isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT']
                                               : 'prod';
 

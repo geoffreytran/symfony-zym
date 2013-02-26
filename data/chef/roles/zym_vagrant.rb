@@ -16,13 +16,6 @@ default_attributes({
   :zym => {
     :environment => 'dev',
     :debug       => true,
-  },
-
-  :php => {
-    :conf_dir => "/etc/php5/apache2",
-    :directives => {
-      "xdebug.max_nesting_level" => 200
-    }
   }
 })
 
