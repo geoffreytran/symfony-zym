@@ -19,6 +19,7 @@ default_attributes({
   },
 
   :php => {
+    :conf_dir => "/etc/php5/apache2",
     :directives => {
       "xdebug.max_nesting_level" => 200
     }
