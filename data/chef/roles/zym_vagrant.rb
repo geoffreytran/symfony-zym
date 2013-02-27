@@ -16,6 +16,7 @@ default_attributes({
   :zym => {
     :environment => 'dev',
     :debug       => true,
+    :http_cache  => false
   }
 })
 
