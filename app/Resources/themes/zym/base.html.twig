@@ -99,6 +99,8 @@
 
                                             {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
                                                 {{ app.user.fullName |e }} ({{ app.user.username | e }})
+                                            {% elseif '@' in app.user.username %}
+                                                {{ app.user.email |e }}
                                             {% else %}
                                                 {{ app.user.username |e }} ({{ app.user.email |e }})
                                             {% endif %}
