@@ -149,6 +149,16 @@ if Chef::Config[:solo]
     debug node[:zym][:debug]
   end
 
+  symfony2_console "Clear Cache for Prod" do
+    action :cmd
+
+    command "cache:clear"
+
+    path  node[:zym][:dir]
+    env   "prod"
+    debug node[:zym][:debug]
+  end
+
   symfony2_console "Install assets" do
     action :cmd
 
@@ -193,7 +203,7 @@ if Chef::Config[:solo]
   )
   database_exists.run_command
 
-  if not database_exists.run_command.stdout.include?("Empty set")
+  if database_exists.run_command.stdout.include?("Empty set")
     symfony2_console "Create schema" do
       action :cmd
 

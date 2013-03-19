@@ -152,11 +152,13 @@
                     </div>
                     {% endif %}
 
-                    {% for message, flash in app.session.flashBag %}
-                    <div class="alert fade in alert-{{ flash }}">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        {{ message }}
-                    </div>
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                        <div class="alert fade in alert-{{ type }}">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
                     {% endfor %}
                     <!-- End: Flash Messages -->
 

@@ -155,6 +155,8 @@ zym_media:
     db_driver: orm
     contexts:
         default:
+            providers:
+                - image
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}

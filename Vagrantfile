@@ -97,6 +97,17 @@ Vagrant::Config.run do |config|
         :dir => "/vagrant"
       },
 
+      :apache => {
+        :prefork => {
+          :maxclients          => 20,
+          :maxrequestsperchild => 10000,
+          :maxspareservers     => 16,
+          :minspareservers     => 4,
+          :serverlimit         => 100,
+          :startservers        => 4
+        }
+      },
+
       :mysql => {
         :server_root_password   => "",
         :server_repl_password   => "",
