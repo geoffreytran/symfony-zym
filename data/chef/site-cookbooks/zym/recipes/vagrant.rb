@@ -198,7 +198,7 @@ if Chef::Config[:solo]
 #  end
 
   database_exists = Chef::ShellOut.new(
-    "mysql -u#{node[:zym][:db][:user]} -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'use #{node[:zym][:db][:name]}; show tables; SELECT FOUND_ROWS();'",
+    "mysql -u#{node[:zym][:db][:user]} -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'use #{node[:zym][:db][:name]}; show tables; SELECT FOUND_ROWS();' -E",
     :env   => { 'PATH' => '/usr/bin:/usr/local/bin:/bin:/sbin' }
   )
   database_exists.run_command
