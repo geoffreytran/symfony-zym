@@ -95,7 +95,7 @@ GIT
 GIT
   remote: https://github.com/geoffreytran/chef-composer
   ref: master
-  sha: d3b50a63197672247297efc9cd2e1723a58900ce
+  sha: 413b5ddb7e7a9d0b1219e472bd6e4230725f999a
   specs:
     composer (0.0.5)
       apache2 (>= 0.0.0)
