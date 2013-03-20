@@ -198,12 +198,12 @@ if Chef::Config[:solo]
 #  end
 
   database_exists = Chef::ShellOut.new(
-    "mysql -u#{node[:zym][:db][:user]} -p#{node[:zym][:db][:password]} -h #{mysql_host} -e'use #{node[:zym][:db][:name]}; show tables;'",
+    "mysql -u#{node[:zym][:db][:user]} -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'use #{node[:zym][:db][:name]}; show tables; SELECT FOUND_ROWS();'",
     :env   => { 'PATH' => '/usr/bin:/usr/local/bin:/bin:/sbin' }
   )
   database_exists.run_command
 
-  if database_exists.run_command.stdout.include?("Empty set")
+  if database_exists.run_command.stdout.include?("FOUND_ROWS(): 0")
     symfony2_console "Create schema" do
       action :cmd
 
