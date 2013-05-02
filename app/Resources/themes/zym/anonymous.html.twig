@@ -14,6 +14,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="fragment" content="!" />
         <meta name="robots" content="noindex, nofollow" />
         {% endblock -%}
         <!-- End: Meta -->
@@ -214,11 +215,14 @@
             window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.9.1.min.js') }}">\x3C/script>')
         </script>
 
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+        <script type="text/javascript">
+            window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/angular.min.js') }}">\x3C/script>')
+        </script>
+        
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
             "themes/zym/scripts/bootstrap.min.js"
             "themes/zym/scripts/zym.ajax-modal.js"
-            "themes/zym/scripts/underscore-min.js"
-            "themes/zym/scripts/backbone-min.js"
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}

@@ -197,31 +197,27 @@ if Chef::Config[:solo]
 #    debug node[:zym][:debug]
 #  end
 
-  database_exists = Chef::ShellOut.new(
-    "mysql -u#{node[:zym][:db][:user]} -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'use #{node[:zym][:db][:name]}; show tables; SELECT FOUND_ROWS();' -E",
-    :env   => { 'PATH' => '/usr/bin:/usr/local/bin:/bin:/sbin' }
-  )
-  database_exists.run_command
-
-  if database_exists.run_command.stdout.include?("FOUND_ROWS(): 0")
-    symfony2_console "Create schema" do
-      action :cmd
-
-      command "doctrine:schema:create"
-
-      path  node[:zym][:dir]
-      env   node[:zym][:environment]
-      debug node[:zym][:debug]
-    end
-
-    symfony2_console "Load fixtures" do
-      action :cmd
-
-      command "doctrine:fixtures:load"
-
-      path  node[:zym][:dir]
-      env   node[:zym][:environment]
-      debug node[:zym][:debug]
-    end
+  symfony2_console "Schema" do
+    action :cmd
+  
+    command "doctrine:schema:create"
+  
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+    
+    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SHOW TABLES; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
+  end
+  
+  symfony2_console "Fixtures" do
+    action :cmd
+  
+    command "doctrine:fixtures:load"
+  
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+    
+    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SELECT * FROM `acl_classes`; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
   end
 end

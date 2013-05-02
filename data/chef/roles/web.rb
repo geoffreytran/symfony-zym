@@ -29,6 +29,10 @@ run_list(
 
 # Attributes applied if the node doesn't have it set already.
 default_attributes({
+  :apache2 => {
+    :serversignature => 'off'
+  },
+
   :nodejs => {
     :install_method => 'source',
     :dir => '/usr'

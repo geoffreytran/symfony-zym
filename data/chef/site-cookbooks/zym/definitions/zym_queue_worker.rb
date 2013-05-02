@@ -8,7 +8,7 @@ define :zym_queue_worker, :cookbook => "zym" do
   include_recipe "supervisor"
 
   supervisor_service "#{params[:name]}-worker" do
-    process_name "%(program_name)s-%(process_num)s"
+    process_name "%(process_num)s"
 
     command "#{params[:dir]}/bin/console zym:resque:worker --env=#{env} -v"
 
@@ -16,8 +16,8 @@ define :zym_queue_worker, :cookbook => "zym" do
 
     user params[:user]
 
-    stdout_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-stdout.log"
-    stderr_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-stderror.log"
+    stdout_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-%(process_num)s-stdout.log"
+    stderr_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-%(process_num)s-stderror.log"
 
     action [:enable]
 

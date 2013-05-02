@@ -27,6 +27,7 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-time-bundle": "dev-master",
+        "knplabs/knp-components": "1.2.2",
         "friendsofsymfony/user-bundle": "dev-master",
         "jms/metadata": "1.1.1",
         "jms/serializer-bundle": "0.9.*",

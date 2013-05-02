@@ -5,7 +5,7 @@
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="{{ app.request.locale |e }}"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="{{ app.request.locale |e }}">
+<html class="no-js" lang="{{ app.request.locale |e }}" id="ng-app" ng-app>
 <!--<![endif]-->
     <head>
     {% block head %}
@@ -14,6 +14,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="fragment" content="!" />
         <meta name="robots" content="noindex, nofollow" />
         {% endblock -%}
         <!-- End: Meta -->
@@ -59,7 +60,7 @@
 
         <!-- Start: Scripts -->
         {% block headScripts -%}
-        <script type="text/javascript" src="{{ asset('themes/zym/scripts/modernizr.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('themes/zym/scripts/modernizr.min.js') }}"></script>
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
@@ -161,20 +162,6 @@
                     {{ knp_menu_render('management', { 'template': '::knp_menu_breadcrumbs.html.twig' }) }}
                     {% endif %}
 
-                    <form class="pull-right form-search">
-                      <input type="text" class="input-medium search-query" placeholder="Search..."/>
-                    </form>
-
-                    <!--
-                    <nav class="pull-right">
-                        <ul class="pills">
-                            <li class="active"><a href="#">Content</a></li>
-                            <li><a href="#">Content Types</a></li>
-                            <li><a href="#">Permissions</a></li>
-                        </ul>
-                    </nav>
-                    -->
-
                     <div style="clear:both"></div>
                 </div>
             </div>
@@ -212,9 +199,6 @@
             </div>
         </footer>
         <!-- End: Footer -->
-        <!-- End: Document -->
-
-        {% endblock body %}
 
         <!-- Start: Inline Scripts -->
         {% block inlineScripts -%}
@@ -223,22 +207,21 @@
             window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/jquery-1.9.1.min.js') }}">\x3C/script>')
         </script>
 
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+        <script type="text/javascript">
+            window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/angular.min.js') }}">\x3C/script>')
+        </script>
+
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
             "themes/zym/scripts/bootstrap.min.js"
             "themes/zym/scripts/zym.ajax-modal.js"
-            "themes/zym/scripts/underscore-min.js"
-            "themes/zym/scripts/backbone-min.js"
          -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
-
-        <script type="text/javascript">
-            // Bootstrap tooltips
-            $('[rel="tooltip"]').each(function(index){
-                $(this).tooltip();
-            });
-        </script>
         {% endblock -%}
         <!-- End: Inline Scripts -->
+
+        <!-- End: Document -->
+        {% endblock body %}
     </body>
 </html>

@@ -13,6 +13,6 @@
 /data/logs/*
 /data/indexes/*
 /nbproject/
-/.DS_Store
+.DS_Store
 /catalog.xml
 /.vagrant

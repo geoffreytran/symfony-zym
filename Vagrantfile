@@ -7,8 +7,8 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
   config.vm.host_name = "zym.dev"
 
-  if config.respond_to?("hosts")
-    config.hosts.aliases = %w(www.zym.dev)
+  if Vagrant.const_defined?(:Hostmaster) 
+    config.hosts.aliases = %w(www.zym.dev) 
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
@@ -101,10 +101,10 @@ Vagrant::Config.run do |config|
         :prefork => {
           :maxclients          => 20,
           :maxrequestsperchild => 10000,
-          :maxspareservers     => 16,
-          :minspareservers     => 4,
+          :maxspareservers     => 4,
+          :minspareservers     => 2,
           :serverlimit         => 100,
-          :startservers        => 4
+          :startservers        => 2
         }
       },
 
@@ -112,7 +112,12 @@ Vagrant::Config.run do |config|
         :server_root_password   => "",
         :server_repl_password   => "",
         :server_debian_password => "",
-        :bind_address           => "127.0.0.1"
+        :bind_address           => "127.0.0.1",
+        
+        :tunable => {
+          :key_buffer      => "64M",
+          :max_connections => 50,
+        }
       },
 
       :elasticsearch => {
