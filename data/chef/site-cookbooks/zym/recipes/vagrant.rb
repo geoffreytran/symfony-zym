@@ -218,6 +218,6 @@ if Chef::Config[:solo]
     env   node[:zym][:environment]
     debug node[:zym][:debug]
     
-    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SELECT * FROM `acl_classes`; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
+    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SELECT * FROM `acl_classes`; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"    
   end
 end

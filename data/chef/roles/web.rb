@@ -6,7 +6,7 @@ run_list(
   "role[default]",
 
   "recipe[java]",
-  "recipe[php]",
+  "recipe[php54]",
   "recipe[sqlite]",
   "recipe[nodejs]",
   "recipe[nodejs::npm]",

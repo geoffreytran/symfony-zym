@@ -3,16 +3,19 @@ SITE
   specs:
     apache (0.0.5)
       apache2 (>= 0.0.0)
-    apache2 (1.6.0)
-    application_php (1.0.4)
+    apache2 (1.6.2)
+    application_php (1.1.0)
       apache2 (>= 0.0.0)
       php (>= 0.0.0)
-    apt (1.9.0)
+    apt (1.7.0)
     ark (0.1.0)
     aws (0.100.6)
-    build-essential (1.3.4)
+    build-essential (1.4.0)
+    chef-client (2.2.2)
+      cron (>= 0.0.0)
     chef_handler (1.1.4)
-    database (1.3.6)
+    cron (1.2.2)
+    database (1.3.12)
       aws (>= 0.0.0)
       mysql (>= 1.3.0)
       postgresql (>= 1.0.0)
@@ -23,15 +26,15 @@ SITE
       git (>= 0.0.0)
       libvpx (~> 0.2.0)
       x264 (~> 0.3.0)
-    git (2.3.0)
+    git (2.5.0)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
-      runit (~> 1.0)
+      runit (>= 1.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
     htop (1.0.0)
     imagemagick (0.2.2)
-    java (1.9.6)
+    java (1.10.2)
       windows (>= 0.0.0)
     libvpx (0.2.0)
       build-essential (>= 0.0.0)
@@ -39,24 +42,28 @@ SITE
     memcached (1.3.0)
       runit (~> 1.0)
       yum (>= 0.0.0)
-    mysql (2.1.2)
+    mysql (3.0.0)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    nodejs (1.0.2)
+    nodejs (1.1.2)
       apt (>= 0.0.0)
       build-essential (>= 0.0.0)
     npm (0.1.1)
       nodejs (>= 0.0.0)
-    openssl (1.0.0)
-    postgresql (2.2.2)
+    openssl (1.0.2)
+    postgresql (2.4.0)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
     python (1.2.2)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
-    redisio (1.3.0)
+    redisio (1.4.1)
+      ulimit (>= 0.1.2)
     rsync (0.8.0)
-    runit (1.0.6)
+    runit (1.1.4)
       build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
     screen (0.8.0)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
@@ -64,10 +71,11 @@ SITE
     subversion (1.0.2)
       apache2 (>= 0.0.0)
       windows (>= 0.0.0)
-    sudo (2.0.4)
+    sudo (2.1.0)
     supervisor (0.4.0)
       python (>= 0.0.0)
-    windows (1.8.4)
+    ulimit (0.2.0)
+    windows (1.8.10)
       chef_handler (>= 0.0.0)
     x264 (0.3.0)
       build-essential (>= 0.0.0)
@@ -75,27 +83,20 @@ SITE
     xfs (1.1.0)
     xml (1.1.2)
       build-essential (>= 0.0.0)
-    yum (2.1.0)
+    yum (2.2.0)
 
 GIT
   remote: https://github.com/elasticsearch/cookbook-elasticsearch
   ref: master
-  sha: b0616bec1a9167eaeaefc1aef1fa38ac2b0c3621
+  sha: d9aed1b198f1f7abf4840c612c382071e6418d61
   specs:
-    elasticsearch (0.2.0)
+    elasticsearch (0.2.7)
       ark (>= 0.0.0)
-
-GIT
-  remote: https://github.com/geoffreytran/chef-client.git
-  ref: master
-  sha: 01dc1c78e63618a75fb7fd2e7770e283550b7afd
-  specs:
-    chef-client (1.2.1)
 
 GIT
   remote: https://github.com/geoffreytran/chef-composer
   ref: master
-  sha: 413b5ddb7e7a9d0b1219e472bd6e4230725f999a
+  sha: c8d97f030acde3e4e83afbde1207540af29c726d
   specs:
     composer (0.0.5)
       apache2 (>= 0.0.0)
@@ -125,6 +126,14 @@ GIT
       apache (>= 0.0.0)
 
 GIT
+  remote: https://github.com/hairyhum/chef-php54.git
+  ref: master
+  sha: 22e9adea8643fc7cff080974c36df1d1fb363da0
+  specs:
+    php54 (0.1.0)
+      php (>= 0.0.0)
+
+GIT
   remote: https://github.com/opscode-cookbooks/application.git
   ref: da3eb5ac8fc20e9db7213c3b22f0a7856a73778c
   sha: da3eb5ac8fc20e9db7213c3b22f0a7856a73778c
@@ -134,7 +143,7 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/php
   ref: master
-  sha: fcdc242f7bab0fc74c3b08f6500f9794a0f387df
+  sha: 70e5966bae896cb88f72c1c8450f0c9a9c88decb
   specs:
     php (1.1.8)
       build-essential (>= 0.0.0)
@@ -144,20 +153,20 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/users
   ref: master
-  sha: c51c96afca83b382678dc21b8deb25677e6a3d8a
+  sha: a29adc2981961e81c0f9483da4ef2c318e560d69
   specs:
-    users (1.3.0)
+    users (1.5.1)
 
 DEPENDENCIES
   apache2 (>= 0)
   application (>= 0)
   application_php (>= 0)
-  apt (>= 0)
+  apt (= 1.7.0)
   ark (>= 0)
   build-essential (>= 0)
   chef-client (>= 0)
   composer (>= 0)
-  database (= 1.3.6)
+  database (>= 0)
   elasticsearch (>= 0)
   ffmpeg (>= 0)
   git (>= 0)
@@ -171,6 +180,7 @@ DEPENDENCIES
   nodejs (>= 0)
   npm (>= 0)
   php (>= 0)
+  php54 (>= 0)
   redisio (>= 0)
   rsync (>= 0)
   screen (>= 0)

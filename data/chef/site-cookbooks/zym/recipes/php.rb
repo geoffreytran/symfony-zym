@@ -67,6 +67,21 @@ template "/etc/php5/conf.d/apc.ini" do
   owner "root"
   group "root"
   
+  only_if { ::File.exists?("/etc/php5/conf.d/apc.ini") }
+  
+  if cookbook
+    cookbook cookbook
+  end
+end
+
+template "/etc/php5/mods-available/apc.ini" do
+  source "apc.ini"
+  mode 0644
+  owner "root"
+  group "root"
+
+  only_if { ::File.exists?("/etc/php5/mods-available/apc.ini") }
+
   if cookbook
     cookbook cookbook
   end
