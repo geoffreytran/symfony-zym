@@ -1,8 +1,7 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: parameters.yml, ignore_errors: true }
 
     - { resource: defaults.ini }
-    - { resource: ../../config/parameters.ini, ignore_errors: true }
     - { resource: ../../config/db.xml, ignore_errors: false }
     - { resource: ../../config/cache.xml, ignore_errors: true }
     - { resource: ../../config/cdn.xml, ignore_errors: true }
@@ -19,9 +18,9 @@ framework:
     secret:          %kernel.secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
-    form:            true
-    csrf_protection: true
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig', 'php']
@@ -181,12 +180,12 @@ zym_resque:
         port: %queue.redis.port%                      # the redis port
         #database: %queue.redis.database%              # the redis database
 
-zym_search_elastica:
-    clients:
-        default: { host: localhost, port: 9200 }
-    indexes:
-        test:
-            client: default
+#zym_search_elastica:
+#    clients:
+#        default: { host: localhost, port: 9200 }
+#    indexes:
+#        test:
+#            client: default
 
 services:
     twig.extension.text:
