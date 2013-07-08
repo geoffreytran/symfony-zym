@@ -1,14 +1,15 @@
 imports:
     - { resource: parameters.yml, ignore_errors: true }
-
+    - { resource: security.yml }
+    
     - { resource: defaults.ini }
+    - { resource: ../../config/parameters.ini, ignore_errors: true}
+
     - { resource: ../../config/db.xml, ignore_errors: false }
     - { resource: ../../config/cache.xml, ignore_errors: true }
     - { resource: ../../config/cdn.xml, ignore_errors: true }
     - { resource: ../../config/mail.xml, ignore_errors: true }
     - { resource: ../../config/queue.xml, ignore_errors: true }
-
-    - { resource: security.yml }
 
 parameters:
     knp_paginator.template.pagination: 'MopaBootstrapBundle:Pagination:sliding.html.twig'

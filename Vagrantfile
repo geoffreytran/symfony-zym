@@ -121,8 +121,7 @@ Vagrant::Config.run do |config|
       },
 
       :elasticsearch => {
-        :min_mem => "8m",
-        :max_mem => "16m"
+        :allocated_memory => "32M"
       }
     }
   end

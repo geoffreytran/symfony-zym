@@ -29,7 +29,7 @@ monolog:
 #            level: debug
         nested:
             type: syslog
-            ident: %app.normalizedName%
+            ident: %app.normalized_name%
             level: debug
 
 opensky_runtime_config:
