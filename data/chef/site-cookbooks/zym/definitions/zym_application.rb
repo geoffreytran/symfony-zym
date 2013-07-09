@@ -150,7 +150,7 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
         parameters = {
           :app => {
             :name           => 'Untitled Symfony App',
-            :normalizedName => 'symfony-zym'
+            :normalized_name => 'symfony-zym'
           },
 
           :assetic => {
@@ -319,7 +319,7 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
         parameters = {
           :app => {
             :name           => 'Untitled Symfony App',
-            :normalizedName => 'symfony-zym'
+            :normalized_name => 'symfony-zym'
           },
 
           :assetic => {

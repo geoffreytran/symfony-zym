@@ -36,6 +36,10 @@ cookbook 'npm'
 
 cookbook 'lesscss',
   :git => 'https://github.com/geoffreytran/chef-lesscss'
+  
+cookbook 'python',
+  :git => 'https://github.com/ka2n/python.git', # Using this repo due to distribute 0.7.3 import setuptools issue.
+  :ref => 'setuptools_0_8_x'
 
 # Search
 cookbook 'elasticsearch',

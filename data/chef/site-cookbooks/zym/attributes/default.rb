@@ -35,4 +35,4 @@ default[:zym][:deploy_key]   = ""
 default[:zym][:force_deploy] = true
 
 default[:zym][:parameters][:app][:name]           = "Untitled Symfony App"
-default[:zym][:parameters][:app][:normalizedName] = "symfony-zym"
+default[:zym][:parameters][:app][:normalized_name] = "symfony-zym"

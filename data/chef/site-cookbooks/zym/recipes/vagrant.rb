@@ -100,7 +100,7 @@ end
 parameters = {
   :app => {
     :name           => 'Untitled Symfony App',
-    :normalizedName => 'symfony-zym'
+    :normalized_name => 'symfony-zym'
   },
 
   :assetic => {

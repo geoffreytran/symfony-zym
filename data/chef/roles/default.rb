@@ -16,22 +16,22 @@ run_list(
 
 if not Chef::Config[:solo]
   run_list.push("recipe[chef-client::delete_validation]")
-#  run_list.push("recipe[chef-client::config]")
+  run_list.push("recipe[chef-client::config]")
   run_list.push("recipe[chef-client]")
   run_list.push("recipe[sudo]")
 end
 
 # Attributes applied if the node doesn't have it set already.
 default_attributes({
-  "authorization" => {
-    "sudo" => {
-      "groups"       => ["sysadmin", "sudo"],
-      "passwordless" => true
+  :authorization => {
+    :sudo => {
+      :groups       => ["sysadmin", "sudo"],
+      :passwordless => true
     }
   },
   
-  "build_essential" => {
-    "compiletime" => true
+  :build_essential => {
+    :compiletime => true
   }
 })
 

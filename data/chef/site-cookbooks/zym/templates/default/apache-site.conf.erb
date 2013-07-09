@@ -27,8 +27,8 @@
     <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    RewriteRule ^ - [E:ENVIRONMENT=<%= @params[:environment] %>] 
-    RewriteRule ^ - [E:HTTP_CACHE=<%= @params[:http_cache] ? '1' : '0' %> 
+    RewriteRule ^ - [E=ENVIRONMENT:<%= @params[:environment] %>] 
+    RewriteRule ^ - [E=HTTP_CACHE:<%= @params[:http_cache] ? '1' : '0' %>]
     </IfModule>
     
     <IfModule mod_headers.c>
