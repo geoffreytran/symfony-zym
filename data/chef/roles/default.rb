@@ -32,6 +32,16 @@ default_attributes({
   
   :build_essential => {
     :compiletime => true
+  },
+
+  :chef_client => {
+    :config => {
+      :client_fork => true
+    }
+  },
+
+  :supervisor => {
+    :version => "3.0b2"
   }
 })
 

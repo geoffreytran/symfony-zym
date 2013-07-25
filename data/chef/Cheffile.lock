@@ -4,8 +4,9 @@ SITE
     apache (0.0.5)
       apache2 (>= 0.0.0)
     apache2 (1.6.6)
-    application_php (1.1.2)
+    application_php (2.0.0)
       apache2 (>= 0.0.0)
+      application (~> 3.0)
       php (>= 0.0.0)
     apt (1.7.0)
     ark (0.3.0)
@@ -32,9 +33,10 @@ SITE
       runit (>= 1.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
-    htop (1.0.0)
+    htop (1.1.0)
+      yum (>= 0.0.0)
     imagemagick (0.2.2)
-    java (1.11.6)
+    java (1.12.0)
       windows (>= 0.0.0)
     libvpx (0.2.0)
       build-essential (>= 0.0.0)
@@ -55,7 +57,7 @@ SITE
       apt (>= 0.0.0)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    redisio (1.6.0)
+    redisio (1.7.0)
       ulimit (>= 0.1.2)
     rsync (0.8.0)
     runit (1.1.6)
@@ -93,7 +95,7 @@ GIT
 GIT
   remote: https://github.com/geoffreytran/chef-composer
   ref: master
-  sha: 020baf2bcfe733375e9011aee400d261dba12b94
+  sha: afaacb1700cf5d64a771ff7e36b871154eec085b
   specs:
     composer (0.0.5)
       apache2 (>= 0.0.0)
@@ -142,9 +144,9 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/application.git
   ref: master
-  sha: 7772487d154292940801cf62646b3b4a119bd503
+  sha: 94c87b50d395d6de03ab5ae6940cbafcedb010f6
   specs:
-    application (2.0.5)
+    application (3.0.1)
 
 GIT
   remote: https://github.com/opscode-cookbooks/php
@@ -195,8 +197,9 @@ DEPENDENCIES
   sqlite (>= 0)
   subversion (>= 0)
   sudo (>= 0)
-  supervisor (>= 0)
+  supervisor (= 0.4.2)
   symfony2 (>= 0)
+  ulimit (= 0.2.0)
   users (>= 0)
   x264 (>= 0)
   yum (>= 0)

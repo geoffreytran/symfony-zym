@@ -359,6 +359,7 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
       # Install composer and dependencies
       composer "#{release_path}" do
         home release_path
+        dev false
         action [:deploy, :install]
       end
 

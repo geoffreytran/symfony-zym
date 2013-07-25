@@ -35,7 +35,8 @@ default_attributes({
 
   :nodejs => {
     :install_method => 'source',
-    :dir => '/usr'
+    :dir            => '/usr',
+    :npm            => '1.2.30'
   },
 })
 

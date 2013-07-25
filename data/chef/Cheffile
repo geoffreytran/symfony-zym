@@ -61,7 +61,7 @@ cookbook 'git'
 cookbook 'subversion'
 
 # Process Management
-cookbook 'supervisor'
+cookbook 'supervisor', "0.4.2" # Issue with 0.4.4 and restarting workers
 
 # Utilities
 cookbook 'apt', "1.7.0" # 1.7.0 requirement because Vagrant precise32 box is chef 10.14.x
@@ -73,6 +73,7 @@ cookbook 'rsync'
 cookbook 'ark'
 cookbook 'build-essential'
 cookbook 'sudo'
+cookbook 'ulimit', "0.2.0" # Version required because of "uninitialized constant Chef::Resource::UlimitDomain" bug in 0.3.0 with Chef 10
 
 cookbook 'users',
   :git => 'https://github.com/opscode-cookbooks/users'
