@@ -1083,12 +1083,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/geoffreytran/zym.git",
-                "reference": "afb648324432ced460a8559c1ea90d1f50ae0990"
+                "reference": "643b693ac64d60cca57ced9dc8685a47ddf7a24c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geoffreytran/zym/zipball/afb648324432ced460a8559c1ea90d1f50ae0990",
-                "reference": "afb648324432ced460a8559c1ea90d1f50ae0990",
+                "url": "https://api.github.com/repos/geoffreytran/zym/zipball/643b693ac64d60cca57ced9dc8685a47ddf7a24c",
+                "reference": "643b693ac64d60cca57ced9dc8685a47ddf7a24c",
                 "shasum": ""
             },
             "require": {
@@ -1118,7 +1118,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-08-02 14:44:53"
+            "time": "2013-08-02 15:14:41"
         },
         {
             "name": "imagine/imagine",
