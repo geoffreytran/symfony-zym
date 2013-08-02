@@ -212,6 +212,13 @@
             window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym/scripts/angular.min.js') }}">\x3C/script>')
         </script>
 
+        <!--[if lte IE 10 ]>
+        <script src="{{ asset('themes/zym/scripts/js-webshim/minified/polyfiller.js') }}"></script>
+        <script>
+            $.webshims.polyfill();
+        </script>
+        <![endif]-->
+        
         {% javascripts filter='?yui_js' output="themes/zym/scripts/assetic-bootstrap.min.js"
             "themes/zym/scripts/bootstrap.min.js"
             "themes/zym/scripts/zym.ajax-modal.js"

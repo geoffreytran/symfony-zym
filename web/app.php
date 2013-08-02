@@ -3,20 +3,20 @@
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
+$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+
 $environment = isset($_SERVER['ENVIRONMENT']) ? $_SERVER['ENVIRONMENT']
                                               : 'prod';
-
 if ($environment == 'debug') {
-    require_once __DIR__ . '/../vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
-    require_once __DIR__ . '/../app/autoload.php';
+    Debug::enable();
 } else {
-    $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
     if (extension_loaded('apc') && ini_get('apc.enabled')) {
         // Use APC for autoloading to improve performance.
         // Change 'sf2' to a unique prefix in order to prevent cache key conflicts
         // with other applications also using APC.
         $loader = new ApcClassLoader('sf2_class_loader_' . md5(__FILE__), $loader);
+        $loader->unregister();
         $loader->register(true);
     }
 }
