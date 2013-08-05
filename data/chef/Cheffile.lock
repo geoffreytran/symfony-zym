@@ -70,7 +70,7 @@ SITE
     subversion (1.0.2)
       apache2 (>= 0.0.0)
       windows (>= 0.0.0)
-    sudo (2.1.2)
+    sudo (2.1.4)
     supervisor (0.4.2)
       python (>= 0.0.0)
     ulimit (0.2.0)
@@ -87,9 +87,9 @@ SITE
 GIT
   remote: https://github.com/elasticsearch/cookbook-elasticsearch
   ref: master
-  sha: eed9415ccbc2f8ff4bb962ecf76e48e86fcc9c0a
+  sha: 62f3b952ad56431ca64473b550bae65694b84b98
   specs:
-    elasticsearch (0.3.1)
+    elasticsearch (0.3.3)
       ark (>= 0.0.0)
 
 GIT
