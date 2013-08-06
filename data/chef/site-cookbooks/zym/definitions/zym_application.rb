@@ -185,6 +185,27 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
             cookbook cookbook
           end
         end
+        
+        environment = @new_resource.params[:environment]
+        debug       = @new_resource.params[:debug]
+        
+        # Clear symfony2 cache and build it
+        symfony2_console "Clear Cache" do
+          action :nothing
+        
+          command "cache:clear"
+        
+          path  release_path
+          env   environment
+          debug debug
+          
+          subscribes :cmd, "template[#{release_path}/config/db.xml]", :delayed
+          subscribes :cmd, "template[#{release_path}/config/cache.xml]", :delayed
+          subscribes :cmd, "template[#{release_path}/config/cdn.xml]", :delayed
+          subscribes :cmd, "template[#{release_path}/config/mail.xml]", :delayed
+          subscribes :cmd, "template[#{release_path}/config/queue.xml]", :delayed
+          subscribes :cmd, "template[#{release_path}/config/parameters.ini]", :delayed
+        end
       end
     end
 
