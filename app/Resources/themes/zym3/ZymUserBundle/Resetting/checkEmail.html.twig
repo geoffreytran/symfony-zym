@@ -1,0 +1,28 @@
+{% extends "::anonymous.html.twig" %}
+
+{% block title %}{{ 'Recover Account' | trans({}, 'FOSUserBundle') }}{% endblock %}
+
+{% block content %}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal" style="position: static; margin: 0 auto; display: block;">
+            <div class="modal-header">
+                <h1 class="modal-title">
+                    {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
+                    <small>{{ 'Check your email.' | trans({}, 'ZymUserBundle') }}</small>
+                </h1>
+            </div>
+
+            <div class="modal-body">
+                <p>{{ 'resetting.check_email' |trans({ '%email%': email }, 'FOSUserBundle') }}</p>
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}">
+                    {{ 'Proceed to login' | trans({}, 'ZymUserBundle') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

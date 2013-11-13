@@ -1,0 +1,31 @@
+{% extends "ZymRouterBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Delete Route' | trans({}, 'ZymRouterBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Confirm Deletion' | trans({}, 'ZymRouterBundle') }}
+                    <small>{{ route.name |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        You are about to delete route <strong>"{{ route.name |e }}"</strong>.
+        This action cannot be undone.<br />
+        <strong>Are you sure you want to proceed?</strong>
+    </p>
+
+    <form action="{{ path('zym_router_routes_delete', { 'name' : route.name }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+        
+        <fieldset class="form-actions">
+            <button class="btn btn-danger" type="submit">{{ 'Confirm Deletion' | trans({}, 'ZymRouterBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymRouterBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock content %}

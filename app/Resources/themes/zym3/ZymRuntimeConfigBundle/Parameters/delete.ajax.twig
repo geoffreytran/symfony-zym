@@ -1,0 +1,25 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title">{{ 'Confirm Deletion' | trans({}, 'ZymRuntimeConfigBundle') }}</h3>
+        </div>
+
+        <div class="modal-body">
+            <p>
+                You are about to delete parameter <strong>"{{ parameter.name |e }}"</strong>.
+                This action cannot be undone.<br />
+                <strong>Are you sure you want to proceed?</strong>
+            </p>
+        </div>
+
+        <div class="modal-footer">
+            <form action="{{ path('zym_runtime_config_parameters_delete', { 'name' : parameter.name }) }}" method="post" {{ form_enctype(form) }}>
+                {{ form_rest(form) }}        
+
+                <input class="btn btn-danger" type="submit" value="{{ 'Confirm Deletion' | trans({}, 'ZymRuntimeConfigBundle') }}" />
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Cancel' | trans({}, 'ZymRuntimeConfigBundle') }}</button>
+            </form>
+        </div>
+    </div>
+</div>

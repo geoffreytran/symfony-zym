@@ -1,0 +1,38 @@
+{% extends "ZymSecurityBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Edit ACL Entry' | trans({ }, 'ZymSecurityBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Edit ACL Entry' | trans({}, 'ZymSecurityBundle') }}
+                    <small>{{ aclClass.classType |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        {{ 'Back' | trans({}, 'ZymSecurityBundle') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="{{ path('zym_security_acl_entries_edit', { 'classType' : aclClass.type, 'index' : index }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymSecurityBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymSecurityBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock content %}

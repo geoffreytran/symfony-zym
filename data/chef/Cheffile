@@ -4,13 +4,14 @@
 site 'http://community.opscode.com/api/v1'
 
 cookbook 'chef-client'
-cookbook 'application',
-  :git => 'https://github.com/opscode-cookbooks/application.git'
-
-cookbook 'application_php'
+cookbook 'application', "3.0.0" # Chef 10 support dropped in 4.0.0.
+cookbook 'application_php', "2.0.0" # Chef 10 support dropped.
 cookbook 'database'
 
-cookbook 'apache2'
+cookbook 'apache2',
+    :git => 'https://github.com/onehealth-cookbooks/apache2/',
+    :ref => 'COOK-3900'
+
 cookbook 'java'
 
 cookbook 'php54',
@@ -29,6 +30,9 @@ cookbook 'symfony2',
 
 cookbook 'mysql_charset',
   :git => 'https://github.com/geoffreytran/chef-mysql_charset'
+
+cookbook 'mysql_timezone',
+  :git => 'https://github.com/geoffreytran/chef-mysql_timezone'
 
 # Node.js
 cookbook 'nodejs'
@@ -60,7 +64,8 @@ cookbook 'subversion'
 cookbook 'supervisor', "0.4.2" # Issue with 0.4.4 and restarting workers
 
 # Utilities
-cookbook 'apt', "1.7.0" # 1.7.0 requirement because Vagrant precise32 box is chef 10.14.x
+cookbook 'apt', "1.7.0" # 1.7.0 requirement because Vagrant precise32 box is chef 10.14.x.
+cookbook 'dmg', "2.0.2"
 cookbook 'yum'
 cookbook 'cron'
 cookbook 'screen'
@@ -69,7 +74,7 @@ cookbook 'rsync'
 cookbook 'ark'
 cookbook 'build-essential'
 cookbook 'sudo'
-cookbook 'ulimit', "0.2.0" # Version required because of "uninitialized constant Chef::Resource::UlimitDomain" bug in 0.3.0 with Chef 10
+
 
 cookbook 'users',
   :git => 'https://github.com/opscode-cookbooks/users'

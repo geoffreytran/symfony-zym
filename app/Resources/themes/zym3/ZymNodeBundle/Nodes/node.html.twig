@@ -1,0 +1,27 @@
+{% extends "ZymNodeBundle::layout.html.twig" %}
+
+{% block title %}{{ node.title |e }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ node.title |e }}
+                    <small>{{ node.nodeType.name |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+    {% for field in node.fields %}
+        {% if field.arrayCopy is defined %}
+            {% for fieldItem in field %}
+                {{ fieldItem |raw }}<br />
+            {% endfor %}
+        {% else %}
+            {{ field |raw }}<br />
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+

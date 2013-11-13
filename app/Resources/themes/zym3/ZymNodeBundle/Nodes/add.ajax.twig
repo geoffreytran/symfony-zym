@@ -1,0 +1,33 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+            <h3 class="modal-title">
+                {{ 'Add Content' |trans({}, 'ZymNodeBundle') }}
+                <small>{{ 'Select a content type' |trans({}, 'ZymNodeBundle') }}</small>
+            </h3>
+        </div>
+
+        <div class="modal-body">
+            {% if nodeTypes|length %}
+            <div class="list-group">  
+                {% for nodeType in nodeTypes %}
+                <a href="{{ path('zym_nodes_add_type', { 'type': nodeType.type }) }}" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{ nodeType.name }}</h4>
+                    <p class="list-group-item-text">
+                        {{ nodeType.description | raw }}
+                    </p>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No content types have been defined.</p>
+            {% endif %}
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Cancel' | trans({}, 'ZymNodeBundle') }}</button>
+        </div>
+    </div>
+</div>

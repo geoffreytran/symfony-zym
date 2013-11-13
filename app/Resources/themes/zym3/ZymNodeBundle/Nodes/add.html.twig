@@ -1,0 +1,64 @@
+{% extends "ZymNodeBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Add Content' | trans({}, 'ZymNodeBundle') }}{% endblock %}
+
+{% block content %}
+    {% if nodeTypes is defined %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>
+                        {{ 'Add Content' |trans({}, 'ZymNodeBundle') }}
+                        <small>{{ 'Select a content type' |trans({}, 'ZymNodeBundle') }}</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        {% if nodeTypes|length %}
+        <div class="list-group">  
+            {% for nodeType in nodeTypes %}
+            <a href="{{ path('zym_nodes_add', { 'type': nodeType.type }) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{ nodeType.name }}</h4>
+                <p class="list-group-item-text">
+                    {{ nodeType.description | raw }}
+                </p>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No content types have been defined.</p>
+        {% endif %}
+    {% endif %}
+
+    {% if form is defined %}
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" action="{{ path('zym_nodes_add', { 'type': nodeType.type }) }}" method="post" {{ form_enctype(form) }}>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">
+                                {{ 'Add Content' |trans({}, 'ZymNodeBundle') }}
+                                <small>{{ nodeType.name |trans({}, 'ZymNodeBundle') }}</small>
+                            </h1>
+
+                            <div class="description">
+                                {{ nodeType.description | raw }}
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            {{ form_errors(form) }}
+                            {{ form_rest(form) }}
+                        </div>
+
+                        <div class="panel-footer">
+                            <button class="btn btn-primary" type="submit">{{ 'Create' | trans({}, 'ZymNodeBundle') }}</button>
+                            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymNodeBundle') }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

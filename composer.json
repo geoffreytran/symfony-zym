@@ -58,7 +58,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "cache-dir": "data/cache"
     },
     "minimum-stability": "dev",
     "extra": {

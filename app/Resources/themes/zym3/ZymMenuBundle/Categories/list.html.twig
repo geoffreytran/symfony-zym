@@ -1,0 +1,64 @@
+{% extends "ZymMenuBundle::layout.html.twig" %}
+
+{% block title %}{{ menuItem.label | trans }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ menuItem.label | trans }}
+                    <small>{{ menuItem.description | trans }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    {% if menuItem.children |length %}
+        {% for child in menuItem.children %}
+            {% if loop.index0 is divisibleby(2) %}
+            <div class="row">
+            {% endif %}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        {% if child.hasChildren %}
+                        <div class="panel-heading">
+                            <h2 class="panel-title">
+                                <a href="{{ child.uri |e }}">{{ child.label |trans }}</a>
+                                <small>{{ child.description |trans }}</small>
+                            </h2>
+                        </div>
+
+                        <div class="list-group">
+                            {% for c in child.children %}
+                            <a href="{{ c.uri |e }}" class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                    {{ c.label |trans }}
+                                </h4>
+                                <p class="list-group-item-text">
+                                    {{ c.description |trans }}
+                                </p>
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <ul class="nav nav-tabs nav-stacked">
+                            <li>
+                                <a href="{{ child.uri |e}}">
+                                    {{ child.label |trans }}
+                                    <small class="text-muted" style="display:block;">{{ child.description |trans }}</small>
+                                </a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                </div>
+            </div>
+
+            {% if loop.index is divisibleby(2) or loop.last %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>{{ 'Nothing Here...' |trans({}, 'ZymMenuBundle') }}</p>
+    {% endif %}
+{% endblock %}

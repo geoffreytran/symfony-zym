@@ -1,0 +1,103 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Users' | trans({}, 'ZymUserBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Users' | trans({}, 'ZymUserBundle') }}
+                    <small>{{ 'Manage users' | trans({}, 'ZymUserBundle') }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    {% if is_granted('CREATE', ['class', 'Zym\\Bundle\\UserBundle\\Entity\\User']) %}
+                    <a class="btn btn-primary navbar-btn" href="{{ path('zym_user_users_add') }}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        {{ 'Add User' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="{{ path('zym_user_groups') }}">
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{ 'Groups' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('zym_user_groups_add') }}">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                {{ 'Add Group' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default navbar-btn" href="">Filter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-stripe table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Enabled</th>
+                    <th>Roles</th>
+                    <th>{{ 'Actions' | trans({}, 'ZymUserBundle') }}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id |e }}</td>
+                    <td><a href="{{ path('zym_user_users_show', { 'id': user.id }) }}">{{ user.email |e }}</a></td>
+                    <td>{{ user.enabled ? 'Yes' : 'No' | trans({}, 'ZymUserBundle') }}</td>
+                    <td>{{ user.roles | join(', <br>') |raw }}</td>
+                    <td>
+                        <div class="btn-group">
+                            {% if is_granted('VIEW', user) %}
+                            <a class="btn btn-default" href="{{ path('zym_user_users_show', { 'id': user.id }) }}">
+                                <span class="glyphicon glyphicon-share"></span>
+                                {{ 'View' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                            {% endif %}
+
+                            {% if is_granted('EDIT', user) %}
+                            <a class="btn btn-default" href="{{ path('zym_user_users_edit', { 'id': user.id }) }}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                {{ 'Edit' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                            {% endif %}
+
+                            {% if is_granted('DELETE', user) %}
+                            <a class="btn btn-default" href="{{ path('zym_user_users_delete', { "id": user.id }) }}" data-toggle="ajax-modal">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                {{ 'Delete' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {{ knp_pagination_render(users) }}
+{% endblock %}

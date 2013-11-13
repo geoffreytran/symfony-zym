@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title">{{ 'Confirm Deletion' | trans({}, 'ZymUserBundle') }}</h3>
+        </div>
+
+        <div class="modal-body">
+            <p>
+                You are about to delete <strong>"{{ group.name |e }}"</strong>.
+                This action cannot be undone.<br />
+                <strong>Are you sure you want to proceed?</strong>
+            </p>
+        </div>
+
+        <div class="modal-footer">
+            <form action="{{ path('zym_user_groups_delete', { 'id' : group.id }) }}" method="post" {{ form_enctype(form) }}>
+                {{ form_rest(form) }}
+                <input class="btn btn-danger" type="submit" value="{{ 'Confirm Deletion' | trans({}, 'ZymUserBundle') }}" />
+                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Cancel' | trans({}, 'ZymUserBundle') }}</button>
+            </form>
+        </div>
+    </div>
+</div>

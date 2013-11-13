@@ -1,0 +1,25 @@
+{% extends "ZymMenuBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Delete Menu Item' | trans({}, 'RAPPBackendBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ 'Confirm Deletion' | trans({}, 'ZymMenuBundle') }}</h1>
+        </div>
+    </div>
+
+    <p>
+         You are about to delete menu item {{ menuItem.name |e }}.
+         This action cannot be undone.
+    </p>
+
+    <form action="{{ path('zym_menus_item_delete', {{ 'menu': menu.name, 'id': menuItem.id }}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+        
+        <fieldset class="form-actions">
+            <input class="btn btn-danger" type="submit" value="{{ 'Delete' | trans({}, 'ZymMenuBundle') }}" />
+            <a href="{{ path('zym_menus') }}" class="button">{{ 'Cancel' | trans({}, 'ZymMenuBundle' )}}</a>
+        </fieldset>
+    </form>
+{% endblock content %}

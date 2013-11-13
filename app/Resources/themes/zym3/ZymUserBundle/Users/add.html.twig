@@ -1,0 +1,58 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Create a user account' | trans({}, 'ZymUserBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'New User' | trans({}, 'ZymUserBundle') }}
+                    <small>{{ 'Create a new user' | trans({}, 'ZymUserBundle') }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <form class="form-horizontal" action="{{ path('zym_user_users_add') }}" method="post" {{ form_enctype(form) }}>
+            <div class="panel-body">
+                <fieldset>
+                    <legend>{{ 'User Information' | trans({}, 'ZymUserBundle') }}</legend>
+
+                    {% if form.children.firstName is defined  %}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.middleName) }}
+                    {{ form_row(form.lastName) }}
+                    {% endif %}
+
+                    {% if form.children.name is defined %}
+                    {{ form_row(form.children.name) }}
+                    {% endif %}
+
+                    {% if form.children.username is defined %}
+                    {{ form_row(form.username) }}
+                    {% endif %}
+
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword) }}
+                </fieldset>
+
+                <fieldset>
+                    <legend>{{ 'Groups and Permissions' | trans({}, 'ZymUserBundle') }}</legend>
+                    {{ form_row(form.groups) }}
+                    {{ form_row(form.roles) }}
+                </fieldset>
+
+                <fieldset>
+                    <legend>{{ 'Miscellaneous' | trans({}, 'ZymUserBundle') }}</legend>
+                    {{ form_rest(form) }}
+                </fieldset>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-primary" type="submit">{{ 'Create' | trans({}, 'ZymUserBundle') }}</button>
+                <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymUserBundle') }}</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

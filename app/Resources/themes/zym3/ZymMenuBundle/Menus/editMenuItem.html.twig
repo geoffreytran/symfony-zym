@@ -1,0 +1,47 @@
+{% extends "ZymMenuBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Edit a Menu Item' | trans({}, 'ZymMenuBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Edit Menu Item' | trans({}, 'ZymMenuBundle') |e }}
+                    <small>{{ menuItem.label | trans({}, 'ZymMenuBundle') |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        {{ 'Back' | trans({}, 'ZymMenuBundle') }}
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn"
+                       href="{{ path('zym_security_acl_object_aces', { 'type': 'Zym\\Bundle\\MenuBundle\\Entity\\MenuItem\\RoutedMenuItem', 'identifier': menuItem.id }) }}">
+                        <span class="glyphicon glyphicon-lock"></span>
+                        {{ 'Permissions' | trans({}, 'ZymMenuBundle') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form class="form-horizontal" action="{{ path('zym_menus_item_edit', { 'menu': menu.name, 'id': menuItem.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+        {{ form_row(form.parent, { 'empty_value': '---' }) }}
+    
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymMenuBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymMenuBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock content %}

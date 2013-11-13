@@ -1,0 +1,29 @@
+{% extends "ZymMediaBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Add Media' | trans({}, 'ZymMediaBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">
+                        {{ 'Media' | trans({}, 'ZymMediaBundle') }}
+                        <small>{{ 'Add new media' | trans({}, 'ZymMediaBundle') }}</small>
+                    </h1>
+                </div>
+
+                <form class="form-horizontal" action="{{ path('zym_media_add') }}" method="post" {{ form_enctype(form) }}>
+                    <div class="panel-body">
+                            {{ form_rest(form) }}
+                    </div>
+
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" type="submit">{{ 'Add' | trans({}, 'ZymMediaBundle') }}</button>
+                        <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymMediaBundle') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

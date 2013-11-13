@@ -1,0 +1,217 @@
+{% extends "ZymResqueBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Queue Job Failures' | trans({}, 'ZymResqueBundle') }}{% endblock %}
+
+{% block content %}
+    <section ng-controller="QueueJobFailuresCtrl" ng-cloak>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>
+                        {{ 'Queue Job Failures' |trans({}, 'ZymResqueBundle') }}
+                        <small>{{ 'Manage the job failures' |trans({}, 'ZymResqueBundle') }}</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default">
+            <div class="navbar-collapse">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                            <span class="glyphicon glyphicon-arrow-left"></span>
+                            {{ 'Back' | trans({}, 'ZymResqueBundle') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Failures</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="gridStyle" ng-grid="gridOptions" style="min-height: 600px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6" ng-switch="!mySelections[0]">
+                <div class="panel panel-danger" ng-switch-when="false">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Failure Details
+                            <small>{% raw %}{{ mySelections[0].payload.id }}{% endraw %}</small>
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <h4>{% raw %}{{ mySelections[0].payload.class }}{% endraw %}</h4>
+
+                        <span class="pull-left">{% raw %}{{ mySelections[0].worker }}{% endraw %}</span>
+                        <span class="pull-right">{% raw %}{{ mySelections[0].queue }}{% endraw %}</span>
+
+                        <div class="clearfix"></div>
+
+                        <h4>{% raw %}{{ mySelections[0].exception }}{% endraw %}</h4>
+                        <span>{% raw %}{{ mySelections[0].error }}{% endraw %}</span>
+
+
+                        <h4>Arguments</h4>
+                        <pre class="pre-scrollable">{% raw %}{{ mySelections[0].payload.args |json }}{% endraw %}</pre>
+
+
+                        <h4>Backtrace</h4>
+                        <pre class="pre-scrollable">{% raw %}{{ mySelections[0].backtrace.join("\n\n") }}{% endraw %}</pre>
+                    </div>
+                </div>
+
+                <div ng-switch-default>
+                    <div class="alert alert-info">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        Select a record to view its details.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block headLinks %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('themes/zym3/styles/ng-grid.min.css') }}" />
+
+    {{ parent() }}
+{% endblock %}
+
+{% block inlineScripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('themes/zym3/scripts/ng-grid-2.0.7.min.js') }}"></script>
+    <script type="text/javascript">
+        
+        angular.module('QueueJobFailures',['ngGrid'])
+            .controller('QueueJobFailuresCtrl', function($scope, $http, $timeout) {
+                $scope.filterOptions = {
+                    filterText: "",
+                    useExternalFilter: true
+                };
+
+                $scope.totalServerItems = 0;
+
+                $scope.pagingOptions = {
+                    pageSizes: [50, 100, 250],
+                    pageSize: 50,
+                    currentPage: 1
+                };
+
+                $scope.setPagingData = function(data, page, pageSize){	
+                    $scope.myData = data.items;
+                    $scope.totalServerItems = data.totalItems;
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
+                };
+
+                $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+                    $timeout(function () {
+                        var data;
+                        if (searchText) {
+                            var ft = searchText.toLowerCase();
+                            $http.get('{{ path('zym_resque_failures', { '_format': 'json' }) }}?' + 'page=' + page + '&limit=' + pageSize).success(function (largeLoad) {		
+                                data = largeLoad.filter(function(item) {
+                                    return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+                                });
+                                $scope.setPagingData(data, page, pageSize);
+                            });            
+                        } else {
+                            $http.get('{{ path('zym_resque_failures', { '_format': 'json' }) }}?' + 'page=' + page + '&limit=' + pageSize)
+                                .success(function (response) {
+                                    $scope.setPagingData(response.data, page, pageSize);
+                                });
+                        }
+                    }, 100);
+                };
+
+                $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+
+                $scope.$watch('pagingOptions', function (newVal, oldVal) {
+                    if (newVal !== oldVal) {
+                        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+                    }
+                }, true);
+                
+                $scope.$watch('filterOptions', function (newVal, oldVal) {
+                    if (newVal !== oldVal) {
+                        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+                    }
+                }, true);
+	
+        
+                $scope.mySelections = [];
+
+                $scope.gridOptions = { 
+                    data: 'myData',
+                    columnDefs: [
+                        { field:'failedAt', displayName: 'Failed At' }, 
+                        { field:'payload.id', displayName:'ID'}
+                    ],
+
+                    enableColumnResize:	true,
+                    enableColumnReordering: true,
+                    enablePaging: true,
+                    enablePinning: false,
+                    
+                    {% raw %}
+                    footerTemplate: '<div ng-show="showFooter" class="ngFooterPanel" ng-class="{\'ui-widget-content\' : jqueryUITheme, \'ui-corner-bottom\': jqueryUITheme}" ng-style="footerStyle()">\
+                                        <div class="ngPagerContainer" style="float: right; margin-top: 10px;" ng-show="enablePaging" ng-class="{\'ngNoMultiSelect\': !multiSelect}">\
+                                            <div class="hidden-xs hidden-sm hidden-md" style="float:left; margin-right: 10px;" class="ngRowCountPicker">\
+                                                <span style="float: left; margin-top: 3px;" class="ngLabel">{{i18n.ngPageSizeLabel}}</span>\
+                                                <select style="margin-top: 4px; width: 55px; margin-left: 5px;" ng-model="pagingOptions.pageSize" >\
+                                                    <option ng-repeat="size in pagingOptions.pageSizes">{{size}}</option>\
+                                                </select>\
+                                            </div>\
+                                            <div style="float:left; margin-right: 10px; line-height:25px;" class="ngPagerControl" style="float: left; min-width: 135px;">\
+                                                <button class="btn btn-default btn-xs" ng-click="pageToFirst()" ng-disabled="cantPageBackward()" title="{{i18n.ngPagerFirstTitle}}"><span class="glyphicon glyphicon-fast-backward"></span></button>\
+                                                <button class="btn btn-default btn-xs" ng-click="pageBackward()" ng-disabled="cantPageBackward()" title="{{i18n.ngPagerPrevTitle}}"><span class="glyphicon glyphicon-backward"></button>\
+                                                Page <input class="ngPagerCurrent " min="1" max="{{ maxPages() < 1 ? 1 : maxPages() }}" type="text" style="width:40px; height: 24px; margin-top: 1px; line-height: 1em; padding: 0 4px;" ng-model="pagingOptions.currentPage"/> of {{ maxPages() < 1 ? 1 : maxPages() }}\
+                                                <button class="btn btn-default btn-xs" ng-click="pageForward()" ng-disabled="cantPageForward()" title="{{i18n.ngPagerNextTitle}}"><span class="glyphicon glyphicon-forward"></button>\
+                                                <button class="btn btn-default btn-xs" ng-click="pageToLast()" ng-disabled="cantPageToLast()" title="{{i18n.ngPagerLastTitle}}"><span class="glyphicon glyphicon-fast-forward"></button>\
+                                            </div>\
+                                        </div>\
+                                        <div class="ngTotalSelectContainer" >\
+                                            <div class="ngFooterTotalItems" ng-class="{\'ngNoMultiSelect\': !multiSelect}" >\
+                                                <span class="ngLabel">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span ng-show="filterText.length > 0" class="ngLabel">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>\
+                                            </div>\
+                                            <div class="ngFooterSelectedItems" ng-show="multiSelect">\
+                                                <span class="ngLabel">{{i18n.ngSelectedItemsLabel}} {{selectedItems.length}}</span>\
+                                            </div>\
+                                        </div>\
+                                    </div>',
+                    {% endraw %}
+                    filterOptions: $scope.filterOptions,
+
+                    headerRowHeight: 36,
+                    multiSelect: false,
+                    
+                    pagingOptions: $scope.pagingOptions,
+
+                    selectedItems: $scope.mySelections,
+                    showColumnMenu: true,
+                    showFilter: true,
+                    showFooter: true,
+                    rowHeight: 37,
+                    
+                    totalServerItems: 'totalServerItems'
+                };
+        });
+        
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['QueueJobFailures']);
+       });
+    </script>
+{% endblock %}

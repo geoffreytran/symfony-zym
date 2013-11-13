@@ -1,0 +1,53 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Editing Group' | trans({}, 'ZymUserBundle') }} {{ group.name|e }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Editing Group' | trans({}, 'ZymUserBundle') }}
+                    <small>{{ group.name |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn btn-default" href="javascript: history.back()">
+                <span class="glyphicon glyphicon-arrow-left"></span> {{ 'Back' | trans({}, 'ZymUserBundle') }}
+            </a>
+        </div>
+        
+        {#
+        <div class="btn-group">
+            {% if is_granted('VIEW', group) %}
+            <a class="btn btn-default" href="{{ path('zym_user_groups_show', { "id": group.id }) }}">
+                <span class="glyphicon glyphicon-share"></span> 
+                {{ 'View' | trans({}, 'ZymUserBundle') }}
+            </a>
+            {% endif %}
+        </div>
+        #}
+        
+        <div class="btn-group">
+            {% if is_granted('DELETE', group) %}
+            <a class="btn btn-default" href="{{ path('zym_user_groups_delete', { 'id': group.id }) }}">
+                <span class="glyphicon glyphicon-remove"></span>
+                {{ 'Delete' | trans({}, 'ZymUserBundle') }}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="{{ path('zym_user_groups_edit', { 'id' : group.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymUserBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymUserBundle') }}</button>
+         </fieldset>
+    </form>
+{% endblock content %}

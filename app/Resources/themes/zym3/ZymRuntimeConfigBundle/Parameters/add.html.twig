@@ -1,0 +1,30 @@
+{% extends "ZymRuntimeConfigBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Add a Parameter' | trans({}, 'ZymRuntimeConfigBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>
+                {{ 'New Parameter' | trans({}, 'ZymRuntimeConfigBundle') }}
+                <small>{{ 'Create a new parameter' | trans({}, 'ZymRuntimeConfigBundle') }}</small>
+            </h1>
+                
+            <p class="text-danger">
+                {% trans from 'ZymRuntimeConfigBundle' %}Parameters allow for advanced custom configurations. Only modify parameters if you know what you are doing. Improper parameters can cripple your application.{% endtrans %}
+            </p>
+        </div>
+            
+        <form class="form-horizontal" action="{{ path('zym_runtime_config_parameters_add') }}" method="post" {{ form_enctype(form) }}>
+            <div class="panel-body">
+
+                {{ form_rest(form) }}
+            </div>
+
+            <div class="panel-footer">
+                <button class="btn btn-primary" type="submit">{{ 'Create' | trans({}, 'ZymRuntimeConfigBundle') }}</button>
+                <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymRuntimeConfigBundle') }}</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

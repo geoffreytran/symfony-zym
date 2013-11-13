@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ 'An Error Occurred - ' | trans({}, 'FOSUserBundle') }} {{ status_text |e }}{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>
+            {{ 'Oops! An Error Occurred' | trans({}, 'FOSUserBundle') }}
+            <small>{{ 'You weren\'t supposed to see this...' | trans({}, 'ZymUserBundle') }}</small>
+        </h1>
+    </div>
+
+    <h2>The server returned a "{{ status_code |e }} {{ status_text |e }}".</h2>
+
+    <div>
+        Something is broken. Please e-mail us at [email] and let us know
+        what you were doing when this error occurred. We will fix it as soon
+        as possible. Sorry for any inconvenience caused.
+    </div>
+{% endblock %}

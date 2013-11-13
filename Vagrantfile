@@ -1,15 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
-  config.vm.host_name = "zym.dev"
-
-  if Vagrant.const_defined?(:Hostmaster) 
-    config.hosts.aliases = %w(www.zym.dev) 
-  end
+  config.vm.hostname = "zym.dev"
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box       = "precise32"
@@ -25,7 +21,7 @@ Vagrant::Config.run do |config|
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-  config.vm.network :hostonly, "192.168.33.2"
+  config.vm.network :private_network, ip: "192.168.33.2"
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
@@ -39,12 +35,13 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
-  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
+  config.vm.synced_folder ".", "/vagrant", :nfs => !RUBY_PLATFORM.downcase.include?("w32")
 
-  # Virtualbox is not great with symlinks, so if there are symlinks in your
-  # share, you'll want to add this
-  config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/graph", "1"]
+  config.vm.provider :virtualbox do |v|
+    # Virtualbox is not great with symlinks, so if there are symlinks in your
+    # share, you'll want to add this
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant-root", "1"]
+  end
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -105,7 +102,8 @@ Vagrant::Config.run do |config|
           :minspareservers     => 2,
           :serverlimit         => 100,
           :startservers        => 2
-        }
+        },
+        :version => "2.4"
       },
 
       :mysql => {
@@ -113,7 +111,7 @@ Vagrant::Config.run do |config|
         :server_repl_password   => "",
         :server_debian_password => "",
         :bind_address           => "127.0.0.1",
-        
+
         :tunable => {
           :key_buffer      => "64M",
           :max_connections => 50,
@@ -121,7 +119,11 @@ Vagrant::Config.run do |config|
       },
 
       :elasticsearch => {
-        :allocated_memory => "32M"
+        :allocated_memory => "32m",
+        :custom_config    => {
+           'threadpool.index.type' => "fixed",
+           'threadpool.index.size' => "1"
+        }
       }
     }
   end

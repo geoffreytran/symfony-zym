@@ -173,7 +173,7 @@ zym_user:
 
 zym_theme:
     theme_map:
-        - { path: ^/, theme: zym }
+        - { path: ^/, theme: zym3 }
 
 zym_resque:
     redis:

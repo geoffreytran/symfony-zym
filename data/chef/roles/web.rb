@@ -6,6 +6,7 @@ run_list(
   "role[default]",
 
   "recipe[java]",
+  "recipe[php54]",
   "recipe[php]",
   "recipe[sqlite]",
   "recipe[nodejs]",
@@ -35,9 +36,26 @@ default_attributes({
     :traceenable          => "Off"
   },
 
-#  :php => {
-#    :ext_conf_dir => "/etc/php5/mods-available" # php54
-#  },
+  :php => {
+    :directives => {
+        "date.timezone" => "UTC",
+
+        "apc.shm_size" => "256M",
+        "apc.write_lock" => 1,
+        "apc.slam_defense" => 0,
+
+        "opcache.memory_consumption" => 128,
+        "opcache.interned_strings_buffer" => 8,
+        "opcache.max_accelerated_files" => 4000,
+        "opcache.revalidate_freq" => 60,
+        "opcache.fast_shutdown" => 1,
+        "opcache.enable_cli" => 1,
+
+        "xdebug.cli_color" => 1,
+        "xdebug.coverage_enable" => 0,
+    },
+    :ext_conf_dir => "/etc/php5/mods-available" # php54
+  },
 
   :nodejs => {
     :install_method => "source",
@@ -47,12 +65,4 @@ default_attributes({
 })
 
 # Attributes applied no matter what the node has set already.
-#override_attributes(
-#  :apache => {
-#    # Removed authz_default because it doesn't exist in Apache 2.4
-#    :default_modules => %w{
-#      status alias auth_basic authn_file authz_groupfile authz_host authz_user autoindex
-#      dir env mime negotiation setenvif
-#    }
-#  }
-#)
+#override_attributes()

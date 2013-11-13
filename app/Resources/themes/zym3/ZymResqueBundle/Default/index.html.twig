@@ -1,0 +1,153 @@
+{% extends "ZymResqueBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Queues' | trans({}, 'ZymResqueBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Queues' |trans({}, 'ZymResqueBundle') }}
+                    <small>{{ 'Manage the queues' |trans({}, 'ZymResqueBundle') }}</small>
+                </h1>
+                    
+                <small class="text-muted">
+                    {{ 'Host:' |trans({}, 'ZymResqueBundle') }} {{ resque.redisConfiguration.host }}:{{ resque.redisConfiguration.port }}
+                    | {{ 'Database:' |trans({}, 'ZymResqueBundle') }} #{{ resque.redisConfiguration.database }}
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="">Dashboard</a></li>
+                <li><a href="{{ path('zym_resque_list_queues') }}">Queues</a></li>
+                <li><a href="{{ path('zym_resque_failures') }}">Failures</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title"><a href="{{ path('zym_resque_list_queues') }}">Queues</a></h2>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="span5">
+                                        Name
+                                    </th>
+                                    <th class="span5">
+                                        Jobs
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for queue in resque.queues %}
+                                        <tr>
+                                            <td>{{ queue.name }}</td>
+                                            <td>{{ queue.size }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    {% if resque.queues |length <= 0 %}
+                                        <tr>
+                                            <td colspan="2">No queues currently.</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Workers</h2>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="span3">
+                                            Where
+                                        </th>
+                                        <th class="span3">
+                                            Queues
+                                        </th>
+                                        <th class="span4">
+                                            Processing
+                                        </th>
+                                        <th class="span1">
+                                            Processed
+                                        </th>
+                                        <th class="span1">
+                                            Failed
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                {% for worker in resque.workers %}
+                                    <tr>
+                                        <td>{{ worker.id }}</td>
+                                        <td>
+                                            {% for queue in worker.queues %}
+                                                <span class="label label-info">{{ queue.name }}</span>
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% set job = worker.currentJob %}
+                                            {% if job %}
+                                                <div>
+                                                    <strong>{{ job.name }}</strong>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="pull-right">{{ worker.currentJobStart|date }}</span>
+                                                </div>
+                                                <div>
+                                                    <span>
+                                                        <ul class="unstyled">
+                                                            {% for argname, argvalue in job.args %}
+                                                                <li>
+                                                                    <span>{{ argname }}</span>
+                                                                    <em class="pull-right">{{ argvalue }}</em>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </span>
+                                                </div>
+                                            {% else %}
+                                                <em>idle</em>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ worker.processedCount }}</td>
+                                        <td>{{ worker.failedCount }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">
+                                            No workers currently processing.
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+{% endblock %}

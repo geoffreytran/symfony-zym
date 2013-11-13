@@ -1,0 +1,22 @@
+{% extends "ZymSecurityBundle::layout.html.twig" %}
+
+{% block title %}{{ 'New Role' | trans({}, 'ZymSecurityBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>{{ 'New Role' |trans({}, 'ZymSecurityBundle') }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <form action="{{ path('zym_security_acl_roles_add') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Create' | trans({}, 'ZymSecurityBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymSecurityBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock content %}

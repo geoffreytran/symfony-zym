@@ -1,0 +1,121 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Editing User' | trans({}, 'ZymUserBundle') }} {{ user.fullName is defined ? user.fullName : user.username |e }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Editing User' | trans({}, 'ZymUserBundle') }}
+                    <small>
+                        {% if '@' in user.username %}
+                            {{ user.email |e }}
+                        {% else %}
+                            {{ user.username |e }}
+                        {% endif %}
+                    </small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back()">
+                        <span class="glyphicon glyphicon-arrow-left"></span> {{ 'Back' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-edit"></span> {{ 'Edit' | trans({}, 'ZymUserBundle') }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('zym_user_groups_add') }}"><span class="glyphicon glyphicon-off"></span> {{ 'Disable User' | trans({}, 'ZymUserBundle') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('zym_user_groups_add') }}"><span class="glyphicon glyphicon-lock"></span> {{ 'Activate User' | trans({}, 'ZymUserBundle') }}</a>
+                        </li>
+
+
+                        {% if is_granted('DELETE', user) %}
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="{{ path('zym_user_users_delete', { "id": user.id }) }}" data-toggle="ajax-modal">
+                                <span class="glyphicon glyphicon-remove"></span> {{ 'Delete' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    {% if is_granted('VIEW', user) %}
+                    <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_show', { "id": user.id }) }}">
+                        <span class="glyphicon glyphicon-share"></span> {{ 'View' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                <div class="btn-group">
+                    {% if is_granted('DELETE', user) %}
+                    <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_delete', { "id": user.id }) }}" data-toggle="ajax-modal">
+                        <span class="glyphicon glyphicon-remove"></span> {{ 'Delete' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <form class="form-horizontal" action="{{ path('zym_user_users_edit', { 'id': user.id }) }}" method="post" {{ form_enctype(form) }}>
+            <div class="panel-body">
+                    {{ form_errors(form) }}
+
+                    <fieldset>
+                        <legend>User Information</legend>
+
+                        {% if form.firstName is defined %}
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.middleName) }}
+                        {{ form_row(form.lastName) }}
+                        {% endif %}
+
+                        {% if form.offsetExists('name') %}
+                        {{ form_row(form.offsetGet('name')) }}
+                        {% endif %}
+
+                        {% if form.offsetExists('username') %}
+                        {{ form_row(form.username) }}
+                        {% endif %}
+
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.plainPassword) }}
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Groups and Permissions</legend>
+                        {{ form_row(form.groups) }}
+                        {{ form_row(form.roles) }}
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{{ 'Miscellaneous' | trans({}, 'ZymUserBundle') }}</legend>
+                        {{ form_rest(form) }}
+                    </fieldset>
+            </div>
+                
+            <div class="panel-footer">
+                <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymUserBundle') }}</button>
+                <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymUserBundle') }}</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

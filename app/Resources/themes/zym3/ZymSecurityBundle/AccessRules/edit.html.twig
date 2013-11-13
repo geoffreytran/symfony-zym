@@ -1,0 +1,25 @@
+{% extends "ZymSecurityBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Edit Access Rule' | trans({}, 'ZymSecurityBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Edit Access Rule' | trans({}, 'ZymSecurityBundle') }}
+                    <small>{{ accessRule.path |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="{{ path('zym_security_access_rules_edit', { 'id' : accessRule.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymSecurityBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymSecurityBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock content %}

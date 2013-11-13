@@ -1,0 +1,180 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Viewing User' | trans({}, 'ZymUserBundle') }} {{ user.fullName is defined ? user.fullName : user.username |e }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Viewing User' | trans({}, 'ZymUserBundle') }}
+                    <small>{{ user.username |e }}</small>
+                </h1>
+                    
+                <small class="text-muted">
+                    {{ 'Created:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.createdAt.format(constant('DateTime::ISO8601')) }}">{{ time_diff(user.createdAt) }}</abbr> 
+                    | {{ 'Updated:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.updatedAt ? user.updatedAt.format(constant('DateTime::ISO8601')) : '' }}">{{ user.updatedAt ? time_diff(user.updatedAt) : 'Never' }}</abbr> 
+                    | {{ 'Last login:' | trans({}, 'ZymUserBundle') }} <abbr title="{{  user.lastLogin ? user.lastLogin.format(constant('DateTime::ISO8601')) : '' }}">{{ user.lastLogin ? time_diff(user.lastLogin) : 'Never' }}</abbr>
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                <a class="btn btn-default navbar-btn" href="javascript: history.back()">
+                    <span class="glyphicon glyphicon-arrow-left"></span> {{ 'Back' | trans({}, 'ZymUserBundle') }}
+                </a>
+                </div>
+
+                <div class="btn-group">
+                    {% if is_granted('EDIT', user) %}
+                    <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_edit', { "id": user.id }) }}">
+                        <span class="glyphicon glyphicon-edit"></span> {{ 'Edit' | trans({}, 'ZymUserBundle') }}
+                    </a>
+                    {% endif %}
+
+                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('zym_user_groups_add') }}"><span class="glyphicon glyphicon-off"></span> {{ 'Disable User' | trans({}, 'ZymUserBundle') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('zym_user_groups_add') }}"><span class="glyphicon glyphicon-lock"></span> {{ 'Activate User' | trans({}, 'ZymUserBundle') }}</a>
+                        </li>
+
+
+                        {% if is_granted('DELETE', user) %}
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="{{ path('zym_user_users_delete', { "id": user.id }) }}" data-toggle="ajax-modal">
+                                <span class="glyphicon glyphicon-remove"></span> {{ 'Delete' | trans({}, 'ZymUserBundle') }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                     <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                         <span class="glyphicon glyphicon-tasks"></span>
+                         {{ 'More'| trans({}, 'ZymUserBundle') }}
+                         <span class="caret"></span>
+                     </a>
+
+                     <ul class="dropdown-menu">
+                         <li>
+                             <a href="{{ path('fos_user_resetting_request', { "username": user.username }) }}"><span class="glyphicon glyphicon-envelope"></span> {{ 'Send password' | trans({}, 'ZymUserBundle') }}</a>
+                         </li>
+                     </ul>
+                 </div>
+
+                 <div class="btn-group">
+                     {% if is_granted('ROLE_ALLOWED_TO_SWITCH', user) %}
+                     <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_show', { "id": user.id, "_switch_user": user.username }) }}">
+                         <span class="glyphicon glyphicon-user"></span> {{ 'Login as User' | trans({}, 'ZymUserBundle') }}
+                     </a>
+                     {% endif %}
+                 </div>
+             </div>
+        </div>
+    </div>
+    <div class="page-header">
+        <h2>
+            Profile
+            <small>Information about this user</small>
+        </h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl>
+                {% if user.firstName is defined and user.lastName is defined and (user.firstName|length > 0 or user.lastName|length > 0) %}
+                    <dt>First Name</dt>
+                    <dd>{{ user.firstName |e }}</dd>
+                    <dt>Last Name</dt>
+                    <dd>{{ user.lastName |e }}</dd>
+                {% elseif user.fullName is defined and user.fullName|length > 0%}
+                    <dt>Name</dt>
+                    <dd>{{ user.fullName |e }}</dd>
+                {% endif %}
+
+                {% if user.username != user.email %}
+                    <dt>Username</dt>
+                    <dd>{{ user.username |e }}</dd>
+                {% endif %}
+
+                <dt>Email</dt>
+                <dd>
+                    <a href="mailto:{{ user.email |url_encode }}">{{ user.email |e }}</a>
+                </dd>
+                
+                <dt>Time Zone</dt>
+                <dd>
+                    {{ user.timeZone ?: 'Not set' |e }}
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            <dl>
+                <dt>Enabled</dt>
+                <dd>{{ user.enabled ? 'Yes' : 'No'|trans({}, 'ZymUserBundle') }}</dd>
+
+                <dt>Locked</dt>
+                <dd>{{ user.locked ? 'Yes' : 'No'|trans({}, 'ZymUserBundle') }}</dd>
+
+                <dt>Last Login</dt>
+                <dd>{{ user.lastLogin ? user.lastLogin.format(constant('DateTime::ISO8601')) : 'Never' }}</dd>
+
+                <dt>Expired</dt>
+                <dd>{{ user.expired ? 'Yes' : 'No' | trans({}, 'ZymUserBundle') }}</dd>
+            </dl>
+           {#} CreatedAt: {{ user.createdAt.format(constant('DateTime::ISO8601')) }}<br />
+            UpdatedAt: {{ user.updatedAt.format(constant('DateTime::ISO8601')) }}<br />#}
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h2>
+            Permissions
+            <small>What this user can do</small>
+        </h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Groups</h3>
+
+            <ul class="unstyled">
+                {% for group in user.groups %}
+                    <li>{{ group.name |e }}</li>
+                {% endfor %}
+            </ul>
+
+            {% if not user.groups |length %}
+            <p>No groups assigned</p>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+            <h3>Roles</h3>
+
+            <ul class="unstyled">
+                {% for role in user.roles %}
+                    <li>{{ role|e }}</li>
+                {% endfor %}
+            </ul>
+
+            {% if not user.roles |length %}
+            <p>No roles assigned</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

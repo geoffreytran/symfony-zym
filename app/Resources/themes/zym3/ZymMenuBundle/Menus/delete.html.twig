@@ -1,0 +1,28 @@
+{% extends "ZymMenuBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Delete Menu' | trans({}, 'ZymMenuBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>{{ 'Confirm Deletion' | trans({}, 'ZymMenuBundle') }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        You are about to delete menu <strong>"{{ menu.label |e }}"</strong>.
+        This action cannot be undone.<br />
+        <strong>Are you sure you want to proceed?</strong>
+    </p>
+
+    <form action="{{ path('zym_menus_delete', {{ 'id' : menu.name }}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+        
+        <fieldset class="form-actions">
+            <input class="btn btn-danger" type="submit" value="{{ 'Delete' | trans({}, 'ZymMenuBundle') }}" />
+            <a class="btn btn-default" href="{{ path('zym_menus') }}">{{ 'Cancel' | trans({}, 'ZymMenuBundle') }}</a>
+        </fieldset>
+    </form>
+{% endblock content %}

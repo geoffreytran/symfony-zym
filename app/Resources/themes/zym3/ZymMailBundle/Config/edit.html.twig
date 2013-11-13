@@ -1,0 +1,37 @@
+{% extends "ZymMailBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Mail Configuration' | trans({}, 'ZymMailBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Mail Configuration' | trans({}, 'ZymMailBundle') }}
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        {{ 'Back' | trans({}, 'ZymMailBundle') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-horizontal" action="{{ path('zym_mail_config_edit') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymMailBundle') }}</button>
+            <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymMailBundle') }}</button>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,319 @@
+{%- set appName = (runtime_config('app.name') is empty ?  'Untitled App' : runtime_config('app.name')) |trans -%}
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{ app.request.locale |e }}" id="ng-app">
+<!--<![endif]-->
+<head>
+    {% block head %}
+        <!-- Start: Meta -->
+        {% block headMeta -%}
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="fragment" content="!" />
+            <meta name="robots" content="noindex, nofollow" />
+        {% endblock -%}
+        <!-- End: Meta -->
+
+        <title>
+            {%- block headTitle -%}
+                {%- block title -%}
+                {%- endblock -%}
+
+                {%- if block('title') |trim |length %} | {% endif -%}
+                {{- appName -}}
+            {% endblock -%}
+        </title>
+
+        <!-- Start: Links -->
+        {% block headLinks -%}
+            <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/zym3/images/favicon.ico') }}" />
+
+            <!-- For iPhone 4 with high-resolution Retina display: -->
+            <link rel="apple-touch-glyphicon glyphicon-precomposed" sizes="114x114" href="{{ asset('themes/zym3/images/apple-touch-glyphicon glyphicon-114x114-precomposed.png') }}" />
+
+            <!-- For first-generation iPad: -->
+            <link rel="apple-touch-glyphicon glyphicon-precomposed" sizes="72x72"   href="{{ asset('themes/zym3/images/apple-touch-glyphicon glyphicon-72x72-precomposed.png') }}"   />
+
+            <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+            <link rel="apple-touch-glyphicon glyphicon-precomposed"                 href="{{ asset('themes/zym3/images/apple-touch-glyphicon glyphicon-precomposed.png') }}"         />
+
+            <!-- About humans.txt http://humanstxt.org/ -->
+            <link rel="author" href="{{ asset('humans.txt') }}" />
+
+            {% stylesheets filter="cssrewrite, less, ?yui_css" output="themes/zym3/styles/layouts/assetic-anonymous.min.css"
+            "themes/zym3/styles/layouts/anonymous.less"
+            -%}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock -%}
+        <!-- End: Links -->
+
+        <!-- Start: Styles -->
+        {% block headStyles -%}
+        {% endblock -%}
+        <!-- End: Styles -->
+
+        <!-- Start: Scripts -->
+        {% block headScripts -%}
+        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-head.min.js"
+            "themes/zym3/scripts/pace.js"
+            "themes/zym3/scripts/modernizr.js"
+        -%}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts -%}
+
+        <script type="text/javascript">
+            Modernizr.load([
+                {
+                    'test': Modernizr.mq('only all'),
+                    'nope': [
+                        '{{ asset('themes/zym3/scripts/respond.min.js') }}',
+                        '{{ asset('themes/zym3/scripts/respond/respond.proxy.js') }}'
+                    ]
+                }
+            ]);
+        </script>
+        {% endblock -%}
+        <!-- End: Scripts -->
+    {% endblock %}
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+{% block body %}
+<div id="wrap">
+    <!-- Start: Header -->
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">{{ 'Toggle navigation' | trans }}</span>
+
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ asset('themes/zym3/images/logo.png') }}" alt="{{ "%app_name%" | trans({ '%app_name%': appName }) }}" />
+                        {{ appName |e }}
+                    </a>
+                </div>
+
+                <!-- Place everything within .nav-collapse to hide it until above 768px -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ knp_menu_render('management', {'depth': 2, 'template': '::knp_menu.html.twig', 'currentClass': 'active', 'ancestorClass': 'active' }) }}
+                    {% endif %}
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img align="left" src="//www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=24" alt="{{ app.user.username |e }}" style="margin-right:5px" />
+
+                                    {% if app.user.fullName is defined and app.user.fullName | trim | length > 0 %}
+                                        {{ app.user.fullName |e }} ({{ app.user.username | e }})
+                                    {% elseif '@' in app.user.username %}
+                                        {{ app.user.email |e }}
+                                    {% else %}
+                                        {{ app.user.username |e }} ({{ app.user.email |e }})
+                                    {% endif %}
+
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ path('zym_user_users_edit', { "id": app.user.id }) }}">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            {{ 'Profile & Settings' | trans }}
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            <span class="glyphicon glyphicon-off"></span>
+                                            {{ 'Log out' | trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
+                            <li><a class="login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End: Header -->
+
+    <!-- Start: Document -->
+    <div class="container">
+        <div>
+            <!-- Start: Flash Messages -->
+            {% if app.security.token is not null and is_granted("ROLE_PREVIOUS_ADMIN") %}
+                <div class="alert alert-block alert-info fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ 'You are currently logged in as' | trans }} <strong>{{ app.user.username |e }}</strong>.
+                    <a class="" href="?_switch_user=_exit">{{ 'Log out as user' |trans }}</a>.
+                </div>
+            {% endif %}
+
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="alert alert-dismissable alert-{{ type }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {% if type == 'success' %}
+                            <span class="glyphicon glyphicon-ok"></span>
+                        {% elseif type == 'info' %}
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        {% elseif type == 'warning' %}
+                            <span class="glyphicon glyphicon-warning-sign"></span>
+                        {% elseif type == 'danger' %}
+                            <span class="glyphicon glyphicon-minus-sign"></span>
+                        {% endif %}
+
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <!-- End: Flash Messages -->
+
+            <!--
+                    {% if app.security.token is not null %}
+                    {{ knp_menu_render('management', { 'template': '::knp_menu_breadcrumbs.html.twig' }) }}
+                    {% endif %}
+                    -->
+            <div style="clear:both"></div>
+        </div>
+    </div>
+
+    <!-- Start: Fold -->
+    {% if block('fold') |trim |length %}
+    <section class="fold">
+        {% block fold '' %}
+    </section>
+    {% endif %}
+    <!-- End: Fold -->
+
+    <div class="container">
+        <!-- Start: Content -->
+        <section class="content" data-ui-view>
+            {% block content "" %}
+        </section>
+        <!-- End: Content -->
+    </div>
+
+    <div id="push"></div>
+</div>
+
+<!-- Start: Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright pull-left">
+                        &copy; {{ 'now' |date('Y') }} {{ appName |e }}
+                    </div>
+                    <!--
+                        <nav class="pull-right">
+                            {{ knp_menu_render('management', {'depth': 1}) }}
+                        </nav>
+                        -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End: Footer -->
+
+    <!-- Start: Inline Scripts -->
+    {% block inlineScripts -%}
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym3/scripts/jquery-1.9.1.min.js') }}">\x3C/script>')
+        </script>
+
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.min.js"></script>
+        <script type="text/javascript">
+            window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym3/scripts/angular.min.js') }}">\x3C/script>')
+        </script>
+
+        <!--[if lte IE 10 ]>
+        <script type="text/javascript" src="{{ asset('themes/zym3/scripts/js-webshim/minified/polyfiller.js') }}"></script>
+        <script type="text/javascript">
+            $.webshims.polyfill();
+        </script>
+
+        <script type="text/javascript">
+            // Internet Explorer 10 doesn't differentiate device width from viewport width, 
+            // and thus doesn't properly apply the media queries in Bootstrap's CSS. To address 
+            // this, you can optionally include the following CSS and JavaScript to work around 
+            // this problem until Microsoft issues a fix.
+
+            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement("style")
+                msViewportStyle.appendChild(
+                        document.createTextNode(
+                                "@-ms-viewport{width:auto!important}"
+                        )
+                )
+                document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
+            }
+        </script>
+        <![endif]-->
+
+        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-bootstrap.min.js"
+        "themes/zym3/scripts/bootstrap.js"
+        "themes/zym3/scripts/zym.ajax-modal.js"
+
+        "themes/zym3/scripts/offline/*.js"
+
+        "themes/zym3/scripts/angular-ui-router.js"
+        "themes/zym3/scripts/http-auth-interceptor.js"
+
+        "themes/zym3/scripts/app.js"
+        -%}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts -%}
+
+        <!-- Start: Offline.js -->
+        <script type="text/javascript">
+            Offline.options = {
+                checks: {
+                    image: {
+                        url: function() {
+                            return "/images/blank.gif?" + (Math.floor(Math.random() * 1000000000));
+                        }
+                    }
+                }
+            };
+        </script>
+        <!-- End: Offline.js -->
+
+        <!-- Start: Selectize.js -->
+        <script type="text/javascript" src="{{ asset('themes/zym3/scripts/selectize.min.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('select').selectize({
+                                          plugins: ['remove_button'],
+                                          hideSelected: true
+                                      });
+            });
+        </script>
+        <!-- End: Selectize.js -->
+
+    {% endblock -%}
+    <!-- End: Inline Scripts -->
+
+    <!-- End: Document -->
+{% endblock body %}
+</body>
+</html>

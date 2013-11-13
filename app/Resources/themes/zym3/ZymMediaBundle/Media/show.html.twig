@@ -1,0 +1,119 @@
+{% extends "ZymMediaBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Showing Media' | trans({}, 'ZymMediaBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ media.name | trans({}, 'ZymMediaBundle') |e }}
+                    <small>{{ media.id | trans({}, 'ZymMediaBundle') |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        {{ 'Back' | trans({}, 'ZymMediaBundle') }}
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    {% if is_granted('EDIT', media) %}
+                        <a class="btn btn-default navbar-btn" href="{{ path('zym_media_edit', { 'id': media.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            {{ 'Edit' | trans({}, 'ZymMediaBundle') }}
+                        </a>
+                    {% endif %}
+
+                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        {% if is_granted('DELETE', media) %}
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="{{ path('zym_media_delete', { 'id': media.id }) }}" data-toggle="ajax-modal">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    {{ 'Delete' | trans({}, 'ZymMediaBundle') }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn"
+                       href="{{ path('zym_security_acl_object_aces', { 'type': 'Zym\\Bundle\\MediaBundle\\Entity\\Media', 'identifier': media.id }) }}">
+                        <span class="glyphicon glyphicon-lock"></span>
+                        {{ 'Permissions' | trans({}, 'ZymMediaBundle') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Information</h2>
+
+            <dl class="dl-horizontal">
+                <dt>Size</dt>
+                <dd><abbr title="{{ media.size |e }}">{{ media.humanSize |e }}</a></dd>
+
+                <dt>Width</dt>
+                <dd>{{ media.width |e }}px</dd>
+
+                <dt>Height</dt>
+                <dd>{{ media.height |e }}px</dd>
+
+                <dt>Content Type</dt>
+                <dd>{{ media.contentType |e }}</dd>
+
+                <dt>Author Name</dt>
+                <dd>{{ (media.AuthorName ?: 'Not Specified' |trans({}, 'ZymMediaBundle')) |e }}</dd>
+
+                <dt>Copyright</dt>
+                <dd>{{ (media.copyright ?: 'Not Specified' |trans({}, 'ZymMediaBundle')) |e }}</dd>
+
+                <dt>CDN</dt>
+                <dd>{% if media.isCdnFlushable %}to be flushed{% else %} last flush at {{ media.cdnFlushedAt|date}} {% endif %}</dd>
+            </dl>
+
+            <h3>Metadata</h3>
+            <dl class="dl-horizontal">
+                {% for name, value in media.providerMetadata %}
+                    <dt>{{ name |e }}</dt>
+                    <dd>{{ value |e }}</dd>
+                {% endfor %}
+            </dl>
+
+            <h2>Formats</h2>
+            <div class="list-group">
+                <a class="list-group-item" href="{{ url('zym_media_download', { 'id' : media.id, 'format' : 'reference'}) }}">reference</a></li>
+                {% for name, format in formats %}
+                    <a class="list-group-item" href="{{ url('zym_media_download', { 'id' : media.id, 'format' : name}) }}">{{ name |e}}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="thumbnail">
+                {{ media(media) }}
+
+                <div class="caption">
+                    <h3>{{ media.name |e }}</h3>
+                    <p>{{ media.description |e | nl2br }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

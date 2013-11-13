@@ -1,0 +1,31 @@
+{% extends "ZymUserBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Delete Group' | trans({}, 'ZymUserBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Confirm Deletion' |trans({}, 'ZymUserBundle') }}
+                    <small>{{ group.name |trans({}, 'ZymUserBundle') }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        You are about to delete <strong>"{{ group.name |e }}"</strong>.
+        This action cannot be undone.<br />
+        <strong>Are you sure you want to proceed?</strong>
+    </p>
+
+    <form action="{{ path('zym_user_groups_delete', { 'id' : group.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+
+        <fieldset class="form-actions">
+            <input class="btn btn-danger" type="submit" value="{{ 'Delete' | trans({}, 'ZymUserBundle') }}" />
+            <a class="btn btn-default" href="{{ path('zym_user_groups') }}" class="button">{{ 'Cancel' | trans({}, 'ZymUserBundle') }}</a>
+        </fieldset>
+    </form>
+{% endblock content %}

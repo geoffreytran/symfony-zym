@@ -1,0 +1,69 @@
+{% extends "ZymRouterBundle::layout.html.twig" %}
+
+{% block title %}{{ 'Viewing Route' | trans({}, 'ZymRouterBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    {{ 'Viewing Route' | trans({}, 'ZymRouterBundle') |e }}
+                    <small>{{ route.name | trans({}, 'ZymRouterBundle') |e }}</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar navbar-default">
+        <div class="navbar-collapse">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-default navbar-btn" href="javascript: history.back();">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        {{ 'Back' | trans({}, 'ZymRouterBundle') }}
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    {% if is_granted('EDIT', route) %}
+                        <a class="btn btn-default navbar-btn" href="{{ path('zym_router_routes_edit', { 'name': route.name }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            {{ 'Edit' | trans({}, 'ZymRouterBundle') }}
+                        </a>
+                    {% endif %}
+
+                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        {% if is_granted('DELETE', route) %}
+                            <li>
+                                <a href="{{ path('zym_router_routes_delete', { 'name': route.name }) }}"
+                                   data-toggle="ajax-modal">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    {{ 'Delete' | trans({}, 'ZymRouterBundle') }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <a class="btn btn-default navbar-btn" href="{{ path('zym_security_acl_object_aces', { 'type': 'Zym\\Bundle\\RouterBundle\\Entity\\Route', 'identifier': route.objectIdentifier }) }}">
+                <span class="glyphicon glyphicon-lock"></span>
+                {{ 'Permissions' | trans({}, 'ZymRouterBundle') }}
+            </a>
+        </div>
+    </div>
+
+    <h2>JSON Data</h2>
+    <pre>
+        {{- route.value | json_encode |e -}}
+    </pre>
+    
+    <h2>Interpreted</h2>
+    {% debug route.value %}
+{% endblock content %}
