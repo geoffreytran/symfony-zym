@@ -65,7 +65,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
 
-            $bundles[] = new Buzz\Bundle\ProfilerBundle\BuzzProfilerBundle();
+            $bundles[] = new Playbloom\Bundle\GuzzleBundle\PlaybloomGuzzleBundle();
         }
 
         return $bundles;

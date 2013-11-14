@@ -11,6 +11,9 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+playbloom_guzzle:
+    web_profiler: true
+
 monolog:
     handlers:
         main:

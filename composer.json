@@ -38,7 +38,8 @@
         "presta/sitemap-bundle": "dev-master",
         "imagine/Imagine": "v0.3.0",
         "omissis/php-cloudfiles": "dev-master",
-        "sensio/buzz-bundle": "dev-master",
+        "guzzle/guzzle": "3.7.*",
+        "playbloom/guzzle-bundle": "1.0.*",
         "juliendidier/buzz-profiler-bundle": "dev-master",
         "liip/monitor-bundle": "dev-master",
         "chrisboulton/php-resque": "dev-master"
