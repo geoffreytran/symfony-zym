@@ -59,7 +59,7 @@
     },
     "config": {
         "bin-dir": "bin",
-        "cache-dir": "data/cache"
+        "cache-dir": "data/cache/composer"
     },
     "minimum-stability": "dev",
     "extra": {

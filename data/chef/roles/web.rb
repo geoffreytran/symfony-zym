@@ -15,6 +15,7 @@ run_list(
 
   "recipe[apache2]",
   "recipe[apache2::mod_php5]",
+  "recipe[apache2::mod_access_compat]",
   "recipe[apache2::mod_alias]",
   "recipe[apache2::mod_auth_basic]",
   "recipe[apache2::mod_auth_digest]",

@@ -42,6 +42,7 @@ if ($httpCache) {
 // Handle the request
 Request::enableHttpMethodParameterOverride();
 $request  = Request::createFromGlobals();
+
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);

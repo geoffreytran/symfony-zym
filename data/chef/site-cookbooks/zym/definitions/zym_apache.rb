@@ -8,6 +8,7 @@ define :zym_apache, :http_cache => false, :cookbook => "zym" do
   
   web_app "#{params[:name]}" do
     template       "apache-site.conf.erb"
+    project_dir    dir
     docroot        "#{dir}/web"
     server_name    name
     server_aliases aliases

@@ -61,30 +61,20 @@ package "php-apc" do
   action :install
 end
 
-template "/etc/php5/conf.d/apc.ini" do
-  source "apc.ini"
+template "/etc/php5/apache2/conf.d/override.ini" do
+  source "php-settings.ini"
   mode 0644
   owner "root"
   group "root"
-  
-  only_if { ::File.exists?("/etc/php5/conf.d/apc.ini") }
-  
-  if cookbook
-    cookbook cookbook
-  end
-end
-
-template "/etc/php5/mods-available/apc.ini" do
-  source "apc.ini"
-  mode 0644
-  owner "root"
-  group "root"
-
-  only_if { ::File.exists?("/etc/php5/mods-available/apc.ini") }
+  variables({
+    :directives => node[:php][:directives]
+  })
 
   if cookbook
     cookbook cookbook
   end
+
+  not_if { node[:php].empty? && node[:php][:directives].empty? }
 end
 
 if node[:zym][:environment] == 'dev'

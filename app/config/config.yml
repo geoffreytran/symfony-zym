@@ -36,6 +36,7 @@ framework:
         handler_id: zym_session.storage.handler.pdo
     fragments:   { path: /_fragment }
     esi:            true
+    http_method_override: true
 
 # Twig Configuration
 twig:
