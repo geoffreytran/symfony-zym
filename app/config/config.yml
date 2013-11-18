@@ -95,7 +95,8 @@ mopa_bootstrap:
     form:
         show_legend: false # default is true
 
-sensio_framework_extra: ~
+sensio_framework_extra:
+    view:    { annotations: false }
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -115,6 +116,18 @@ knp_menu:
 jms_security_extra:
     expressions: true
 
+jms_serializer:
+    metadata:
+        directories:
+            FOSUserBundle:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "@ZymUserBundle/Resources/config/serializer/fos-user-bundle"
+            KnpPaginator:
+                namespace_prefix: "Knp\\Component\\Pager\\"
+                path: "@ZymPaginatorBundle/Resources/config/serializer/knp-components-pager"
+            KnpPaginatorBundle:
+                namespace_prefix: "Knp\\Bundle\\PaginatorBundle"
+                path: "@ZymPaginatorBundle/Resources/config/serializer/knp-paginator-bundle"
 liip_monitor:
     checks:
         disc_usage: ~
@@ -125,6 +138,18 @@ liip_monitor:
           - %kernel.root_dir%/../data/logs
           - %kernel.root_dir%/../data/uploads
 
+fos_rest:
+    access_denied_listener:
+        # all requests using the 'json' and 'xml' format will return a 403 on an access denied violation
+        json: true
+        xml: true
+    allowed_methods_listener: true
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: force
+
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -134,6 +159,8 @@ fos_user:
         group_manager: zym_user.group_manager.default
     service:
         user_manager: zym_user.user_manager.default
+
+nelmio_api_doc: ~
 
 opensky_runtime_config:
     provider: zym_runtime_config.provider
@@ -151,6 +178,9 @@ knp_gaufrette:
     filesystems:
         default:
             adapter:    default
+
+twig:
+    exception_controller: FOS\RestBundle\Controller\ExceptionController::showAction
 
 zym_media:
     db_driver: orm

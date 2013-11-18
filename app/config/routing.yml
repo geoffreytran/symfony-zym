@@ -2,6 +2,10 @@ PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
 
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
 LiipMonitorBundle:
     resource: "@LiipMonitorBundle/Resources/config/routing.yml"
     prefix: /monitor/health

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "aadb1df7f126e804b90affcaa5a67482",
+    "hash": "2cc06b59eac660b16ee555759ec7c3ce",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -98,6 +98,65 @@
             "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
             "homepage": "https://github.com/colinmollenhour/credis",
             "time": "2013-03-19 02:57:04"
+        },
+        {
+            "name": "dflydev/markdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-markdown.git",
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-markdown/zipball/6baed9b50f29c980795b6656d43722aadb126f7e",
+                "reference": "6baed9b50f29c980795b6656d43722aadb126f7e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "dflydev\\markdown": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Dragonfly Development Inc.",
+                    "email": "info@dflydev.com",
+                    "homepage": "http://dflydev.com"
+                },
+                {
+                    "name": "Beau Simensen",
+                    "email": "beau@dflydev.com",
+                    "homepage": "http://beausimensen.com"
+                },
+                {
+                    "name": "Michel Fortin",
+                    "homepage": "http://michelf.com"
+                },
+                {
+                    "name": "John Gruber",
+                    "homepage": "http://daringfireball.net"
+                }
+            ],
+            "description": "PHP Markdown & Extra",
+            "homepage": "http://github.com/dflydev/dflydev-markdown",
+            "keywords": [
+                "markdown"
+            ],
+            "time": "2013-09-23 12:00:18"
         },
         {
             "name": "doctrine/annotations",
@@ -951,6 +1010,82 @@
             "time": "2013-10-29 08:25:52"
         },
         {
+            "name": "friendsofsymfony/rest-bundle",
+            "version": "dev-master",
+            "target-dir": "FOS/RestBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
+                "reference": "a6eff7a910a4bd87b31fdb4b1110b869d4b46e01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/a6eff7a910a4bd87b31fdb4b1110b869d4b46e01",
+                "reference": "a6eff7a910a4bd87b31fdb4b1110b869d4b46e01",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "1.0.*",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.1",
+                "willdurand/negotiation": "1.0.*"
+            },
+            "conflict": {
+                "jms/serializer": "<0.12",
+                "jms/serializer-bundle": "<0.11"
+            },
+            "require-dev": {
+                "jms/serializer-bundle": "0.12.*",
+                "sensio/framework-extra-bundle": "~2.1",
+                "symfony/form": "~2.1",
+                "symfony/security": "~2.1",
+                "symfony/serializer": "~2.1",
+                "symfony/validator": "~2.1",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "jms/serializer-bundle": "Add support for advanced serialization capabilities, recommended, requires 0.12.*",
+                "sensio/framework-extra-bundle": "Add support for route annotations and the view response listener",
+                "symfony/serializer": "Add support for basic serialization capabilities and xml decoding, requires ~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\RestBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lukas Kahwe Smith",
+                    "email": "smith@pooteeweet.org"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSRestBundle/contributors"
+                },
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "This Bundle provides various tools to rapidly develop RESTful API's with Symfony2",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "rest"
+            ],
+            "time": "2013-11-04 21:23:23"
+        },
+        {
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "target-dir": "FOS/UserBundle",
@@ -1025,12 +1160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "d2bef940268e4dc5f0f050e80458169a7267813a"
+                "reference": "1b940f2069fb897df61fb55d96d508db3851ced3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/d2bef940268e4dc5f0f050e80458169a7267813a",
-                "reference": "d2bef940268e4dc5f0f050e80458169a7267813a",
+                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/1b940f2069fb897df61fb55d96d508db3851ced3",
+                "reference": "1b940f2069fb897df61fb55d96d508db3851ced3",
                 "shasum": ""
             },
             "require": {
@@ -1097,7 +1232,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2013-11-09 21:23:13"
+            "time": "2013-11-17 16:47:29"
         },
         {
             "name": "geoffreytran/zym",
@@ -1148,12 +1283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "4363c95b584dcafc8ff386c27116283ad53d738d"
+                "reference": "d2e8ac50742672ca0947e3f5459a4163eb5f9cbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4363c95b584dcafc8ff386c27116283ad53d738d",
-                "reference": "4363c95b584dcafc8ff386c27116283ad53d738d",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d2e8ac50742672ca0947e3f5459a4163eb5f9cbc",
+                "reference": "d2e8ac50742672ca0947e3f5459a4163eb5f9cbc",
                 "shasum": ""
             },
             "require": {
@@ -1232,7 +1367,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-11-08 21:36:09"
+            "time": "2013-11-14 20:23:30"
         },
         {
             "name": "imagine/imagine",
@@ -1835,12 +1970,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "a283d0d62ad09542cb75eacd8ff68b6478c1559e"
+                "reference": "4d75272cd7b50d8d4d4f7a28c46aa193726852dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a283d0d62ad09542cb75eacd8ff68b6478c1559e",
-                "reference": "a283d0d62ad09542cb75eacd8ff68b6478c1559e",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/4d75272cd7b50d8d4d4f7a28c46aa193726852dc",
+                "reference": "4d75272cd7b50d8d4d4f7a28c46aa193726852dc",
                 "shasum": ""
             },
             "require": {
@@ -1870,9 +2005,10 @@
                 "ext-mbstring": "*",
                 "ext-mongo": "*",
                 "ext-zip": "to use the Zip adapter",
+                "herzult/php-ssh": "to use SFtp adapter",
                 "knplabs/knp-gaufrette-bundle": "to use with Symfony2",
                 "microsoft/windowsazure": "to use Microsoft Azure Blob Storage adapter",
-                "phpseclib/phpseclib": "to use the SFTP",
+                "phpseclib/phpseclib": "to user PhpseclibSftp adapter",
                 "rackspace/php-opencloud": "to use Opencloud adapter"
             },
             "type": "library",
@@ -1908,7 +2044,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2013-11-12 14:14:07"
+            "time": "2013-11-15 12:56:16"
         },
         {
             "name": "knplabs/knp-components",
@@ -2215,17 +2351,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpTimeBundle.git",
-                "reference": "1e827fd499da31bf4db9e4e36c537bfe390eddba"
+                "reference": "0d5a317ef9ae17ea156e3f8455395520ff1073aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpTimeBundle/zipball/1e827fd499da31bf4db9e4e36c537bfe390eddba",
-                "reference": "1e827fd499da31bf4db9e4e36c537bfe390eddba",
+                "url": "https://api.github.com/repos/KnpLabs/KnpTimeBundle/zipball/0d5a317ef9ae17ea156e3f8455395520ff1073aa",
+                "reference": "0d5a317ef9ae17ea156e3f8455395520ff1073aa",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/framework-bundle": "~2.0"
+                "symfony/framework-bundle": ">=2.0,<2.4-dev"
             },
             "suggest": {
                 "symfony/twig-bundle": "to use the Twig time_diff function"
@@ -2265,7 +2401,7 @@
                 "knplabs",
                 "time"
             ],
-            "time": "2013-08-26 08:38:38"
+            "time": "2013-11-15 10:18:54"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2515,12 +2651,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6"
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6",
-                "reference": "e8f7aeefea5cbd58c5b472363b1bd71f6c3148d6",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
                 "shasum": ""
             },
             "require": {
@@ -2574,7 +2710,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-14 11:00:58"
+            "time": "2013-11-14 19:48:31"
         },
         {
             "name": "mopa/bootstrap-bundle",
@@ -2583,12 +2719,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "ef9845dce5f7c19f82198ec830f1f1ec95b52409"
+                "reference": "622aebb4516064dae306ef4f017b2f3560f41b60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/ef9845dce5f7c19f82198ec830f1f1ec95b52409",
-                "reference": "ef9845dce5f7c19f82198ec830f1f1ec95b52409",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/622aebb4516064dae306ef4f017b2f3560f41b60",
+                "reference": "622aebb4516064dae306ef4f017b2f3560f41b60",
                 "shasum": ""
             },
             "require": {
@@ -2640,7 +2776,7 @@
                 "form",
                 "template"
             ],
-            "time": "2013-11-14 15:48:38"
+            "time": "2013-11-15 16:57:47"
         },
         {
             "name": "mopa/composer-bridge",
@@ -2692,6 +2828,81 @@
                 "composer"
             ],
             "time": "2013-09-10 10:06:34"
+        },
+        {
+            "name": "nelmio/api-doc-bundle",
+            "version": "dev-master",
+            "target-dir": "Nelmio/ApiDocBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
+                "reference": "6c01424a95834cb9f62733f360eeccde9802b709"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/6c01424a95834cb9f62733f360eeccde9802b709",
+                "reference": "6c01424a95834cb9f62733f360eeccde9802b709",
+                "shasum": ""
+            },
+            "require": {
+                "dflydev/markdown": "1.0.*",
+                "symfony/console": "~2.1",
+                "symfony/framework-bundle": "~2.1",
+                "symfony/twig-bundle": "~2.1"
+            },
+            "conflict": {
+                "jms/serializer": "<0.12",
+                "jms/serializer-bundle": "<0.11"
+            },
+            "require-dev": {
+                "friendsofsymfony/rest-bundle": "~1.0",
+                "jms/serializer-bundle": ">=0.11",
+                "sensio/framework-extra-bundle": "~2.1",
+                "symfony/browser-kit": "~2.1",
+                "symfony/css-selector": "~2.1",
+                "symfony/form": "~2.1",
+                "symfony/validator": "~2.1",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "friendsofsymfony/rest-bundle": "For making use of REST information in the doc.",
+                "jms/serializer": "For making use of serializer information in the doc.",
+                "symfony/form": "For using form definitions as input.",
+                "symfony/validator": "For making use of validator information in the doc."
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Nelmio\\ApiDocBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nelmio",
+                    "homepage": "http://nelm.io"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/nelmio/NelmioApiDocBundle/contributors"
+                }
+            ],
+            "description": "Generates documentation for your REST API from annotations",
+            "keywords": [
+                "api",
+                "doc",
+                "documentation",
+                "rest"
+            ],
+            "time": "2013-11-17 17:28:45"
         },
         {
             "name": "nervo/yuicompressor",
@@ -2911,12 +3122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ludofleury/GuzzleBundle.git",
-                "reference": "d9dbdc455dbeda87be2ab444f4f569ca00483aa0"
+                "reference": "ee30cde209c8c8b485a9af51088f1be8719712fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ludofleury/GuzzleBundle/zipball/d9dbdc455dbeda87be2ab444f4f569ca00483aa0",
-                "reference": "d9dbdc455dbeda87be2ab444f4f569ca00483aa0",
+                "url": "https://api.github.com/repos/ludofleury/GuzzleBundle/zipball/ee30cde209c8c8b485a9af51088f1be8719712fc",
+                "reference": "ee30cde209c8c8b485a9af51088f1be8719712fc",
                 "shasum": ""
             },
             "require": {
@@ -2957,7 +3168,7 @@
                 "Symfony2",
                 "profiler"
             ],
-            "time": "2013-11-03 14:19:22"
+            "time": "2013-11-14 23:04:22"
         },
         {
             "name": "presta/sitemap-bundle",
@@ -3067,12 +3278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "45664e203fd1364705091a58971cc6bd94fb5189"
+                "reference": "52b964d793e989768a44a8900b2373bdc9ce666a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/45664e203fd1364705091a58971cc6bd94fb5189",
-                "reference": "45664e203fd1364705091a58971cc6bd94fb5189",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/52b964d793e989768a44a8900b2373bdc9ce666a",
+                "reference": "52b964d793e989768a44a8900b2373bdc9ce666a",
                 "shasum": ""
             },
             "require": {
@@ -3104,7 +3315,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2013-09-18 07:48:10"
+            "time": "2013-11-14 21:00:23"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3542,12 +3753,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "2ef5e618885fd27648c9c2c56b52e7f0bee59bde"
+                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/2ef5e618885fd27648c9c2c56b52e7f0bee59bde",
-                "reference": "2ef5e618885fd27648c9c2c56b52e7f0bee59bde",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/6316de572a85b7e887e15df2df5093237acb9bf2",
+                "reference": "6316de572a85b7e887e15df2df5093237acb9bf2",
                 "shasum": ""
             },
             "require": {
@@ -3642,7 +3853,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-11-14 13:43:31"
+            "time": "2013-11-14 20:58:12"
         },
         {
             "name": "twig/extensions",
@@ -3739,6 +3950,56 @@
                 "templating"
             ],
             "time": "2013-11-14 08:08:49"
+        },
+        {
+            "name": "willdurand/negotiation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/Negotiation.git",
+                "reference": "8748a9d32bb694ab50ffb5a182d4eb982307788d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/8748a9d32bb694ab50ffb5a182d4eb982307788d",
+                "reference": "8748a9d32bb694ab50ffb5a182d4eb982307788d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Negotiation": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                }
+            ],
+            "description": "Content Negotiation tools for PHP provided as a standalone library.",
+            "homepage": "http://williamdurand.fr/Negotiation/",
+            "keywords": [
+                "accept",
+                "content",
+                "format",
+                "header",
+                "negotiation"
+            ],
+            "time": "2013-11-04 17:45:43"
         }
     ],
     "packages-dev": [
@@ -3760,6 +4021,8 @@
         "knplabs/gaufrette": 20,
         "knplabs/knp-gaufrette-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
+        "friendsofsymfony/rest-bundle": 20,
+        "nelmio/api-doc-bundle": 20,
         "mopa/bootstrap-bundle": 20,
         "opensky/runtime-config-bundle": 20,
         "presta/sitemap-bundle": 20,

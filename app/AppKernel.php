@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -35,9 +36,13 @@ class AppKernel extends Kernel
             new OpenSky\Bundle\RuntimeConfigBundle\OpenSkyRuntimeConfigBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Liip\MonitorBundle\LiipMonitorBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
             // Zym
             new Zym\Bundle\FrameworkBundle\ZymFrameworkBundle(),
+            new Zym\Bundle\PaginatorBundle\ZymPaginatorBundle(),
+            new Zym\Bundle\SerializerBundle\ZymSerializerBundle(),
+            new Zym\Bundle\RestBundle\ZymRestBundle(),
             new Zym\Bundle\DoctrineBundle\ZymDoctrineBundle(),
             new Zym\Bundle\UserBundle\ZymUserBundle(),
             new Zym\Bundle\FieldBundle\ZymFieldBundle(),
@@ -56,7 +61,6 @@ class AppKernel extends Kernel
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
             new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
-
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
