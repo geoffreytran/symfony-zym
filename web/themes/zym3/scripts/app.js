@@ -21,7 +21,7 @@ app.config([
         $stateProvider, 
         $urlRouterProvider
     ){
-        // save references to the providers
+        // Save references to the providers
         app.lazy = {
             controller: $controllerProvider.register,
             directive:  $compileProvider.directive,
