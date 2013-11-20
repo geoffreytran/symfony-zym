@@ -157,8 +157,12 @@
                 $scope.gridOptions = { 
                     data: 'myData',
                     columnDefs: [
-                        { field:'failedAt', displayName: 'Failed At' }, 
-                        { field:'payload.id', displayName:'ID'}
+                        { field:'failedAt',       displayName: 'Failed At' },
+                        { field:'worker',         displayName: 'Worker' },
+                        { field:'payload.id',     displayName: 'ID' },
+                        { field:'queue',          displayName: 'Queue',     visible: false },
+                        { field:'payload.class',  displayName: 'Class',     visible: false },
+                        { field:'exception',      displayName: 'Exception', visible: false }
                     ],
 
                     enableColumnResize:	true,
