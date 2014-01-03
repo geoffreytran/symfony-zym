@@ -1,0 +1,191 @@
+{% extends "::anonymous.html.twig" %}
+
+{% block content %}
+{% endblock %}
+
+{% block inlineScripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        angular.module('ZymUserBundle', ['ui.router', 'ngAnimate'])
+            .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+                $locationProvider
+                    .html5Mode(true)
+                    .hashPrefix('!');
+
+                // For any unmatched url, redirect to /state1
+                //$urlRouterProvider.otherwise("/login");
+
+                // Now set up the states
+                $stateProvider
+                    .state('login', {
+                        url: '/login',
+                        templateUrl: '{{ path('fos_user_security_login', { '_format': 'ajax' }) }}'
+                    })
+                    .state('account', {
+                        abstract: true,
+                        url: '/account',
+                        template: '<div ui-view></div>'
+                    })
+                    .state('account.resetting', {
+                        url: '/forgot',
+                        templateUrl: '{{ path('zym_user_resetting_request', { '_format': 'ajax' }) }}'
+                    })
+                    .state('account.resetting_check_email', {
+                        url: '/forgot/check-email',
+                        templateUrl: '{{ path('zym_user_resetting_check_email', { '_format': 'ajax' }) }}'
+                    })
+                    .state('account.resetting_reset', {
+                        url: '/forgot/reset/{token}',
+                        templateUrl: function(stateParams){
+                            return '{{ path('zym_user_resetting_reset', { 'token': 'reset-token', '_format': 'ajax' }) }}'.replace('reset-token', stateParams.token);
+                        }
+                    })
+                ;
+            }])
+            .controller('ResettingRequestCtrl', function($scope, $http, $state, $stateParams) {
+                $scope.error = null;
+                $scope.success = false;
+                $scope.loading = false;
+
+                // Password reset request submit function
+                $scope.request = function($event){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+
+                    $scope.loading = true;
+                    $scope.error   = null;
+
+                    $http({
+                        method: 'POST',
+                        url: '{{ path("zym_user_resetting_request", { '_format': 'json' }) }}',
+                        data: $.param({ username: this.username }),
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .success(function(data, status){
+                         if (data.email !== undefined) {
+                             $scope.success = true;
+                             $state.go('account.resetting_check_email');
+                         } else {
+                             $scope.loading = false;
+                         }
+                    })
+                    .error(function(data, status){
+                       $scope.error    = data.message;
+                       $scope.loading  = false;
+                    });
+                };
+
+                // Clear error message when user starts typing again
+                $scope.$watch('username', function(newVal, oldVal){
+                    if (newVal === oldVal) {
+                        return;
+                    }
+
+                    $scope.error = false;
+                });
+            })
+            .controller('ResettingResetCtrl', function($scope, $http, $state, $stateParams){
+                $scope.error = null;
+                $scope.success = false;
+                $scope.loading = false;
+
+                // Password reset submit function
+                $scope.submit = function($event){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+
+                    $scope.loading = true;
+                    $scope.error   = null;
+
+                    $http({
+                        method: 'POST',
+                        url: '{{ path('zym_user_resetting_reset', { 'token': 'reset-token', '_format': 'json' }) }}'.replace('reset-token', $stateParams.token),
+                        data: $.param({
+                            'fos_user_resetting_form[plainPassword][first]': this.password,
+                            'fos_user_resetting_form[plainPassword][second]': this.confirmPassword
+                        }),
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .success(function(data, status){
+                         $scope.success = true;
+                         $state.go('login');
+
+                         if (Messenger) {
+                             Messenger().post('Your password has been successfully reset.');
+                         }
+                    })
+                    .error(function(data, status){
+                       $scope.error    = data.message;
+                       $scope.loading  = false;
+                    });
+                };
+            })
+            .controller('LoginCtrl', function($scope, $http, $timeout, $window) {
+                $scope.error = null;
+                $scope.success = false;
+                $scope.loading = false;
+
+                $scope.login = function($event){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+
+                    $scope.loading = true;
+                    $scope.error   = null;
+
+                    $http({
+                              method: 'POST',
+                              url: '{{ path("fos_user_security_check") }}',
+                              data: $.param({
+                                  _username: this.username,
+                                  _password: this.password,
+                                  _remember_me: this.rememberMe
+                              }),
+                              headers: {
+                                  'Content-Type': 'application/x-www-form-urlencoded',
+                                  'X-Requested-With': 'XMLHttpRequest'
+                              }
+                          })
+                          .success(function(data, status){
+                              if (data.redirectUrl !== undefined) {
+                                  $scope.success = true;
+                                  $window.location.href = data.redirectUrl;
+                              } else {
+                                  $scope.loading = false;
+                              }
+                          })
+                          .error(function(data, status){
+                              $scope.error    = data.message;
+                              $scope.loading  = false;
+                          })
+                    ;
+                };
+
+                // Clear error message when user starts typing again
+                $scope.$watch('username', function(newVal, oldVal){
+                    if (newVal === oldVal) {
+                        return;
+                    }
+
+                    $scope.error = false;
+                });
+                $scope.$watch('password', function(newVal, oldVal){
+                    if (newVal === oldVal) {
+                        return;
+                    }
+
+                    $scope.error = false;
+                });
+            });
+
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['ZymUserBundle']);
+        });
+    </script>
+{% endblock %}

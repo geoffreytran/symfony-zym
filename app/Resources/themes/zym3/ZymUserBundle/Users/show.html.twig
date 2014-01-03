@@ -12,9 +12,9 @@
                 </h1>
                     
                 <small class="text-muted">
-                    {{ 'Created:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.createdAt.format(constant('DateTime::ISO8601')) }}">{{ time_diff(user.createdAt) }}</abbr> 
-                    | {{ 'Updated:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.updatedAt ? user.updatedAt.format(constant('DateTime::ISO8601')) : '' }}">{{ user.updatedAt ? time_diff(user.updatedAt) : 'Never' }}</abbr> 
-                    | {{ 'Last login:' | trans({}, 'ZymUserBundle') }} <abbr title="{{  user.lastLogin ? user.lastLogin.format(constant('DateTime::ISO8601')) : '' }}">{{ user.lastLogin ? time_diff(user.lastLogin) : 'Never' }}</abbr>
+                    {{ 'Created:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.createdAt |date(constant('DateTime::ISO8601')) }}">{{ time_diff(user.createdAt) }}</abbr>
+                    | {{ 'Updated:' | trans({}, 'ZymUserBundle') }} <abbr title="{{ user.updatedAt ? user.updatedAt |date(constant('DateTime::ISO8601')) : '' }}">{{ user.updatedAt ? time_diff(user.updatedAt) : 'Never' }}</abbr>
+                    | {{ 'Last login:' | trans({}, 'ZymUserBundle') }} <abbr title="{{  user.lastLogin ? user.lastLogin |date(constant('DateTime::ISO8601')) : '' }}">{{ user.lastLogin ? time_diff(user.lastLogin) : 'Never' }}</abbr>
                 </small>
             </div>
         </div>
@@ -76,7 +76,7 @@
                  </div>
 
                  <div class="btn-group">
-                     {% if is_granted('ROLE_ALLOWED_TO_SWITCH', user) %}
+                     {% if is_granted('ROLE_ALLOWED_TO_SWITCH', user) and not is_granted("ROLE_PREVIOUS_ADMIN") and user.enabled and not user.expired %}
                      <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_show', { "id": user.id, "_switch_user": user.username }) }}">
                          <span class="glyphicon glyphicon-user"></span> {{ 'Login as User' | trans({}, 'ZymUserBundle') }}
                      </a>
@@ -131,13 +131,13 @@
                 <dd>{{ user.locked ? 'Yes' : 'No'|trans({}, 'ZymUserBundle') }}</dd>
 
                 <dt>Last Login</dt>
-                <dd>{{ user.lastLogin ? user.lastLogin.format(constant('DateTime::ISO8601')) : 'Never' }}</dd>
+                <dd>{{ user.lastLogin ? user.lastLogin |date(constant('DateTime::ISO8601')) : 'Never' }}</dd>
 
                 <dt>Expired</dt>
                 <dd>{{ user.expired ? 'Yes' : 'No' | trans({}, 'ZymUserBundle') }}</dd>
             </dl>
-           {#} CreatedAt: {{ user.createdAt.format(constant('DateTime::ISO8601')) }}<br />
-            UpdatedAt: {{ user.updatedAt.format(constant('DateTime::ISO8601')) }}<br />#}
+           {#} CreatedAt: {{ user.createdAt |date(constant('DateTime::ISO8601')) }}<br />
+            UpdatedAt: {{ user.updatedAt |date(constant('DateTime::ISO8601')) }}<br />#}
         </div>
     </div>
 

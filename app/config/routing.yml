@@ -1,3 +1,13 @@
+ZymContentBundle:
+    resource: "@ZymContentBundle/Resources/config/routing.xml"
+    prefix:   /admin/content
+
+create:
+    resource: "@CmfCreateBundle/Resources/config/routing/rest.xml"
+
+create_image:
+    resource: "@CmfCreateBundle/Resources/config/routing/image.xml"
+
 PrestaSitemapBundle:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
@@ -74,6 +84,10 @@ ZymUserBundleGroups:
     resource: "@ZymUserBundle/Resources/config/routing/groups.xml"
     prefix:   /admin/groups
 
+ZymUserBundleResetting:
+    resource: "@ZymUserBundle/Resources/config/routing/resetting.xml"
+    prefix:   /account/forgot
+
 ZymRuntimeConfigBundleParameters:
     resource: "@ZymRuntimeConfigBundle/Resources/config/routing/parameters.xml"
     prefix:   /admin/config/parameters
@@ -81,6 +95,9 @@ ZymRuntimeConfigBundleParameters:
 ZymThemeBundleThemeRules:
     resource: "@ZymThemeBundle/Resources/config/routing/theme_rules.xml"
     prefix:   /admin/structure/themes
+
+FOSJsRoutingBundle:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 FOSUserBundleSecurity:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

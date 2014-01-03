@@ -1,0 +1,10 @@
+{% include "CmfCreateBundle::includejsfiles-create.html.twig" %}
+
+<script>window.CKEDITOR_BASEPATH = '{{ cmfCreateEditorBasePath }}';</script>
+{% javascripts output="themes/zym3/scripts/ckeditor.js"
+    '@CmfCreateBundle/Resources/public/vendor/ckeditor/ckeditor.js'
+    '@CmfCreateBundle/Resources/public/js/init-create-ckeditor.js'
+    '@CmfCreateBundle/Resources/public/js/init-create-common.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}

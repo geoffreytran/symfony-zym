@@ -13,7 +13,7 @@
         {% block headMeta -%}
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta name="fragment" content="!" />
         <meta name="robots" content="noindex, nofollow" />
         {% endblock -%}
@@ -45,7 +45,7 @@
         <!-- About humans.txt http://humanstxt.org/ -->
         <link rel="author" href="{{ asset('humans.txt') }}" />
 
-        {% stylesheets filter="cssrewrite, less, ?yui_css" output="themes/zym3/styles/layouts/assetic-base.min.css"
+        {% stylesheets filter="cssrewrite, less, ?uglifycss" output="themes/zym3/styles/layouts/assetic-base.min.css"
             "themes/zym3/styles/layouts/base.less"
         -%}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
@@ -60,13 +60,14 @@
 
         <!-- Start: Scripts -->
         {% block headScripts -%}
-        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-head.min.js"
+        {% javascripts filter='?uglifyjs2' output="themes/zym3/scripts/assetic-head.min.js"
             "themes/zym3/scripts/pace.js"
             "themes/zym3/scripts/modernizr.js"
         -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
 
+        <!-- Start: Modernizr -->
         <script type="text/javascript">
             Modernizr.load([
                 {
@@ -78,12 +79,13 @@
                 }
             ]);
         </script>
+        <!-- End: Modernizr -->
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
     </head>
 
-    <body itemscope itemtype="http://schema.org/WebPage">
+    <body itemscope itemtype="http://schema.org/WebPage" class="{{ app.request.get('_route') }}">
         {% block body %}
         <div id="wrap">
             <!-- Start: Header -->
@@ -123,7 +125,7 @@
                                         {% elseif '@' in app.user.username %}
                                             {{ app.user.email |e }}
                                         {% else %}
-                                            {{ app.user.username |e }} ({{ app.user.email |e }})
+                                            {{ app.user.username |e }}
                                         {% endif %}
 
                                         <b class="caret"></b>
@@ -270,7 +272,9 @@
         </script>
         <![endif]-->
         
-        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-bootstrap.min.js"
+        {% javascripts filter='?uglifyjs2' output="themes/zym3/scripts/assetic-bootstrap.min.js"
+            "themes/zym3/scripts/animo.js"
+
             "themes/zym3/scripts/bootstrap.js"
             "themes/zym3/scripts/zym.ajax-modal.js"
 
@@ -298,6 +302,11 @@
         </script>
         <!-- End: Offline.js -->
 
+        <!-- Start: FOSJsRoutingBundle -->
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <!-- End: FOSJsRoutingBundle -->
+
         <!-- Start: Selectize.js -->
         <script type="text/javascript" src="{{ asset('themes/zym3/scripts/selectize.min.js') }}"></script>
         <script type="text/javascript">
@@ -309,7 +318,6 @@
             });
         </script>
         <!-- End: Selectize.js -->
-
         {% endblock -%}
         <!-- End: Inline Scripts -->
 

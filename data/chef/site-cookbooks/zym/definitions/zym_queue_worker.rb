@@ -15,9 +15,12 @@ define :zym_queue_worker, :cookbook => "zym" do
     directory "#{params[:dir]}"
 
     user params[:user]
+    stopasgroup true
 
     stdout_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-%(process_num)s-stdout.log"
     stderr_logfile "#{node[:supervisor][:log_dir]}/%(program_name)s-%(process_num)s-stderror.log"
+
+    numprocs 2 # Supervisor cookbook won't restart properly if is 1
 
     action [:enable]
 

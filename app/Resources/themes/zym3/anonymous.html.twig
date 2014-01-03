@@ -13,7 +13,7 @@
         {% block headMeta -%}
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
             <meta name="fragment" content="!" />
             <meta name="robots" content="noindex, nofollow" />
         {% endblock -%}
@@ -45,7 +45,7 @@
             <!-- About humans.txt http://humanstxt.org/ -->
             <link rel="author" href="{{ asset('humans.txt') }}" />
 
-            {% stylesheets filter="cssrewrite, less, ?yui_css" output="themes/zym3/styles/layouts/assetic-anonymous.min.css"
+            {% stylesheets filter="cssrewrite, less, ?uglifycss" output="themes/zym3/styles/layouts/assetic-anonymous.min.css"
             "themes/zym3/styles/layouts/anonymous.less"
             -%}
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
@@ -60,13 +60,14 @@
 
         <!-- Start: Scripts -->
         {% block headScripts -%}
-        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-head.min.js"
+        {% javascripts filter='?uglifyjs2' output="themes/zym3/scripts/assetic-head.min.js"
             "themes/zym3/scripts/pace.js"
             "themes/zym3/scripts/modernizr.js"
         -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
 
+        <!-- Start: Modernizr -->
         <script type="text/javascript">
             Modernizr.load([
                 {
@@ -78,12 +79,13 @@
                 }
             ]);
         </script>
+        <!-- End: Modernizr -->
         {% endblock -%}
         <!-- End: Scripts -->
     {% endblock %}
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
+<body itemscope itemtype="http://schema.org/WebPage" class="{{ app.request.get('_route') }}">
 {% block body %}
 <div id="wrap">
     <!-- Start: Header -->
@@ -123,7 +125,7 @@
                                     {% elseif '@' in app.user.username %}
                                         {{ app.user.email |e }}
                                     {% else %}
-                                        {{ app.user.username |e }} ({{ app.user.email |e }})
+                                        {{ app.user.username |e }}
                                     {% endif %}
 
                                     <b class="caret"></b>
@@ -206,7 +208,33 @@
 
     <div class="container">
         <!-- Start: Content -->
-        <section class="content" data-ui-view>
+        <section class="content" ui-view>
+            <noscript>
+                <div class="modal-dialog animated fadeIn">
+                    <div class="modal-content">
+                        <div class="modal" style="position: static; margin: 0 auto; display: block;">
+                            <div class="modal-header">
+                                <h1 class="modal-title">
+                                    {{ 'Javascript Required' | trans }}
+                                    <small>{{ 'Enable Javascript to continue.' | trans }}</small>
+                                </h1>
+                            </div>
+
+                            <div class="modal-body">
+                                <p>
+                                    <span class="glyphicon glyphicon-minus-sign text-danger" style="font-size: 300%; float: left; margin: 10px 20px;"></span>
+                                    {% trans %}This application utilizes JavaScript for enhanced functionality and user experience. Your browser may not have JavaScript or it may be disabled.{% endtrans %}
+                                </p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="https://support.google.com/adsense/answer/12654" target="_blank">{{ 'Learn how to enable Javascript' |trans }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </noscript>
+
             {% block content "" %}
         </section>
         <!-- End: Content -->
@@ -241,9 +269,13 @@
             window.jQuery || document.write('<script type="text/javascript" src="{{ asset('themes/zym3/scripts/jquery-1.9.1.min.js') }}">\x3C/script>')
         </script>
 
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
         <script type="text/javascript">
             window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym3/scripts/angular.min.js') }}">\x3C/script>')
+        </script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular-animate.min.js"></script>
+        <script type="text/javascript">
+            window.angular || document.write('<script type="text/javascript" src="{{ asset('themes/zym3/scripts/angular-animate.min.js') }}">\x3C/script>')
         </script>
 
         <!--[if lte IE 10 ]>
@@ -261,28 +293,42 @@
             if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
                 var msViewportStyle = document.createElement("style")
                 msViewportStyle.appendChild(
-                        document.createTextNode(
-                                "@-ms-viewport{width:auto!important}"
-                        )
+                    document.createTextNode(
+                        "@-ms-viewport{width:auto!important}"
+                    )
                 )
                 document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
             }
         </script>
         <![endif]-->
 
-        {% javascripts filter='?yui_js' output="themes/zym3/scripts/assetic-bootstrap.min.js"
-        "themes/zym3/scripts/bootstrap.js"
-        "themes/zym3/scripts/zym.ajax-modal.js"
+        {% javascripts filter='?uglifyjs2' output="themes/zym3/scripts/assetic-bootstrap.min.js"
+            "themes/zym3/scripts/animo.js"
 
-        "themes/zym3/scripts/offline/*.js"
+            "themes/zym3/scripts/bootstrap.js"
+            "themes/zym3/scripts/zym.ajax-modal.js"
 
-        "themes/zym3/scripts/angular-ui-router.js"
-        "themes/zym3/scripts/http-auth-interceptor.js"
+            "themes/zym3/scripts/messenger.js"
+            "themes/zym3/scripts/messenger-theme-flat.js"
 
-        "themes/zym3/scripts/app.js"
+            "themes/zym3/scripts/offline/*.js"
+
+            "themes/zym3/scripts/angular-ui-router.js"
+            "themes/zym3/scripts/http-auth-interceptor.js"
+
+            "themes/zym3/scripts/app.js"
         -%}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts -%}
+
+        <!-- Start: Messenger.js -->
+        <script type="text/javascript">
+            Messenger.options = {
+                extraClasses: 'messenger-fixed messenger-on-top',
+                theme: 'flat'
+            };
+        </script>
+        <!-- End: Messenger.js -->
 
         <!-- Start: Offline.js -->
         <script type="text/javascript">
@@ -297,6 +343,11 @@
             };
         </script>
         <!-- End: Offline.js -->
+
+        <!-- Start: FOSJsRoutingBundle -->
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <!-- End: FOSJsRoutingBundle -->
 
         <!-- Start: Selectize.js -->
         <script type="text/javascript" src="{{ asset('themes/zym3/scripts/selectize.min.js') }}"></script>

@@ -83,3 +83,6 @@ if node[:zym][:environment] == 'dev'
     action :install
   end
 end
+
+npm_package "uglify-js"
+npm_package "uglifycss"

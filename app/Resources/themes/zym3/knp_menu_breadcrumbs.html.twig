@@ -53,9 +53,9 @@
 {% if item.displayed %}
 {# building the class of the item #}
     {%- set classes = item.attribute('class') is not empty ? [item.attribute('class')] : [] %}
-    {%- if matcher.isCurrent(item) %}
+    {%- if (matcher is defined and matcher.isCurrent(item)) or (item.isCurrent is defined and item.isCurrent) %}
         {%- set classes = classes|merge([options.currentClass, 'active']) %}
-    {%- elseif matcher.isAncestor(item, options.depth) %}
+    {%- elseif (matcher is defined and matcher.isAncestor(item, options.depth)) %}
         {%- set classes = classes|merge([options.ancestorClass]) %}
     {%- endif %}
     {%- if item.actsLikeFirst %}
@@ -69,7 +69,7 @@
         {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- endif %}
 
-    {% if matcher.isAncestor(item) or matcher.isCurrent(item) %}
+    {% if (matcher is defined and matcher.isAncestor(item)) or (matcher is defined and matcher.isCurrent(item)) or (item.isCurrent is defined and item.isCurrent) %}
     {# displaying the item #}
         <li{{ _self.attributes(attributes) }}>
             {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
@@ -79,7 +79,7 @@
             {%- endif %}
         </li>
 
-        {% if item.children |length and matcher.isAncestor(item) %}
+        {% if item.children |length and (matcher is defined and matcher.isAncestor(item)) %}
         <span class="divider">/</span>
         {% endif %}
 

@@ -1,0 +1,49 @@
+<div class="modal-dialog" data-ng-controller="ResettingRequestCtrl" data-ng-class="{'animated shake': error, 'animated fadeIn': error == null && !loading, 'animated bounceOut': success}"  data-ng-cloak>
+    <div class="modal-content">
+        <form action="{{ path('zym_user_resetting_request') }}" method="POST" class="fos_user_resetting_request" data-ng-submit="request($event)">
+            <div class="modal" style="position: static; margin: 0 auto; display: block;">
+                <div class="modal-header">
+                    <h1 class="modal-title">
+                        {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
+                        <small>{{ 'Forgot your login?' | trans({}, 'ZymUserBundle') }}</small>
+                    </h1>
+                </div>
+
+                <div class="modal-body">
+                    {% if invalid_username is defined  %}
+                        <div class="alert alert-danger alert-dismissable" data-ng-if="error" data-ng-class="{'animated fadeIn': error}">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <span class="glyphicon glyphicon-minus-sign"></span>
+                            {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+                        </div>
+                    {% endif %}
+
+                    <div class="alert alert-danger alert-dismissable" data-ng-if="error" data-ng-class="{'animated fadeIn': error}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <span class="glyphicon glyphicon-minus-sign"></span>
+                        {% verbatim %}{{ error }}{% endverbatim %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+
+                        <div class="controls">
+                            <input class="form-control" type="text" id="username" name="username" data-ng-model="username" required="required" {% if invalid_username is defined %}value="{{ invalid_username |e }}"{% endif %} autofocus />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-default" href="javascript: history.back()">
+                        {{ 'Cancel' | trans({}, 'ZymUserBundle') }}
+                    </a>
+
+                    <button class="btn btn-primary" type="submit" id="_submit" name="_submit" data-ng-disabled="loading">
+                        <span class="activity" data-ng-if="loading"></span>
+                        {{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

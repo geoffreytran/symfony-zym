@@ -1,15 +1,16 @@
 @import "../base.less";
+
 html, body {
-    background: #EEE url(../../images/background.jpg) no-repeat center center fixed;
+    background:              #EEE url(../../images/background.jpg) no-repeat center center fixed;
     -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
+    -moz-background-size:    100%;
+    -o-background-size:      100%;
+    background-size:         100%;
     -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100%;
+    -moz-background-size:    cover;
+    -o-background-size:      cover;
+    background-size:         cover;
+    height:                  100%;
 }
 
 #header {
@@ -18,79 +19,91 @@ html, body {
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    position:   absolute;
+    top:        0;
+    left:       0;
+    right:      0;
+    z-index:    10;
     margin-top: 20px;
 }
 
 /* Remove border and change up box shadow for more contrast */
 .navbar .navbar-inner {
-    border: 0;
-    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-       -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    border:             0;
+    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+    -moz-box-shadow:    0 2px 10px rgba(0, 0, 0, .25);
+    box-shadow:         0 2px 10px rgba(0, 0, 0, .25);
 }
 
-
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  /* Fixed navbar */
-  padding-top: 70px;
+    /* Fixed navbar */
+    padding-top: 10px;
 }
 
 /* Wrapper for page content to push down footer */
 #wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -67px;
+    min-height: 100%;
+    height:     auto !important;
+    height:     100%;
+    /* Negative indent footer by it's height */
+    margin:     0 auto -67px;
 }
 
 /* Set the fixed height of the footer here */
 #push,
 #footer {
-  margin-top: 30px;
-  height: 37px;
+    margin-top: 30px;
+    height:     37px;
 }
 
 #footer {
-  background-color: #f9f9f9;
-  .box-shadow(inset 0px 2px 10px -2px rgba(0,0,0,.85));
+    background-color: #f9f9f9;
+    .box-shadow(inset 0px 2px 10px -2px rgba(0, 0, 0, .85));
 }
 
 #footer > .container {
-  padding-top: 7px;
+    padding-top: 7px;
 }
 
 .navbar .navbar-brand {
-  background: url(../../images/logo.png) no-repeat left;
-  font-size: 20px;
-  text-shadow: 0 1px 0 white;
-  height: 19px;
-  width: 80px;
-  display: inline-block;
-  text-indent: -9999px;
-  margin-top: 9px;
-  margin-left: 15px;
+    background:  url(../../images/logo.png) no-repeat left;
+    font-size:   20px;
+    text-shadow: 0 1px 0 white;
+    height:      19px;
+    width:       80px;
+    display:     inline-block;
+    text-indent: -9999px;
+    margin-top:  9px;
+    margin-left: 15px;
 }
 
 .navbar-inverse .navbar-brand {
-  background: url(../../images/logo-inverse.png) no-repeat left;
+    background: url(../../images/logo-inverse.png) no-repeat left;
 }
 
 .navbar .navbar-brand img {
-  display: none;
+    display: none;
 }
 
-@media (min-width: 768px) {
-  .navbar > .container .navbar-brand {
-    margin-left: 0px;
-  }
+@media (max-width: @screen-xs-max) {
+    #wrap > .container {
+        padding-left:  0;
+        padding-right: 0;
+    }
 }
+
+@media (min-width: @screen-sm-min) {
+    body {
+        /* Fixed navbar */
+        padding-top: 70px;
+    }
+
+    .navbar > .container .navbar-brand {
+        margin-left: 0px;
+    }
+}
+

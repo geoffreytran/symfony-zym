@@ -1,0 +1,35 @@
+<div class="modal-dialog" data-ng-controller="ResettingResetCtrl" data-ng-class="{'animated shake': error, 'animated fadeIn': error == null && !loading, 'animated bounceOut': success}" data-ng-cloak>
+    <div class="modal-content">
+        <div class="modal" style="position: static; margin: 0 auto; display: block;">
+            <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_resetting_reset" data-ng-submit="submit($event)">
+                <div class="modal-header">
+                    <h1>
+                        {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
+                        <small>{{ 'Reset your password.' | trans({}, 'ZymUserBundle') }}</small>
+                    </h1>
+                </div>
+
+                <div class="modal-body">
+                    <div class="alert alert-danger alert-dismissable" data-ng-if="error" data-ng-class="{'animated fadeIn': error}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <span class="glyphicon glyphicon-minus-sign"></span>
+                        {% verbatim %}{{ error }}{% endverbatim %}
+                    </div>
+
+                    {{ form_row(form.plainPassword.first, { 'attr': { 'autofocus': 'autofocus', 'ng-model': 'password'} }) }}
+                    {{ form_row(form.plainPassword.second, { 'attr': { 'ng-model': 'confirmPassword'} }) }}
+
+                    {{ form_rest(form) }}
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary" type="submit" id="_submit" name="_submit" data-ng-disabled="loading">
+                        <span class="activity" data-ng-if="loading"></span>
+                        {{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

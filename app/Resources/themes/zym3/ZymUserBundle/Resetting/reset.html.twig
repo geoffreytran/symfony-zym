@@ -1,26 +1,11 @@
-{% extends "::anonymous.html.twig" %}
+{% extends "ZymUserBundle::anonymous.html.twig" %}
 
 {% block title %}{{ 'Recover Account' | trans({}, 'FOSUserBundle') }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>
-                    {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
-                    <small>{{ 'Reset your password.' | trans({}, 'ZymUserBundle') }}</small>
-                </h1>
-            </div>
-        </div>
-    </div>
-
-    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-        {{ form_widget(form) }}
-
-        <fieldset class="form-actions">
-            <input type="submit" class="btn btn-primary" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" />
-        </fieldset>
-    </form>
+    {% if app.request.query.has('_escaped_fragment_') %}
+        {% include 'ZymUserBundle:Resetting:reset.ajax.twig' %}
+    {% endif %}
 {% endblock %}
 
 {% block inlineScripts %}

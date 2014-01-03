@@ -420,6 +420,8 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
         else
           log "Could not find Symfony2 migrations: " + migrations_path
         end
+      else
+        log "Migrations not run because it doesn't look like database has been initiated."
       end
 
       # Install assets

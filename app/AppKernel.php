@@ -20,13 +20,28 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 //            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
 
+            // Symfony CMF
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+            new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
+            new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
+            new Symfony\Cmf\Bundle\SimpleCmsBundle\CmfSimpleCmsBundle(),
+            new Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
+            new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
+
             // Symfony Extra
             new JMS\SerializerBundle\JMSSerializerBundle($this),
 
+            // Sonata
+            new Sonata\BlockBundle\SonataBlockBundle(),
+
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
+            new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
@@ -61,6 +76,7 @@ class AppKernel extends Kernel
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
             new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
+            new Zym\Bundle\ContentBundle\ZymContentBundle(),
         );
 
         if (in_array($this->getEnvironment(), $this->debugEnvironments)) {

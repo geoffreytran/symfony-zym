@@ -37,9 +37,7 @@ default_attributes({
     :traceenable          => "Off"
   },
 
-  :php => {
-    :directives => {
-        "date.timezone" => "UTC",
+
 
         "apc.shm_size" => "256M",
         "apc.write_lock" => 1,
@@ -54,6 +52,7 @@ default_attributes({
 
         "xdebug.cli_color" => 1,
         "xdebug.coverage_enable" => 0,
+        "xdebug.profiler_enable_trigger" => 1
     },
     :ext_conf_dir => "/etc/php5/mods-available" # php54
   },

@@ -30,7 +30,7 @@
         {{ form_rest(form) }}
 
         <fieldset class="form-actions">
-            <button class="btn btn-primary" type="submit">{{ 'Save changes' | trans({}, 'ZymMailBundle') }}</button>
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> <span class="glyphicon glyphicon-floppy-disk"></span> {{ 'Save changes' | trans({}, 'ZymMailBundle') }}</button>
             <button class="btn btn-default" type="button" onclick="history.back();">{{ 'Cancel' | trans({}, 'ZymMailBundle') }}</button>
         </fieldset>
     </form>

@@ -5,10 +5,10 @@ imports:
     - { resource: defaults.ini }
     - { resource: ../../config/parameters.ini, ignore_errors: true}
 
-    - { resource: ../../config/db.xml, ignore_errors: false }
+    - { resource: ../../config/db.xml,    ignore_errors: false }
     - { resource: ../../config/cache.xml, ignore_errors: true }
-    - { resource: ../../config/cdn.xml, ignore_errors: true }
-    - { resource: ../../config/mail.xml, ignore_errors: true }
+    - { resource: ../../config/cdn.xml,   ignore_errors: true }
+    - { resource: ../../config/mail.xml,  ignore_errors: true }
     - { resource: ../../config/queue.xml, ignore_errors: true }
 
 parameters:
@@ -24,7 +24,7 @@ framework:
     csrf_protection: ~
     validation:      { enable_annotations: true }
     templating:
-        engines: ['twig', 'php']
+        engines: ['twig']
         assets_version: %assets.version%
         assets_base_urls: %assets.base_urls%
     translator:
@@ -45,18 +45,21 @@ twig:
     form:
         resources:
             - 'MopaBootstrapBundle:Form:fields.html.twig'
+    exception_controller: FOS\RestBundle\Controller\ExceptionController::showAction
 
 # Assetic Configuration
 assetic:
     debug: %kernel.debug%
     use_controller: false
-    bundles:        [ ]
+    bundles: ['CmfCreateBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
         less:
             node: %assetic.less.node_bin%
             node_paths: [%assetic.less.node_paths%]
+        uglifycss: ~
+        uglifyjs2: ~
         yui_css:
             jar:  %assetic.yuicompressor.jar%
         yui_js:
@@ -75,11 +78,23 @@ doctrine:
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
     orm:
-        auto_generate_proxy_classes: false
+        auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
             default:
                 auto_mapping: true
                 connection: default
+
+doctrine_phpcr:
+    # Configure the PHPCR session
+    session:
+        backend:   %db.phpcr.backend%
+        workspace: %db.phpcr.workspace%
+        username:  %db.phpcr.user%
+        password:  %db.phpcr.password%
+    # Enable the ODM layer
+    odm:
+        auto_mapping: true
+        auto_generate_proxy_classes: %kernel.debug%
 
 stof_doctrine_extensions:
     default_locale: en_US
@@ -114,7 +129,12 @@ knp_menu:
     twig: true
 
 jms_security_extra:
-    expressions: true
+    # Enabling this setting will add an additional special attribute "ROLE_IDDQD".
+    # Anybody with this attribute will effectively bypass all security checks.
+    enable_iddqd_attribute: false
+
+    # Enables expression language
+    expressions: false
 
 jms_serializer:
     metadata:
@@ -149,6 +169,10 @@ fos_rest:
     format_listener: true
     view:
         view_response_listener: true
+        templating_formats:
+            html: true
+            ajax: true
+
 
 fos_user:
     db_driver: orm
@@ -179,8 +203,56 @@ knp_gaufrette:
         default:
             adapter:    default
 
-twig:
-    exception_controller: FOS\RestBundle\Controller\ExceptionController::showAction
+cmf_core:
+    persistence:
+        phpcr:
+            enabled: true
+            basepath: /cms
+    publish_workflow:
+        enabled: false
+
+cmf_routing:
+    chain:
+        routers_by_id:
+            cmf_routing.dynamic_router: 20
+            router.default: 100
+    dynamic:
+        controllers_by_type:
+            demo_type: sandbox_main.controller:typeAction
+        controllers_by_class:
+            Sandbox\MainBundle\Document\DemoClassContent: sandbox_main.controller:classAction
+            Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute:  cmf_routing.redirect_controller:redirectAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: cmf_blog.blog_controller:listAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Post: cmf_blog.blog_controller:viewPostAction
+
+        templates_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent: SandboxMainBundle:StaticContent:index.html.twig
+
+cmf_simple_cms:
+    persistence:
+        phpcr:
+            enabled: true
+            basepath: /cms/content
+    routing:
+        templates_by_class:
+            Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:  ZymContentBundle:Pages:page.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
 
 zym_media:
     db_driver: orm
@@ -205,6 +277,7 @@ zym_user:
 zym_theme:
     theme_map:
         - { path: ^/, theme: zym3 }
+        - { path: ^/admin, theme: zym3 }
 
 zym_resque:
     redis:

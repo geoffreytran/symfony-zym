@@ -4,10 +4,20 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services
                         http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <!-- Default database connection -->
         <parameter key="db.default.driver"></parameter>
         <parameter key="db.default.dbname"></parameter>
         <parameter key="db.default.host"></parameter>
         <parameter key="db.default.user"></parameter>
         <parameter key="db.default.password"></parameter>
+
+        <!-- PHP CR connection -->
+        <parameter key="db.phpcr.backend" type="collection">
+            <parameter key="type">doctrinedbal</parameter>
+            <parameter key="connection">default</parameter>
+        </parameter>
+        <parameter key="db.phpcr.workspace">default</parameter>
+        <parameter key="db.phpcr.user"></parameter>
+        <parameter key="db.phpcr.password"></parameter>
     </parameters>
 </container>

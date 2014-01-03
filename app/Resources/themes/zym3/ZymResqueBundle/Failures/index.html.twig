@@ -3,7 +3,7 @@
 {% block title %}{{ 'Queue Job Failures' | trans({}, 'ZymResqueBundle') }}{% endblock %}
 
 {% block content %}
-    <section ng-controller="QueueJobFailuresCtrl" ng-cloak>
+    <section data-ng-controller="QueueJobFailuresCtrl" data-ng-cloak>
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header">
@@ -36,13 +36,13 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="gridStyle" ng-grid="gridOptions" style="min-height: 600px"></div>
+                        <div class="gridStyle" data-ng-grid="gridOptions" style="min-height: 600px"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6" ng-switch="!mySelections[0]">
-                <div class="panel panel-danger" ng-switch-when="false">
+            <div class="col-md-6" data-ng-switch="!mySelections[0]">
+                <div class="panel panel-danger" data-ng-switch-when="false">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             Failure Details
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div ng-switch-default>
+                <div data-ng-switch-default>
                     <div class="alert alert-info">
                         <span class="glyphicon glyphicon-info-sign"></span>
                         Select a record to view its details.
@@ -171,27 +171,27 @@
                     enablePinning: false,
                     
                     {% raw %}
-                    footerTemplate: '<div ng-show="showFooter" class="ngFooterPanel" ng-class="{\'ui-widget-content\' : jqueryUITheme, \'ui-corner-bottom\': jqueryUITheme}" ng-style="footerStyle()">\
-                                        <div class="ngPagerContainer" style="float: right; margin-top: 10px;" ng-show="enablePaging" ng-class="{\'ngNoMultiSelect\': !multiSelect}">\
+                    footerTemplate: '<div data-ng-show="showFooter" class="ngFooterPanel" data-ng-class="{\'ui-widget-content\' : jqueryUITheme, \'ui-corner-bottom\': jqueryUITheme}" data-ng-style="footerStyle()">\
+                                        <div class="ngPagerContainer" style="float: right; margin-top: 10px;" data-ng-show="enablePaging" data-ng-class="{\'ngNoMultiSelect\': !multiSelect}">\
                                             <div class="hidden-xs hidden-sm hidden-md" style="float:left; margin-right: 10px;" class="ngRowCountPicker">\
                                                 <span style="float: left; margin-top: 3px;" class="ngLabel">{{i18n.ngPageSizeLabel}}</span>\
-                                                <select style="margin-top: 4px; width: 55px; margin-left: 5px;" ng-model="pagingOptions.pageSize" >\
-                                                    <option ng-repeat="size in pagingOptions.pageSizes">{{size}}</option>\
+                                                <select style="margin-top: 4px; width: 55px; margin-left: 5px;" data-ng-model="pagingOptions.pageSize" >\
+                                                    <option data-ng-repeat="size in pagingOptions.pageSizes">{{size}}</option>\
                                                 </select>\
                                             </div>\
                                             <div style="float:left; margin-right: 10px; line-height:25px;" class="ngPagerControl" style="float: left; min-width: 135px;">\
-                                                <button class="btn btn-default btn-xs" ng-click="pageToFirst()" ng-disabled="cantPageBackward()" title="{{i18n.ngPagerFirstTitle}}"><span class="glyphicon glyphicon-fast-backward"></span></button>\
-                                                <button class="btn btn-default btn-xs" ng-click="pageBackward()" ng-disabled="cantPageBackward()" title="{{i18n.ngPagerPrevTitle}}"><span class="glyphicon glyphicon-backward"></button>\
-                                                Page <input class="ngPagerCurrent " min="1" max="{{ maxPages() < 1 ? 1 : maxPages() }}" type="text" style="width:40px; height: 24px; margin-top: 1px; line-height: 1em; padding: 0 4px;" ng-model="pagingOptions.currentPage"/> of {{ maxPages() < 1 ? 1 : maxPages() }}\
-                                                <button class="btn btn-default btn-xs" ng-click="pageForward()" ng-disabled="cantPageForward()" title="{{i18n.ngPagerNextTitle}}"><span class="glyphicon glyphicon-forward"></button>\
-                                                <button class="btn btn-default btn-xs" ng-click="pageToLast()" ng-disabled="cantPageToLast()" title="{{i18n.ngPagerLastTitle}}"><span class="glyphicon glyphicon-fast-forward"></button>\
+                                                <button class="btn btn-default btn-xs" data-ng-click="pageToFirst()" data-ng-disabled="cantPageBackward()" title="{{i18n.ngPagerFirstTitle}}"><span class="glyphicon glyphicon-fast-backward"></span></button>\
+                                                <button class="btn btn-default btn-xs" data-ng-click="pageBackward()" data-ng-disabled="cantPageBackward()" title="{{i18n.ngPagerPrevTitle}}"><span class="glyphicon glyphicon-backward"></button>\
+                                                Page <input class="ngPagerCurrent " min="1" max="{{ maxPages() < 1 ? 1 : maxPages() }}" type="text" style="width:40px; height: 24px; margin-top: 1px; line-height: 1em; padding: 0 4px;" data-ng-model="pagingOptions.currentPage"/> of {{ maxPages() < 1 ? 1 : maxPages() }}\
+                                                <button class="btn btn-default btn-xs" data-ng-click="pageForward()" data-ng-disabled="cantPageForward()" title="{{i18n.ngPagerNextTitle}}"><span class="glyphicon glyphicon-forward"></button>\
+                                                <button class="btn btn-default btn-xs" data-ng-click="pageToLast()" data-ng-disabled="cantPageToLast()" title="{{i18n.ngPagerLastTitle}}"><span class="glyphicon glyphicon-fast-forward"></button>\
                                             </div>\
                                         </div>\
                                         <div class="ngTotalSelectContainer" >\
-                                            <div class="ngFooterTotalItems" ng-class="{\'ngNoMultiSelect\': !multiSelect}" >\
-                                                <span class="ngLabel">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span ng-show="filterText.length > 0" class="ngLabel">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>\
+                                            <div class="ngFooterTotalItems" data-ng-class="{\'ngNoMultiSelect\': !multiSelect}" >\
+                                                <span class="ngLabel">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span data-ng-show="filterText.length > 0" class="ngLabel">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>\
                                             </div>\
-                                            <div class="ngFooterSelectedItems" ng-show="multiSelect">\
+                                            <div class="ngFooterSelectedItems" data-ng-show="multiSelect">\
                                                 <span class="ngLabel">{{i18n.ngSelectedItemsLabel}} {{selectedItems.length}}</span>\
                                             </div>\
                                         </div>\

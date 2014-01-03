@@ -1,6 +1,8 @@
 @import "bootstrap/bootstrap.less";
 @import "modals.less";
 @import "ng-grid.less";
+@import "animate.less";
+@import "messenger.less";
 @import "variables.less";
 
 /*
@@ -10,6 +12,7 @@
 /* White Plum [http://code.divshot.com/bootstrap-theme-white-plum] */
 @import "themes/white-plum/variables.less";
 @import "themes/white-plum/theme.less";
+@import "themes/white-plum/messenger.less"; /* messenger.js */
 @import "themes/white-plum/pace.less"; /* pace.js */
 @import "themes/white-plum/offline.less"; /* offline.js */
 
@@ -20,10 +23,69 @@
 /* selectize.js */
 @import "selectize/selectize.bootstrap3.less";
 
-
 /*
  * General
  */
+
+h1 small, 
+h2 small, 
+h3 small, 
+h4 small, 
+h5 small, 
+h6 small, 
+.h1 small, 
+.h2 small, 
+.h3 small, 
+.h4 small, 
+.h5 small, 
+.h6 small, 
+h1 .small, 
+h2 .small, 
+h3 .small, 
+h4 .small, 
+h5 .small, 
+h6 .small, 
+.h1 .small, 
+.h2 .small, 
+.h3 .small, 
+.h4 .small, 
+.h5 .small, 
+.h6 .small {
+    display: block;
+}
+
+.modal-title {
+    line-height: 1.1;
+}
+
+@media (min-width: @screen-sm-min) {
+    h1 small,
+    h2 small,
+    h3 small,
+    h4 small,
+    h5 small,
+    h6 small,
+    .h1 small,
+    .h2 small,
+    .h3 small,
+    .h4 small,
+    .h5 small,
+    .h6 small,
+    h1 .small,
+    h2 .small,
+    h3 .small,
+    h4 .small,
+    h5 .small,
+    h6 .small,
+    .h1 .small,
+    .h2 .small,
+    .h3 .small,
+    .h4 .small,
+    .h5 .small,
+    .h6 .small {
+        display: inline-block;
+    }
+}
 
 @media (min-width: 1600px) {
     .container {
@@ -31,13 +93,141 @@
     }
 }
 
-.btn-primary, .btn-danger {
-    padding-left: 30px;
+.btn,
+.btn:hover,
+.btn:focus,
+.btn.active {
+    .transition(background linear 200ms);
+}
+
+.btn-primary,
+.btn-danger {
+    padding-left:  30px;
     padding-right: 30px;
 }
 
+.btn .glyphicon {
+    margin-right: 7px;
+}
+
+.btn .activity {
+    display:           inline-block;
+    margin-left: -15px;
+    margin-right: 10px;
+    margin-top: 3px;
+    float: left;
+    width:             14px;
+    height:            14px;
+    border:            solid 2px transparent;
+    border-top-color:  #FFF;
+    border-left-color: #FFF;
+    border-radius:     10px;
+    -webkit-animation: btn-activity-spinner 400ms linear infinite;
+    -moz-animation:    btn-activity-spinner 400ms linear infinite;
+    -ms-animation:     btn-activity-spinner 400ms linear infinite;
+    -o-animation:      btn-activity-spinner 400ms linear infinite;
+    animation:         btn-activity-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes btn-activity-spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform:         rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:         rotate(360deg);
+    }
+}
+
+@-moz-keyframes btn-activity-spinner {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform:      rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform:      rotate(360deg);
+    }
+}
+
+@-o-keyframes btn-activity-spinner {
+    0% {
+        -o-transform: rotate(0deg);
+        transform:    rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform:    rotate(360deg);
+    }
+}
+
+@-ms-keyframes btn-activity-spinner {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform:     rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform:     rotate(360deg);
+    }
+}
+
+@keyframes btn-activity-spinner {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
 .nav-stacked {
     margin-bottom: 20px;
+}
+
+.form-horizontal .form-vertical .control-label {
+    float:      none;
+    text-align: left;
+    width:      100%;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    border-width: 0;
+    border-bottom-width: 3px;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    border-color: #583ac8;
+}
+
+.pagination > .active.disabled > a,
+.pagination > .active.disabled > span,
+.pagination > .active.disabled > a:hover,
+.pagination > .active.disabled > span:hover,
+.pagination > .active.disabled > a:focus,
+.pagination > .active.disabled > span:focus {
+    border-color: #7a62d3;
+}
+
+.pagination > li > a,
+.pagination > li > a:hover,
+.pagination > li > span,
+.pagination > li > span:hover,
+.pagination > li > a,
+.pagination > li > a:focus,
+.pagination > li > span
+.pagination > li > span:focus {
+    .transition(background linear 100ms);
 }
 
 /* Internet Explorer 10 doesn't differentiate device width from viewport width, 
@@ -63,3 +253,12 @@
 
 .google-map-canvas,
 .google-map-canvas * { .box-sizing(content-box); }
+
+
+/* Angular Cloak */
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+.ng-cloak {
+    display: none !important;
+}

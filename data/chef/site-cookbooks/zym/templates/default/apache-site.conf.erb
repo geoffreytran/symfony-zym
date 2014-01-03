@@ -64,9 +64,11 @@
     
     <IfModule php5_module>
         <% if @params[:environment] == "dev" %>
-        php_flag display_errors on
-        php_flag html_errors on
+        php_value error_reporting 32767
+        php_flag  display_errors on
+        php_flag  html_errors on
         <% end %>
         php_value newrelic.appname "<%= @params[:server_name] %>"
+        php_flag  newrelic.capture_params on
     </IfModule>
 </VirtualHost>

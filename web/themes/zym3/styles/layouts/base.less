@@ -6,7 +6,7 @@ html, body {
 
 body {
     /* Fixed navbar */
-    padding-top: 70px;
+    padding-top: 30px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -54,7 +54,12 @@ body {
     display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: @screen-sm-min) {
+    body {
+        /* Fixed navbar */
+        padding-top: 70px;
+    }
+
     .navbar > .container .navbar-brand {
         margin-left: 0px;
     }
