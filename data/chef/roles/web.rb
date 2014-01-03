@@ -37,7 +37,9 @@ default_attributes({
     :traceenable          => "Off"
   },
 
-
+  :php => {
+    :directives => {
+        "date.timezone" => "UTC",
 
         "apc.shm_size" => "256M",
         "apc.write_lock" => 1,
