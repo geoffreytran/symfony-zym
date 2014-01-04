@@ -48,9 +48,9 @@ package "php5-memcached" do
 end
 
 # install the mongodb pecl
-php_pear "mongo" do
-  action :install
-end
+#php_pear "mongo" do
+#  action :install
+#end
 
 # install apc pecl with directives
 package "libpcre3-dev" do
