@@ -24,7 +24,7 @@ run_list(
   "recipe[apache2::mod_expires]",
   "recipe[apache2::mod_headers]",
   "recipe[apache2::mod_rewrite]",
-  "recipe[apache2::mod_setenvif]",
+  "recipe[apache2::mod_setenvif]"
 #  "recipe[apache2::mod_xsendfile]",
 #  "recipe[apache2::mod_ssl]"
 )
