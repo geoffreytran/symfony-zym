@@ -26,7 +26,7 @@ run_list(
   "recipe[apache2::mod_rewrite]",
   "recipe[apache2::mod_setenvif]",
 #  "recipe[apache2::mod_xsendfile]",
-  "recipe[apache2::mod_ssl]"
+#  "recipe[apache2::mod_ssl]"
 )
 
 # Attributes applied if the node doesn't have it set already.
@@ -40,6 +40,9 @@ default_attributes({
   :php => {
     :directives => {
         "date.timezone" => "UTC",
+
+        "upload_max_filesize" => "256M",
+        "post_max_size"       => "256M",
 
         "apc.shm_size" => "256M",
         "apc.write_lock" => 1,
