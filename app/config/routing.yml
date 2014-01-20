@@ -1,4 +1,4 @@
-ZymContentBundle:
+zym_content:
     resource: "@ZymContentBundle/Resources/config/routing.xml"
     prefix:   /admin/content
 
@@ -20,100 +20,96 @@ LiipMonitorBundle:
     resource: "@LiipMonitorBundle/Resources/config/routing.yml"
     prefix: /monitor/health
 
-ZymResqueBundle:
+zym_resque:
     resource: "@ZymResqueBundle/Resources/config/routing.xml"
     prefix: /admin/queue
 
-ZymMediaBundle:
+zym_media:
     resource: "@ZymMediaBundle/Resources/config/routing/media.xml"
     prefix: /admin/media
 
-ZymMediaBundleCDN:
+zym_media_cdn:
     resource: "@ZymMediaBundle/Resources/config/routing/media_cdn.xml"
     prefix: /media
 
-ZymFieldBundleFields:
+zym_field_fields:
     resource: "@ZymFieldBundle/Resources/config/routing/fields.xml"
     prefix:   /admin/structure/fields
 
-ZymMailBundleConfig:
+zym_mail:
     resource: "@ZymMailBundle/Resources/config/routing/config.xml"
     prefix:   /admin/config/mail
 
-ZymMenuBundleMenus:
+zym_menu_menus:
     resource: "@ZymMenuBundle/Resources/config/routing/menus.xml"
     prefix:   /admin/structure/menus
 
-ZymMenuBundleCategories:
+zym_menu_categories:
     resource: "@ZymMenuBundle/Resources/config/routing/categories.xml"
     prefix:   /menu/categories
 
-ZymRouterBundle:
+zym_router:
     resource: "@ZymRouterBundle/Resources/config/routing.xml"
     prefix:   /admin/config/routes
 
-ZymSecurityBundleAccessRules:
+zym_security_access_rules:
     resource: "@ZymSecurityBundle/Resources/config/routing/access_rules.xml"
     prefix:   /admin/config/security/access-rules
 
-ZymSecurityBundleAclRoles:
+zym_security_acl_roles:
     resource: "@ZymSecurityBundle/Resources/config/routing/acl_roles.xml"
     prefix:   /admin/config/security/roles
 
-ZymSecurityBundleAclObjectAces:
+zym_security_acl_object_aces:
     resource: "@ZymSecurityBundle/Resources/config/routing/acl_object_aces.xml"
     prefix:   /admin/config/security/objects
 
-ZymSecurityBundleAclEntries:
+zym_security_acl_entries:
     resource: "@ZymSecurityBundle/Resources/config/routing/acl_entries.xml"
     prefix:   /admin/config/security/entries
 
-ZymNodeBundleNodeTypes:
-    resource: "@ZymNodeBundle/Resources/config/routing/node_types.xml"
-    prefix:   /admin/structure/content-types
-
-ZymNodeBundleNodes:
+zym_node:
     resource: "@ZymNodeBundle/Resources/config/routing/nodes.xml"
     prefix:   /admin/content
 
-ZymUserBundleUsers:
+zym_node_node_types:
+    resource: "@ZymNodeBundle/Resources/config/routing/node_types.xml"
+    prefix:   /admin/structure/content-types
+
+zym_user_users:
     resource: "@ZymUserBundle/Resources/config/routing/users.xml"
     prefix:   /admin/users
 
-ZymUserBundleGroups:
+zym_user_groups:
     resource: "@ZymUserBundle/Resources/config/routing/groups.xml"
     prefix:   /admin/groups
 
-ZymUserBundleResetting:
+zym_user_resetting:
     resource: "@ZymUserBundle/Resources/config/routing/resetting.xml"
     prefix:   /account/forgot
 
-ZymRuntimeConfigBundleParameters:
+zym_runtime_config_parameters:
     resource: "@ZymRuntimeConfigBundle/Resources/config/routing/parameters.xml"
     prefix:   /admin/config/parameters
 
-ZymThemeBundleThemeRules:
+zym_theme_theme_rules:
     resource: "@ZymThemeBundle/Resources/config/routing/theme_rules.xml"
     prefix:   /admin/structure/themes
 
-FOSJsRoutingBundle:
+fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-FOSUserBundleSecurity:
+fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-#FOSUserBundleGroups:
+#fos_user_group:
 #    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
 #    prefix:   /groups
 
-FOSUserBundleRegistration:
+fos_user_registration:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix:   /register
 
-FOSUserBundleResetting:
-    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix:   /account/forgot
-
-FOSUserBundleChangePassword:
+fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix:   /account/password

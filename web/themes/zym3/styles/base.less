@@ -15,6 +15,10 @@
 @import "themes/white-plum/messenger.less"; /* messenger.js */
 @import "themes/white-plum/pace.less"; /* pace.js */
 @import "themes/white-plum/offline.less"; /* offline.js */
+@import "themes/white-plum/overrides.less";
+
+/* Flat UI [https://github.com/designmodo/Flat-UI] */
+//@import "themes/flat/flat-ui.less";
 
 /*
  * Javascript Libraries
@@ -184,7 +188,6 @@ h6 .small,
     }
 }
 
-
 .nav-stacked {
     margin-bottom: 20px;
 }
@@ -193,30 +196,6 @@ h6 .small,
     float:      none;
     text-align: left;
     width:      100%;
-}
-
-.pagination > li > a,
-.pagination > li > span {
-    border-width: 0;
-    border-bottom-width: 3px;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-    border-color: #583ac8;
-}
-
-.pagination > .active.disabled > a,
-.pagination > .active.disabled > span,
-.pagination > .active.disabled > a:hover,
-.pagination > .active.disabled > span:hover,
-.pagination > .active.disabled > a:focus,
-.pagination > .active.disabled > span:focus {
-    border-color: #7a62d3;
 }
 
 .pagination > li > a,

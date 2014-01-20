@@ -11,7 +11,15 @@ run_list(
   "recipe[git]",
   "recipe[subversion]",
   "recipe[build-essential]",
-  "recipe[users::sysadmins]"
+  "recipe[users::sysadmins]",
+
+  "recipe[java]",
+  "recipe[php54]",
+  "recipe[php]",
+  "recipe[sqlite]",
+  "recipe[nodejs]",
+  "recipe[nodejs::npm]",
+  "recipe[lesscss]"
 )
 
 if not Chef::Config[:solo]

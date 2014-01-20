@@ -8,11 +8,19 @@ run_list(
   "recipe[mysql]",
   "recipe[mysql::server]",
   "recipe[mysql_charset]",
+  "recipe[mysql_timezone]",
+
   "recipe[database::mysql]"
 )
 
 # Attributes applied if the node doesn't have it set already.
-#default_attributes()
+default_attributes({
+  :mysql => {
+    :allow_remote_root      => false,
+    :remove_anonymous_users => true,
+    :remove_test_database   => true
+  }
+})
 
 # Attributes applied no matter what the node has set already.
 #override_attributes()

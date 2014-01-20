@@ -1441,12 +1441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/geoffreytran/zym.git",
-                "reference": "8aade44d3f2f79159e64e1306ae2154d97302b97"
+                "reference": "8187a4f645772ca50ec87dd2420741b4d914f96b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geoffreytran/zym/zipball/8aade44d3f2f79159e64e1306ae2154d97302b97",
-                "reference": "8aade44d3f2f79159e64e1306ae2154d97302b97",
+                "url": "https://api.github.com/repos/geoffreytran/zym/zipball/8187a4f645772ca50ec87dd2420741b4d914f96b",
+                "reference": "8187a4f645772ca50ec87dd2420741b4d914f96b",
                 "shasum": ""
             },
             "require": {
@@ -1476,7 +1476,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-12-26 15:11:42"
+            "time": "2014-01-20 21:09:47"
         },
         {
             "name": "guzzle/guzzle",

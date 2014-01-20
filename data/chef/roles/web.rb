@@ -5,14 +5,6 @@ description "Configures the node as a webserver."
 run_list(
   "role[default]",
 
-  "recipe[java]",
-  "recipe[php54]",
-  "recipe[php]",
-  "recipe[sqlite]",
-  "recipe[nodejs]",
-  "recipe[nodejs::npm]",
-  "recipe[lesscss]",
-
   "recipe[apache2]",
   "recipe[apache2::mod_php5]",
   "recipe[apache2::mod_access_compat]",

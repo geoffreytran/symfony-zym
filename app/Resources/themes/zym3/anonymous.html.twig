@@ -147,8 +147,8 @@
                                 </ul>
                             </li>
                         {% else %}
-                            <li><a class="register" href="{{ path('fos_user_registration_register') }}">{{ 'Register' | trans }}</a></li>
-                            <li><a class="login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
+                            <li><a class="link-register" href="{{ path('fos_user_registration_register') }}" target="_self">{{ 'Register' | trans }}</a></li>
+                            <li><a class="link-login"    href="{{ path('fos_user_security_login') }}">{{ 'Log in' | trans }}</a></li>
                         {% endif %}
                     </ul>
                 </div>
