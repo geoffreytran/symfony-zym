@@ -22,6 +22,16 @@ package "php5-sqlite" do
   action :install
 end
 
+# install sybase/mssql
+package "php5-sybase" do
+    action :install
+end
+
+# install odbc
+package "php5-odbc" do
+    action :install
+end
+
 # install gd
 package "php5-gd" do
   action :install
