@@ -314,10 +314,19 @@
         <script type="text/javascript" src="{{ asset('themes/zym3/scripts/selectize.min.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $('select').selectize({
-                      plugins: ['remove_button'],
-                      hideSelected: true
-                });
+                // HACK: AngularJS conflict onLoad. Timeout seems to solve the issue.
+                setTimeout(function(){
+                    // Initialize selectize
+                    $('select[multiple]:not([ng-selectize], [data-ng-selectize])').selectize({
+                        plugins: ['remove_button'],
+                        hideSelected: true
+                    });
+
+                    $('select:not([multiple]):not([ng-selectize], [data-ng-selectize])').selectize({
+                        plugins: ['remove_button'],
+                        hideSelected: false
+                    });
+                }, 1);
             });
         </script>
         <!-- End: Selectize.js -->
