@@ -12,7 +12,7 @@ SITE
     ark (0.4.2)
     aws (1.0.0)
     build-essential (1.4.2)
-    chef-client (3.2.0)
+    chef-client (3.2.2)
       cron (>= 1.2.0)
       logrotate (>= 1.2.0)
     chef_handler (1.1.4)
@@ -23,11 +23,11 @@ SITE
       postgresql (>= 1.0.0)
       xfs (>= 0.0.0)
     dmg (2.0.2)
-    ffmpeg (0.2.1)
+    ffmpeg (0.3.1)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
-      libvpx (~> 0.2.0)
-      x264 (~> 0.3.0)
+      libvpx (>= 0.0.0)
+      x264 (>= 0.0.0)
     git (2.9.0)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
@@ -40,10 +40,8 @@ SITE
     iis (2.0.0)
       windows (>= 1.2.6)
     imagemagick (0.2.2)
-    java (1.17.2)
-      aws (>= 0.0.0)
-      windows (>= 0.0.0)
-    libvpx (0.2.0)
+    java (1.19.2)
+    libvpx (0.3.2)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
     logrotate (1.4.0)
@@ -51,7 +49,7 @@ SITE
       runit (~> 1.0)
       yum (~> 3.0)
       yum-epel (>= 0.0.0)
-    mysql (4.0.14)
+    mysql (4.0.20)
       build-essential (~> 1.4)
       openssl (~> 1.1)
     nodejs (1.3.0)
@@ -65,9 +63,9 @@ SITE
       apt (>= 0.0.0)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
-    python (1.4.4)
+    python (1.4.6)
       build-essential (>= 0.0.0)
-      yum (>= 0.0.0)
+      yum-epel (>= 0.0.0)
     redisio (1.7.0)
       ulimit (>= 0.1.2)
     rsync (0.8.4)
@@ -86,15 +84,15 @@ SITE
     supervisor (0.4.2)
       python (>= 0.0.0)
     ulimit (0.3.2)
-    windows (1.12.6)
+    windows (1.12.8)
       chef_handler (>= 0.0.0)
-    x264 (0.3.0)
+    x264 (0.4.2)
       build-essential (>= 0.0.0)
       git (>= 0.0.0)
     xfs (1.1.0)
     xml (1.2.0)
       build-essential (>= 0.0.0)
-    yum (3.0.4)
+    yum (3.0.6)
     yum-epel (0.2.0)
       yum (~> 3.0)
 
@@ -117,9 +115,9 @@ GIT
 GIT
   remote: https://github.com/geoffreytran/chef-lesscss
   ref: master
-  sha: c0d6f30214a8c30617795673c84cbc1dade3ad1c
+  sha: 7555d10bc135e8d3d98a6189496e061d83a96ff0
   specs:
-    lesscss (0.0.1)
+    lesscss (0.0.2)
       npm (>= 0.0.0)
 
 GIT
@@ -164,9 +162,9 @@ GIT
 GIT
   remote: https://github.com/opscode-cookbooks/php
   ref: master
-  sha: 65b61802190481a08fc02956947d9109cbcc22d9
+  sha: 3346d3dfb0c28f1c63fd42943c3baf4be0dfadcc
   specs:
-    php (1.3.10)
+    php (1.3.13)
       build-essential (>= 0.0.0)
       iis (>= 0.0.0)
       mysql (>= 0.0.0)
