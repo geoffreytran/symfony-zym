@@ -5,5 +5,9 @@
 {% block content %}
     {% if app.request.query.has('_escaped_fragment_') %}
         {% include 'ZymUserBundle:Security:login.ajax.twig' %}
+    {% else %}
+    <script type="text/ng-template" id="{{ path('fos_user_security_login', { '_format': 'ajax' }) }}">
+        {% include 'ZymUserBundle:Security:login.ajax.twig' %}
+    </script>
     {% endif %}
 {% endblock %}

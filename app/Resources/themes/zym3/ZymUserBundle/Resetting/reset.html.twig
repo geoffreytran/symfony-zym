@@ -5,16 +5,9 @@
 {% block content %}
     {% if app.request.query.has('_escaped_fragment_') %}
         {% include 'ZymUserBundle:Resetting:reset.ajax.twig' %}
-    {% endif %}
-{% endblock %}
-
-{% block inlineScripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var password = $('#fos_user_resetting_form_plainPassword_first');
-            password.focus();
-        });
+    {% else %}
+        <script type="text/ng-template" id="{{ path('zym_user_resetting_reset', { '_format': 'ajax' }) }}">
+        {% include 'ZymUserBundle:Resetting:reset.ajax.twig' %}
     </script>
+    {% endif %}
 {% endblock %}

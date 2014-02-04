@@ -69,13 +69,14 @@
                          if (data.email !== undefined) {
                              $scope.success = true;
                              $state.go('account.resetting_check_email');
+                             $scope.loading = false;
                          } else {
                              $scope.loading = false;
                          }
                     })
                     .error(function(data, status){
-                       $scope.error    = data.message;
-                       $scope.loading  = false;
+                         $scope.error    = data.message;
+                         $scope.loading  = false;
                     });
                 };
 
@@ -85,7 +86,7 @@
                         return;
                     }
 
-                    $scope.error = false;
+                    $scope.error    = false;
                 });
             })
             .controller('ResettingResetCtrl', function($scope, $http, $state, $stateParams){
@@ -116,6 +117,7 @@
                     .success(function(data, status){
                          $scope.success = true;
                          $state.go('login');
+                         $scope.loading = false;
 
                          if (Messenger) {
                              Messenger().post('Your password has been successfully reset.');
@@ -156,6 +158,7 @@
                               if (data.redirectUrl !== undefined) {
                                   $scope.success = true;
                                   $window.location.href = data.redirectUrl;
+                                  $scope.loading = false;
                               } else {
                                   $scope.loading = false;
                               }

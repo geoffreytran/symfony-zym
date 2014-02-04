@@ -32,6 +32,10 @@
                 {% endblock -%}
             </title>
 
+            {% if app.request.baseUrl is not empty -%}
+            <base href="{{ app.request.baseUrl }}/" />
+            {% endif -%}
+
             <!-- Start: Links -->
             {% block headLinks -%}
             <link type="image/x-icon" rel="shortcut icon" href="{{ asset('themes/zym3/images/favicon.ico') }}" />
@@ -213,7 +217,7 @@
 
             <div class="container">
                 <!-- Start: Content -->
-                <section class="content" ui-view>
+                <section class="content" data-ui-view>
                     <noscript>
                         <div class="modal-dialog animated fadeIn">
                             <div class="modal-content">
@@ -333,6 +337,8 @@
                 "themes/zym3/scripts/http-auth-interceptor.js"
                 "themes/zym3/scripts/ui-bootstrap-tpls-0.10.0.js"
 
+                "bundles/fosjsrouting/js/router.js"
+
                 "themes/zym3/scripts/app.js"
             -%}
 
@@ -363,8 +369,7 @@
             <!-- End: Offline.js -->
 
             <!-- Start: FOSJsRoutingBundle -->
-            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-            <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            <script type="text/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
             <!-- End: FOSJsRoutingBundle -->
 
             <!-- Start: Selectize.js -->

@@ -5,5 +5,9 @@
 {% block content %}
     {% if app.request.query.has('_escaped_fragment_') %}
         {% include 'ZymUserBundle:Resetting:request.ajax.twig' %}
+    {% else %}
+    <script type="text/ng-template" id="{{ path('zym_user_resetting_request', { '_format': 'ajax' }) }}">
+        {% include 'ZymUserBundle:Resetting:request.ajax.twig' %}
+    </script>
     {% endif %}
 {% endblock %}
