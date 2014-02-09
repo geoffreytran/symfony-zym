@@ -74,7 +74,7 @@ cookbook 'rsync'
 cookbook 'ark'
 cookbook 'build-essential'
 cookbook 'sudo'
-
+cookbook 'nano'
 
 cookbook 'users',
   :git => 'https://github.com/opscode-cookbooks/users'

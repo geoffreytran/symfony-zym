@@ -7,6 +7,7 @@ run_list(
   "recipe[yum]",
   "recipe[screen]",
   "recipe[htop]",
+  "recipe[nano]",
   "recipe[rsync]",
   "recipe[git]",
   "recipe[subversion]",
