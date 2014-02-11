@@ -164,6 +164,7 @@ fos_rest:
         json: true
         xml: true
     allowed_methods_listener: true
+    disable_csrf_role: ROLE_API
     param_fetcher_listener: true
     body_listener: true
     format_listener: true
@@ -175,7 +176,6 @@ fos_rest:
         templating_formats:
             html: true
             ajax: true
-
 
 fos_user:
     db_driver: orm
@@ -286,7 +286,7 @@ zym_resque:
     redis:
         host: %queue.redis.host%                      # the redis host
         port: %queue.redis.port%                      # the redis port
-        #database: %queue.redis.database%              # the redis database
+        database: %queue.redis.database%              # the redis database
 
 #zym_search_elastica:
 #    clients:
