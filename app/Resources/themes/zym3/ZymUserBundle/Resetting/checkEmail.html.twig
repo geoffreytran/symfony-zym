@@ -5,10 +5,6 @@
 {% block content %}
     {% if app.request.query.has('_escaped_fragment_') %}
         {% include 'ZymUserBundle:Resetting:checkEmail.ajax.twig' %}
-    {% endif %}
-
-    {% if app.request.query.has('_escaped_fragment_') %}
-        {% include 'ZymUserBundle:Resetting:checkEmail.ajax.twig' %}
     {% else %}
     <script type="text/ng-template" id="{{ path('zym_user_resetting_check_email', { '_format': 'ajax' }) }}">
         {% include 'ZymUserBundle:Resetting:checkEmail.ajax.twig' %}

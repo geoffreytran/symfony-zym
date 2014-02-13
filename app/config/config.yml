@@ -140,23 +140,33 @@ jms_serializer:
     metadata:
         directories:
             FOSUserBundle:
-                namespace_prefix: "FOS\\UserBundle"
-                path: "@ZymUserBundle/Resources/config/serializer/fos-user-bundle"
+                namespace_prefix: 'FOS\\UserBundle'
+                path: '@ZymUserBundle/Resources/config/serializer/fos-user-bundle'
             KnpPaginator:
                 namespace_prefix: "Knp\\Component\\Pager\\"
-                path: "@ZymPaginatorBundle/Resources/config/serializer/knp-components-pager"
+                path: '@ZymPaginatorBundle/Resources/config/serializer/knp-components-pager'
             KnpPaginatorBundle:
-                namespace_prefix: "Knp\\Bundle\\PaginatorBundle"
-                path: "@ZymPaginatorBundle/Resources/config/serializer/knp-paginator-bundle"
+                namespace_prefix: 'Knp\\Bundle\\PaginatorBundle'
+                path: '@ZymPaginatorBundle/Resources/config/serializer/knp-paginator-bundle'
 liip_monitor:
     checks:
         disc_usage: ~
         php_extensions: [apc, curl, memcached, gd, imagick]
         writable_directory:
-          - %kernel.root_dir%/../data/cache
-          - %kernel.root_dir%/../data/indexes
-          - %kernel.root_dir%/../data/logs
-          - %kernel.root_dir%/../data/uploads
+            - %kernel.root_dir%/../data/cache
+            - %kernel.root_dir%/../data/indexes
+            - %kernel.root_dir%/../data/logs
+            - %kernel.root_dir%/../data/uploads
+
+fos_js_routing:
+    routes_to_expose:
+        - 'fos_user_security_login'
+        - 'fos_user_security_check'
+        - 'fos_user_security_logout'
+        - 'fos_user_resetting_request'
+        - 'fos_user_resetting_send_email'
+        - 'fos_user_resetting_check_email'
+        - 'fos_user_resetting_reset'
 
 fos_rest:
     access_denied_listener:
