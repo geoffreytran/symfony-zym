@@ -150,7 +150,7 @@ jms_serializer:
                 path: '@ZymPaginatorBundle/Resources/config/serializer/knp-paginator-bundle'
 liip_monitor:
     checks:
-        disc_usage: ~
+        disk_usage: ~
         php_extensions: [apc, curl, memcached, gd, imagick]
         writable_directory:
             - %kernel.root_dir%/../data/cache

@@ -20,9 +20,11 @@
         "sensio/generator-bundle": "~2.3",
 
         "symfony-cmf/symfony-cmf": "~1.0",
-        "symfony-cmf/block-bundle": "1.0.0-RC7",
         "symfony-cmf/simple-cms-bundle":"~1.0",
         "symfony-cmf/create-bundle": "~1.0",
+        "jackalope/jackalope": "~1.0",
+        "jackalope/jackalope-doctrine-dbal": "~1.0",
+        "sonata-project/block-bundle": "<2.2.7",
 
         "geoffreytran/zym": "dev-master",
         "nervo/yuicompressor": "dev-master",

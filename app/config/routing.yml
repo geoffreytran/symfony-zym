@@ -8,16 +8,16 @@ create:
 create_image:
     resource: "@CmfCreateBundle/Resources/config/routing/image.xml"
 
-PrestaSitemapBundle:
+presta_sitemap:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
 
-NelmioApiDocBundle:
+nelmio_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
 
-LiipMonitorBundle:
-    resource: "@LiipMonitorBundle/Resources/config/routing.yml"
+liip_monitor:
+    resource: "@LiipMonitorBundle/Resources/config/routing.xml"
     prefix: /monitor/health
 
 zym_resque:
