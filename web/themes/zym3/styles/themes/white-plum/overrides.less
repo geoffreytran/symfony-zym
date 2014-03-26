@@ -1,5 +1,30 @@
+@btn-default-color:              @gray-dark;
+@btn-default-bg:                 #f9f9f9;
+@btn-default-border:             lighten(@brand-primary, 15%);
+
 .btn {
-    border-radius: 3px;
+  border-radius: 2px;
+}
+
+.btn-default {
+  #gradient > .vertical(@btn-default-bg, darken(@btn-default-bg, 3%));
+  border-color: darken(@btn-default-bg, 15%);
+}
+
+.btn-default:hover,
+.btn-default.active {
+  border-color: darken(darken(@btn-default-bg, 10%), 15%);
+}
+
+.btn-primary {
+  #gradient > .vertical(@brand-primary, darken(@brand-primary, 3%));
+  border-color: darken(@brand-primary, 15%);
+}
+
+.btn-primary:hover,
+.btn-primary.active {
+  #gradient > .vertical(darken(@brand-primary, 8%), darken(darken(@brand-primary, 8%), 3%));
+  border-color: darken(darken(@brand-primary, 10%), 15%);
 }
 
 .modal-header .modal-title {
