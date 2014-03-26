@@ -178,6 +178,7 @@ jms_serializer:
             KnpPaginatorBundle:
                 namespace_prefix: "Knp\\Bundle\\PaginatorBundle"
                 path: '@ZymPaginatorBundle/Resources/config/serializer/knp-paginator-bundle'
+
 liip_monitor:
     checks:
         disk_usage: ~
