@@ -29,14 +29,14 @@
                 </a>
                 </div>
 
-                <div class="btn-group">
+                <div class="btn-group navbar-btn">
                     {% if is_granted('EDIT', user) %}
-                    <a class="btn btn-default navbar-btn" href="{{ path('zym_user_users_edit', { "id": user.id }) }}">
+                    <a class="btn btn-default" href="{{ path('zym_user_users_edit', { "id": user.id }) }}">
                         <span class="glyphicon glyphicon-edit"></span> {{ 'Edit' | trans({}, 'ZymUserBundle') }}
                     </a>
                     {% endif %}
 
-                    <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="caret"></span>
                     </a>
 
@@ -61,8 +61,8 @@
                     </ul>
                 </div>
 
-                <div class="btn-group">
-                     <a class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" href="#">
+                <div class="btn-group navbar-btn">
+                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
                          <span class="glyphicon glyphicon-tasks"></span>
                          {{ 'More'| trans({}, 'ZymUserBundle') }}
                          <span class="caret"></span>

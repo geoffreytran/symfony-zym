@@ -49,6 +49,9 @@ default_attributes({
 
         "realpath_cache_size" => "4096k",
 
+        "session.gc_divisor"     => 100,
+        "session.gc_probability" => 1,
+
         "xdebug.cli_color"               => 1,
         "xdebug.coverage_enable"         => 0,
         "xdebug.profiler_enable_trigger" => 1
