@@ -311,6 +311,9 @@ zym_media:
         image:
             filesystem: gaufrette.default_filesystem
             cdn: zym_media.cdn.rackspace_cloudfiles
+        audio:
+            filesystem: gaufrette.default_filesystem
+            cdn: zym_media.cdn.rackspace_cloudfiles
     cdn:
         rackspace_cloudfiles:
             service_id: gaufrette.default_adapter.container
