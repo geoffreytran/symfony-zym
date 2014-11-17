@@ -1,6 +1,6 @@
 <div class="modal-dialog animated fadeIn" data-ng-cloak>
     <div class="modal-content">
-        <div class="modal" style="position: static; margin: 0 auto; display: block;">
+        <div class="modal" style="position: static; margin: 0 auto; display: block; overflow-y: auto;">
             <div class="modal-header">
                 <h1 class="modal-title">
                     {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}
@@ -9,8 +9,13 @@
             </div>
 
             <div class="modal-body">
-                <span class="glyphicon glyphicon-info-sign text-info" style="font-size: 300%; float: left; margin: 10px 20px;"></span>
-                <p>{{ 'resetting.check_email' |trans({ '%email%': email }, 'FOSUserBundle') }}</p>
+                <div class="media">
+                    <span class="glyphicon glyphicon-info-sign text-info media-object pull-left" style="font-size: 300%;"></span>
+
+                    <div class="media-body">
+                        <p>{{ 'resetting.check_email' |trans({ '%email%': email }, 'FOSUserBundle') }}</p>
+                    </div>
+                </div>
             </div>
 
             <div class="modal-footer">

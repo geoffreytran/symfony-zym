@@ -1,7 +1,7 @@
 <div class="modal-dialog" data-ng-controller="ResettingRequestCtrl" data-ng-class="{'animated shake': error, 'animated fadeIn': error == null && !loading, 'animated bounceOut': success}"  data-ng-cloak>
     <div class="modal-content">
         <form action="{{ path('zym_user_resetting_request') }}" method="POST" class="fos_user_resetting_request" data-ng-submit="request($event)">
-            <div class="modal" style="position: static; margin: 0 auto; display: block;">
+            <div class="modal" style="position: static; margin: 0 auto; display: block; overflow-y: auto;">
                 <div class="modal-header">
                     <h1 class="modal-title">
                         {{ 'Recover Account' | trans({}, 'FOSUserBundle') }}

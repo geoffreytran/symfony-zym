@@ -70,6 +70,11 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
+  
+  if Vagrant.has_plugin?("vagrant-librarian-chef")
+    config.librarian_chef.cheffile_dir = "data/chef"
+  end
+  
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["data/chef/cookbooks", "data/chef/site-cookbooks"]
     chef.roles_path     = ["data/chef/roles"]

@@ -1,7 +1,7 @@
 <div class="modal-dialog" data-ng-controller="LoginCtrl" data-ng-class="{'animated shake': error, 'animated fadeIn': error == null && !loading, 'animated bounceOut': success}"  data-ng-cloak>
     <div class="modal-content">
         <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" data-ng-submit="login($event)">
-            <div class="modal" style="position: static; margin: 0 auto; display: block;">
+            <div class="modal" style="position: static; margin: 0 auto; display: block; overflow-y: auto;">
                 <div class="modal-header">
                     <h1 class="modal-title">
                         {{ 'Login' | trans({}, 'FOSUserBundle') }}

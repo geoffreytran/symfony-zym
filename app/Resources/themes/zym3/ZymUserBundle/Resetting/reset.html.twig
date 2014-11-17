@@ -6,7 +6,7 @@
     {% if app.request.query.has('_escaped_fragment_') %}
         {% include 'ZymUserBundle:Resetting:reset.ajax.twig' %}
     {% else %}
-        <script type="text/ng-template" id="{{ path('zym_user_resetting_reset', { '_format': 'ajax' }) }}">
+        <script type="text/ng-template" id="{{ path('zym_user_resetting_reset', { '_format': 'ajax', 'token': token }) }}">
         {% include 'ZymUserBundle:Resetting:reset.ajax.twig' %}
     </script>
     {% endif %}
