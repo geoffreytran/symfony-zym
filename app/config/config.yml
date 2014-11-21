@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml, ignore_errors: true }
     - { resource: security.yml }
-    
+    - { resource: services.yml }
     - { resource: defaults.ini }
     - { resource: ../../config/parameters.ini, ignore_errors: true}
 
@@ -10,7 +10,6 @@ imports:
     - { resource: ../../config/cdn.xml,   ignore_errors: true }
     - { resource: ../../config/mail.xml,  ignore_errors: true }
     - { resource: ../../config/queue.xml, ignore_errors: true }
-
 parameters:
     knp_paginator.template.pagination: 'MopaBootstrapBundle:Pagination:sliding.html.twig'
 
@@ -74,9 +73,13 @@ doctrine:
         user:     %db.default.user%
         password: %db.default.password%
         charset:  UTF8
-        # if using pdo_sqlite as your database driver, add the path in parameters.yml
-        # e.g. database_path: %kernel.root_dir%/data/data.db3
-        # path:     %database_path%
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
@@ -239,17 +242,6 @@ opensky_runtime_config:
     cascade:  true
 
 knp_gaufrette:
-    factories:
-        zym_gaufrette: %kernel.root_dir%/../vendor/geoffreytran/zym/src/Zym/Bundle/GaufretteBundle/Resources/config/services.xml
-    adapters:
-        default:
-            rackspace_cloudfiles:
-                container: test
-                user: rapp2012
-                api_key: c361a08973e973c2da49c59379520dc7
-    filesystems:
-        default:
-            adapter:    default
 
 cmf_core:
     persistence:
@@ -275,15 +267,13 @@ cmf_routing:
 
         templates_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent: SandboxMainBundle:StaticContent:index.html.twig
+            Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:  ZymContentBundle:Pages:page.html.twig
 
 cmf_simple_cms:
     persistence:
         phpcr:
             enabled: true
             basepath: /cms/content
-    routing:
-        templates_by_class:
-            Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:  ZymContentBundle:Pages:page.html.twig
 
 sonata_block:
     default_contexts: [cms]
@@ -309,18 +299,15 @@ zym_media:
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
-    providers:
-        file:
-            filesystem: gaufrette.default_filesystem
-        image:
-            filesystem: gaufrette.default_filesystem
-            cdn: zym_media.cdn.rackspace_cloudfiles
-        audio:
-            filesystem: gaufrette.default_filesystem
-            cdn: zym_media.cdn.rackspace_cloudfiles
+#    providers:
+#        file:
+#            filesystem: gaufrette.default_filesystem
+#        image:
+#            filesystem: gaufrette.default_filesystem
+#        audio:
+#            filesystem: gaufrette.default_filesystem
     cdn:
-        rackspace_cloudfiles:
-            service_id: gaufrette.default_adapter.container
+        server: ~
 
 zym_user:
     db_driver: orm
@@ -346,9 +333,5 @@ zym_resque:
 services:
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
-        tags:
-            - { name: twig.extension }
-    twig.extension.debug:
-        class: Twig_Extensions_Extension_Debug
         tags:
             - { name: twig.extension }

@@ -75,12 +75,13 @@ class AppKernel extends Kernel
             new Zym\Bundle\ResqueBundle\ZymResqueBundle(),
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
-            new Zym\Bundle\GaufretteBundle\ZymGaufretteBundle(),
             new Zym\Bundle\ContentBundle\ZymContentBundle(),
         );
 
-        if (in_array($this->getEnvironment(), $this->debugEnvironments)) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
+
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
