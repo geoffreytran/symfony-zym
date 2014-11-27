@@ -59,10 +59,6 @@ assetic:
             node_paths: [%assetic.less.node_paths%]
         uglifycss: ~
         uglifyjs2: ~
-        yui_css:
-            jar:  %assetic.yuicompressor.jar%
-        yui_js:
-            jar:  %assetic.yuicompressor.jar%
 
 # Doctrine Configuration
 doctrine:

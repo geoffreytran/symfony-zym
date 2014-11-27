@@ -155,8 +155,8 @@ define :zym_application, :mail => {}, :parameters => {}, :cookbook => "zym" do
 
           :assetic => {
             :less => {
-              :node_bin   => "#{node[:nodejs][:dir]}/bin/node",
-              :node_paths => "#{node[:nodejs][:dir]}/lib/node_modules"
+              :node_bin   => (node[:nodejs].has_key?(:dir)) ? "#{node[:nodejs][:dir]}/bin/node" : "/usr/local/bin/node",
+              :node_paths => (node[:nodejs].has_key?(:dir)) ? "#{node[:nodejs][:dir]}/lib/node_modules" : "/usr/local/lib/node_modules"
             }
           },
 

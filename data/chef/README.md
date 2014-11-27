@@ -11,7 +11,7 @@ Running Vagrant
 
 Install the vagrant-hostmaster plugin:
 
-    # vagrant gem install vagrant-hostmaster
+    # vagrant plugin install vagrant-hostmaster
 
 Run vagrant up to start the VM.
 
@@ -21,12 +21,15 @@ Rebuilding/Installing Chef Cookbooks
 ------------------------------------
 
 In order to install or update the global Chef cookbooks, you must first
-install `librarian-chef` [https://github.com/applicationsonline/librarian].
+install `Berkshelf` [http://berkshelf.com/].
 
 It is available using:
 
-    # sudo gem install librarian
+    # sudo gem install berkshelf
+    
+We install Berkshelf into vagrant's Ruby install also to ensure vagrant-berkshelf has access to it.
 
-After librarian is installed you can call to updated the installed cookbooks:
-
-    # librarian-chef install
+    # vagrant plugin install berkshelf
+    # vagrant plugin install vagrant-berkshelf
+    
+After these two plugins are installed, the cookbooks should automatically be downloaded.

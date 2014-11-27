@@ -105,8 +105,8 @@ parameters = {
 
   :assetic => {
     :less => {
-      :node_bin   => "#{node[:nodejs][:dir]}/bin/node",
-      :node_paths => "#{node[:nodejs][:dir]}/lib/node_modules"
+      :node_bin   => (node[:nodejs].has_key?(:dir)) ? "#{node[:nodejs][:dir]}/bin/node" : "/usr/local/bin/node",
+      :node_paths => (node[:nodejs].has_key?(:dir)) ? "#{node[:nodejs][:dir]}/lib/node_modules" : "/usr/local/lib/node_modules"
     }
   },
 
@@ -139,6 +139,49 @@ composer "#{node[:zym][:dir]}" do
 end
 
 if Chef::Config[:solo]
+
+#  symfony2_console "Drop database" do
+#    action :cmd
+#
+#    command "doctrine:database:drop --force"
+#
+#    path node[:zym][:dir]
+#  end
+
+#  symfony2_console "Create database" do
+#    action :cmd
+#
+#    command "doctrine:database:create"
+#
+#    path  node[:zym][:dir]
+#    env   node[:zym][:environment]
+#    debug node[:zym][:debug]
+#  end
+
+  symfony2_console "Schema" do
+    action :cmd
+
+    command "doctrine:schema:create"
+
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+
+    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SHOW TABLES; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
+  end
+
+  symfony2_console "Fixtures" do
+    action :cmd
+
+    command "doctrine:fixtures:load"
+
+    path  node[:zym][:dir]
+    env   node[:zym][:environment]
+    debug node[:zym][:debug]
+
+    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SELECT * FROM `acl_classes`; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
+  end
+  
   symfony2_console "Clear Cache" do
     action :cmd
 
@@ -177,47 +220,5 @@ if Chef::Config[:solo]
     path  node[:zym][:dir]
     env   "prod" # node[:zym][:environment]
     debug node[:zym][:debug]
-  end
-
-#  symfony2_console "Drop database" do
-#    action :cmd
-#
-#    command "doctrine:database:drop --force"
-#
-#    path node[:zym][:dir]
-#  end
-
-#  symfony2_console "Create database" do
-#    action :cmd
-#
-#    command "doctrine:database:create"
-#
-#    path  node[:zym][:dir]
-#    env   node[:zym][:environment]
-#    debug node[:zym][:debug]
-#  end
-
-  symfony2_console "Schema" do
-    action :cmd
-  
-    command "doctrine:schema:create"
-  
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
-    debug node[:zym][:debug]
-    
-    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SHOW TABLES; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"
-  end
-  
-  symfony2_console "Fixtures" do
-    action :cmd
-  
-    command "doctrine:fixtures:load"
-  
-    path  node[:zym][:dir]
-    env   node[:zym][:environment]
-    debug node[:zym][:debug]
-    
-    only_if "mysql -u'#{node[:zym][:db][:user]}' -p'#{node[:zym][:db][:password]}' -h #{mysql_host} -e'USE #{node[:zym][:db][:name]}; SELECT * FROM `acl_classes`; SELECT FOUND_ROWS();' -E|grep -c 'FOUND_ROWS(): 0'"    
   end
 end

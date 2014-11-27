@@ -29,7 +29,6 @@
         "nervo/yuicompressor": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
 
-
         "knplabs/knp-gaufrette-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "friendsofsymfony/rest-bundle": "~1.2",
@@ -43,7 +42,7 @@
         "presta/sitemap-bundle": "dev-master",
         "imagine/Imagine": "v0.3.0",
         "omissis/php-cloudfiles": "dev-master",
-        "guzzle/guzzle": "3.7.*",
+        "guzzle/guzzle": "~3.9",
         "playbloom/guzzle-bundle": "~1.0",
         "juliendidier/buzz-profiler-bundle": "dev-master",
         "liip/monitor-bundle": "dev-master",

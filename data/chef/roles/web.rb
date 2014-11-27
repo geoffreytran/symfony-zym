@@ -60,9 +60,9 @@ default_attributes({
   },
 
   :nodejs => {
-    :install_method => "source",
+    :install_method => "package",
     :dir            => "/usr",
-    :npm            => "1.2.30"
+    :npm            => "1.3.25"
   },
 })
 

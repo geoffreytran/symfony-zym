@@ -15,7 +15,6 @@ run_list(
   "recipe[users::sysadmins]",
 
   "recipe[java]",
-  "recipe[php54]",
   "recipe[php]",
   "recipe[sqlite]",
   "recipe[nodejs]",
@@ -39,8 +38,8 @@ default_attributes({
     }
   },
   
-  :build_essential => {
-    :compiletime => true
+  "build-essential" => {
+    :compile_time => true
   },
 
   :chef_client => {

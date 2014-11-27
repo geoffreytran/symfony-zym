@@ -17,3 +17,4 @@ zym_apache "#{node[:zym][:domain]}" do
   environment    node[:zym][:environment]
   http_cache     node[:zym][:http_cache]
 end
+

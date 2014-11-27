@@ -5,9 +5,8 @@ description "Configures the node as a database server."
 run_list(
   "role[default]",
   
-  "recipe[mysql]",
+  "recipe[mysql::client]",
   "recipe[mysql::server]",
-  "recipe[mysql_charset]",
   "recipe[mysql_timezone]",
 
   "recipe[database::mysql]"
@@ -18,7 +17,8 @@ default_attributes({
   :mysql => {
     :allow_remote_root      => false,
     :remove_anonymous_users => true,
-    :remove_test_database   => true
+    :remove_test_database   => true,
+    :enable_utf8            => "true"
   }
 })
 

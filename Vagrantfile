@@ -8,11 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "zym.dev"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box       = "precise64"
+  config.vm.box       = "phusion/ubuntu-14.04-amd64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url   = "http://files.vagrantup.com/precise64.box"
+  # config.vm.box_url   = "http://files.vagrantup.com/precise64.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -71,10 +71,24 @@ Vagrant.configure("2") do |config|
   # some recipes and/or roles.
   #
   
-  if Vagrant.has_plugin?("vagrant-librarian-chef")
-    config.librarian_chef.cheffile_dir = "data/chef"
+  # if Vagrant.has_plugin?("vagrant-librarian-chef")
+  #  config.librarian_chef.cheffile_dir = "data/chef"
+  # end
+
+  if Vagrant.has_plugin?("vagrant-berkshelf")
+    # The path to the Berksfile to use. The default value is "Berksfile" if one
+    # exists, or nil if it does not.
+    config.berkshelf.berksfile_path = "data/chef/Berksfile"
+
+    # Enable Berkshelf. If a Berksfile exists or a berksfile_path is given, this
+    # value is automatically set to true. If not, the value is false
+    config.berkshelf.enabled = true
   end
-  
+
+  if Vagrant.has_plugin?("vagrant-omnibus")
+    config.omnibus.chef_version = "11.12.2"
+  end
+
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["data/chef/cookbooks", "data/chef/site-cookbooks"]
     chef.roles_path     = ["data/chef/roles"]
@@ -107,8 +121,7 @@ Vagrant.configure("2") do |config|
           :minspareservers     => 2,
           :serverlimit         => 100,
           :startservers        => 2
-        },
-        :version => "2.4"
+        }
       },
 
       :mysql => {

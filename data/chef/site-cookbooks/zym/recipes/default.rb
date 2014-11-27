@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+npm_package "bower"
+
 zym_application "#{node[:zym][:domain]}" do
   release_dir node[:zym][:release_dir]
 
