@@ -1,9 +1,9 @@
 {%- set appName = (runtime_config('app.name') is empty ?  'Untitled App' : runtime_config('app.name')) |trans -%}
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="no-js ie6" lang="{{ app.request.locale |e }}"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if lt IE 7 ]> <html class="no-js ie6 lt-ie9 lt-ie8 lt-ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 lt-ie9 lt-ie8" lang="{{ app.request.locale |e }}">        <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 lt-ie9" lang="{{ app.request.locale |e }}">               <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="{{ app.request.locale |e }}" id="ng-app">
 <!--<![endif]-->
@@ -116,7 +116,7 @@
                                 {{ appName |e }}
                             </a>
                         </div>
-                            
+
                         <!-- Place everything within .nav-collapse to hide it until above 768px -->
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             {% if app.security.token is not null %}
@@ -262,13 +262,13 @@
         <script type="text/javascript">
             $.webshims.polyfill();
         </script>
-        
+
         <script type="text/javascript">
-            // Internet Explorer 10 doesn't differentiate device width from viewport width, 
-            // and thus doesn't properly apply the media queries in Bootstrap's CSS. To address 
-            // this, you can optionally include the following CSS and JavaScript to work around 
+            // Internet Explorer 10 doesn't differentiate device width from viewport width,
+            // and thus doesn't properly apply the media queries in Bootstrap's CSS. To address
+            // this, you can optionally include the following CSS and JavaScript to work around
             // this problem until Microsoft issues a fix.
-        
+
             if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
                 var msViewportStyle = document.createElement("style")
                 msViewportStyle.appendChild(

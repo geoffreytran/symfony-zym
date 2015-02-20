@@ -16,29 +16,16 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            
-            // Symfony CMF
-            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
-            new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
-            new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
-            new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
-            new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
-            new Symfony\Cmf\Bundle\SimpleCmsBundle\CmfSimpleCmsBundle(),
-            new Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
-            new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
 
             // Symfony Extra
             new JMS\SerializerBundle\JMSSerializerBundle($this),
 
-            // Sonata
-            new Sonata\BlockBundle\SonataBlockBundle(),
-
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
@@ -75,7 +62,8 @@ class AppKernel extends Kernel
             new Zym\Bundle\ResqueBundle\ZymResqueBundle(),
             new Zym\Bundle\SitemapBundle\ZymSitemapBundle(),
             new Zym\Bundle\MediaBundle\ZymMediaBundle(),
-            new Zym\Bundle\ContentBundle\ZymContentBundle(),
+
+            new AppBundle\AppBundle(),
         );
 
 

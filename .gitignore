@@ -6,9 +6,9 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /app/phpunit.xml
+/bin/*
 /build/
 /vendor/
-/bin/
 /composer.phar
 /config/*.xml
 /config/*.ini

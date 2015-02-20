@@ -15,42 +15,44 @@ parameters:
 
 framework:
     annotations:     ~
-    secret:          %kernel.secret%
+    esi:
+        enabled: true
+    translator:      { fallbacks: ["%kernel.locale%"] }
+    secret:          "%kernel.secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
+    assets:
+        version: %assets.version%
+        #base_urls: %assets.base_urls%
     templating:
         engines: ['twig']
-        assets_version: %assets.version%
-        assets_base_urls: %assets.base_urls%
-    translator:
-        fallback: %kernel.locale%
     default_locale: %kernel.locale%
     trusted_proxies: %kernel.trusted_proxies%
     session:
         name: "session"
         handler_id: zym_session.storage.handler.pdo
-    fragments:   { path: /_fragment }
-    esi:            true
+    fragments:
+        enabled: true
+        path: /_fragment
     http_method_override: true
 
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    form:
-        resources:
-            - 'MopaBootstrapBundle:Form:fields.html.twig'
+    form_themes:
+        - 'MopaBootstrapBundle:Form:fields.html.twig'
     exception_controller: FOS\RestBundle\Controller\ExceptionController::showAction
 
 # Assetic Configuration
 assetic:
     debug: %kernel.debug%
     use_controller: false
-    bundles: ['CmfCreateBundle']
+    bundles: []
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -111,18 +113,6 @@ doctrine:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
-
-doctrine_phpcr:
-    # Configure the PHPCR session
-    session:
-        backend:   %db.phpcr.backend%
-        workspace: %db.phpcr.workspace%
-        username:  %db.phpcr.user%
-        password:  %db.phpcr.password%
-    # Enable the ODM layer
-    odm:
-        auto_mapping: true
-        auto_generate_proxy_classes: %kernel.debug%
 
 stof_doctrine_extensions:
     default_locale: en_US
@@ -237,56 +227,7 @@ opensky_runtime_config:
     provider: zym_runtime_config.provider
     cascade:  true
 
-knp_gaufrette:
-
-cmf_core:
-    persistence:
-        phpcr:
-            enabled: true
-            basepath: /cms
-    publish_workflow:
-        enabled: false
-
-cmf_routing:
-    chain:
-        routers_by_id:
-            cmf_routing.dynamic_router: 20
-            router.default: 100
-    dynamic:
-        controllers_by_type:
-            demo_type: sandbox_main.controller:typeAction
-        controllers_by_class:
-            Sandbox\MainBundle\Document\DemoClassContent: sandbox_main.controller:classAction
-            Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute:  cmf_routing.redirect_controller:redirectAction
-            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: cmf_blog.blog_controller:listAction
-            Symfony\Cmf\Bundle\BlogBundle\Document\Post: cmf_blog.blog_controller:viewPostAction
-
-        templates_by_class:
-            Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent: SandboxMainBundle:StaticContent:index.html.twig
-            Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:  ZymContentBundle:Pages:page.html.twig
-
-cmf_simple_cms:
-    persistence:
-        phpcr:
-            enabled: true
-            basepath: /cms/content
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-
-        #sonata.admin_doctrine_orm.block.audit:
-        #    contexts:   [admin]
-
-        sonata.block.service.text:
-        sonata.block.service.rss:
-
-        # Some specific block from the SonataMediaBundle
-        #sonata.media.block.media:
-        #sonata.media.block.gallery:
-        #sonata.media.block.feature_media:
+knp_gaufrette: ~
 
 zym_media:
     db_driver: orm

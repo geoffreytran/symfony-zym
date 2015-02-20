@@ -16,7 +16,7 @@ security:
 
     firewalls:
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js|themes|scripts|styles)/
+            pattern: ^/(_(profiler|wdt|error)|css|images|js|themes|scripts|styles)/
             security: false
 
         main:
@@ -45,4 +45,3 @@ security:
 
     acl:
         connection: default
-

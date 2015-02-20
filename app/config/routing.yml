@@ -1,13 +1,3 @@
-zym_content:
-    resource: "@ZymContentBundle/Resources/config/routing.xml"
-    prefix:   /admin/content
-
-create:
-    resource: "@CmfCreateBundle/Resources/config/routing/rest.xml"
-
-create_image:
-    resource: "@CmfCreateBundle/Resources/config/routing/image.xml"
-
 presta_sitemap:
     resource: "@PrestaSitemapBundle/Resources/config/routing.yml"
     prefix:   /
@@ -113,3 +103,7 @@ fos_user_registration:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix:   /account/password
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

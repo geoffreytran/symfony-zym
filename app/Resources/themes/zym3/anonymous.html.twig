@@ -1,9 +1,9 @@
 {%- set appName = (runtime_config('app.name') is empty ?  'Untitled App' : runtime_config('app.name')) |trans -%}
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="no-js ie6" lang="{{ app.request.locale |e }}"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if lt IE 7 ]> <html class="no-js ie6 lt-ie9 lt-ie8 lt-ie7" lang="{{ app.request.locale |e }}"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7 lt-ie9 lt-ie8" lang="{{ app.request.locale |e }}">        <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8 lt-ie9" lang="{{ app.request.locale |e }}">               <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="{{ app.request.locale |e }}" id="ng-app">
 <!--<![endif]-->
